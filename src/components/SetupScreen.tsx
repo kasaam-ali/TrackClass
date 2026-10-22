@@ -1,5 +1,6 @@
 import { Database, Download, KeyRound, Terminal } from 'lucide-react'
 import { AmbientBackground } from './layout/AmbientBackground'
+import { ThemeToggle } from './layout/ThemeToggle'
 import { missingConfigKeys } from '../lib/env'
 
 interface SetupScreenProps {
@@ -28,6 +29,9 @@ export function SetupScreen({ onContinue }: SetupScreenProps) {
   return (
     <main className="relative mx-auto flex min-h-screen w-full max-w-4xl flex-col justify-center gap-7 px-5 py-12">
       <AmbientBackground />
+      <div className="absolute right-5 top-5 z-10">
+        <ThemeToggle />
+      </div>
       <div className="space-y-3">
         <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-brand-300/80">
           TrackClass

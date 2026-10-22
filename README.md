@@ -11,10 +11,14 @@ TrackClass is a student-first timetable platform for **Fall 2026**. Students pic
 [![Vite](https://img.shields.io/badge/Vite-6-646CFF?style=flat-square&logo=vite&logoColor=white)](https://vite.dev)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4-06B6D4?style=flat-square&logo=tailwindcss&logoColor=white)](https://tailwindcss.com)
 [![Supabase](https://img.shields.io/badge/Supabase-Postgres_%7C_Auth_%7C_Storage-3ECF8E?style=flat-square&logo=supabase&logoColor=white)](https://supabase.com)
+[![Framer Motion](https://img.shields.io/badge/Framer_Motion-14-0055FF?style=flat-square&logo=framer&logoColor=white)](https://www.framer.com/motion)
+[![SheetJS](https://img.shields.io/badge/SheetJS-XLSX-1D6F42?style=flat-square)](https://sheetjs.com)
 [![PWA](https://img.shields.io/badge/PWA-Offline_Ready-5A0FC8?style=flat-square&logo=pwa&logoColor=white)](https://vite-pwa-org.netlify.app)
+[![Light and Dark](https://img.shields.io/badge/Theme-Light_%2B_Dark-38BDF8?style=flat-square&logo=halfmoon&logoColor=white)](#-design--motion)
 [![Vitest](https://img.shields.io/badge/Tests-39_Passing-34D399?style=flat-square&logo=vitest&logoColor=white)](#-verification)
+[![Last commit](https://img.shields.io/github/last-commit/kasaam-ali/TrackClass?style=flat-square&logo=github&color=0EA5E9)](https://github.com/kasaam-ali/TrackClass/commits/main)
 
-[Features](#-features) • [Quick Start](#-quick-start) • [Supabase Setup](#-supabase-setup) • [Architecture](#-architecture) • [Scripts](#-scripts) • [Roadmap](#-roadmap)
+[Features](#-features) • [Design & Motion](#-design--motion) • [Quick Start](#-quick-start) • [Supabase Setup](#-supabase-setup) • [Architecture](#-architecture) • [Scripts](#-scripts) • [Roadmap](#-roadmap)
 
 </div>
 
@@ -25,6 +29,8 @@ TrackClass is a student-first timetable platform for **Fall 2026**. Students pic
 TrackClass turns the official university Excel timetable into a clean, fast, and installable web app.
 
 > **Current dataset:** 3 departments, 22 sections, 186 entries, and 43 free cells.
+
+**Topics:** `react` `typescript` `vite` `tailwindcss` `supabase` `pwa` `timetable` `education` `framer-motion` `vitest` `edge-functions`
 
 The app is built around three ideas:
 
@@ -47,7 +53,21 @@ The app is built around three ideas:
 | 📴 **Offline support** | Installable PWA with cached app shell, timetable data, and local answers. |
 | 🛠️ **Admin publishing** | Upload `.xlsx`, review cell-level changes, publish, and keep version history. |
 | 🔐 **Secure access** | Student reads use Supabase RLS. Admin actions require email/password auth. |
-| 🎨 **Polished UI** | Dark cinematic interface, responsive tabs, section rail, and reduced-motion support. |
+| 🌗 **Light and dark themes** | One-click theme toggle with saved preference and system-aware first paint. |
+| 🎬 **Motion system** | Branded first-load sequence, staggered timetable cells, and streaming assistant replies. |
+| 🎨 **Polished UI** | Responsive tabs, section rail, glass surfaces, and reduced-motion support. |
+
+---
+
+## 🎨 Design & Motion
+
+TrackClass ships with two complete surface systems and a motion layer that stays out of the way.
+
+- **Light and dark modes.** The sun/moon control lives in the header, persists in `localStorage`, and respects the operating system preference on first visit.
+- **Branded first load.** A short boot sequence animates the logo, progress states, and a miniature timetable grid. It runs once per browser session.
+- **Streaming assistant.** New assistant replies reveal word by word with a blinking caret, while history messages render instantly.
+- **Reduced motion.** The boot sequence is skipped and Framer Motion respects the user preference when reduced motion is enabled.
+- **Theme-aware surfaces.** Glass panels, borders, grids, glows, scrollbars, and semantic text colors all switch cleanly between light and dark.
 
 ---
 
@@ -57,6 +77,7 @@ The app is built around three ideas:
 | --- | --- |
 | **Frontend** | React 18, TypeScript, Vite 6 |
 | **Styling** | Tailwind CSS v4, custom design tokens, Framer Motion |
+| **Themes** | CSS-variable light/dark themes with saved preference |
 | **Fonts** | Manrope Variable, Space Grotesk Variable |
 | **Backend** | Supabase Postgres, Auth, Storage, Edge Functions |
 | **Data parsing** | SheetJS (`xlsx`) |
@@ -113,7 +134,7 @@ npm install
 npm run dev
 ```
 
-Open the app and choose **Continue in demo mode**. The demo snapshot is bundled from `sample/timetable-fall-2026.xlsx`, so no backend keys are needed.
+Open the app and choose **Continue in demo mode**. The demo snapshot is bundled from `sample/timetable-fall-2026.xlsx`, so no backend keys are needed. Use the sun/moon control in the header to switch themes.
 
 ### 3. Rebuild the demo snapshot
 
@@ -237,6 +258,11 @@ npm run build
 | Production build | ✅ Passes |
 | Desktop UI | ✅ Verified |
 | Mobile UI | ✅ No horizontal page overflow |
+| Light theme | ✅ Verified |
+| Dark theme | ✅ Verified |
+| Theme persistence | ✅ Verified |
+| First-load motion | ✅ Verified |
+| Streaming answers | ✅ Verified |
 | PWA offline | ✅ Verified |
 | Admin live flow | ✅ Verified |
 
@@ -265,7 +291,8 @@ The test suite covers parsing, cross-section engines, snapshot rebuilding, and t
 - Period times vary by department and day. Periods are keyed by department, day, and slot.
 - Teacher and room extraction is best effort. The raw cell text is always retained.
 - The `Remaining Classrooms` footer row and break timings are not used in v1.
-- The app stores the student section and chat history in `localStorage`.
+- The app stores the student section, chat history, and theme preference in `localStorage`.
+- The boot animation uses `sessionStorage` so it appears once per browser session.
 - Supabase RLS exposes only the active version and active sections.
 
 ---
@@ -277,7 +304,8 @@ The test suite covers parsing, cross-section engines, snapshot rebuilding, and t
 - [x] Installable PWA with offline support
 - [x] Deterministic timetable assistant
 - [x] AI Edge Function source
-- [x] Responsive dark UI with motion
+- [x] Responsive light and dark themes
+- [x] First-load motion and streaming assistant replies
 - [ ] Deploy the Edge Function with provider secrets
 - [ ] Deploy the frontend to Netlify or Vercel
 - [ ] Add end-to-end browser tests

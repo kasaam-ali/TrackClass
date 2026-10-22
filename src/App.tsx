@@ -1,7 +1,8 @@
-import { lazy, Suspense, useState } from 'react'
-import { MotionConfig } from 'framer-motion'
+import { lazy, Suspense, useEffect, useState } from 'react'
+import { AnimatePresence, MotionConfig } from 'framer-motion'
 import { BrowserRouter, Navigate, Route, Routes, useNavigate } from 'react-router-dom'
 import { SetupScreen } from './components/SetupScreen'
+import { BootSplash } from './components/layout/BootSplash'
 import { AdminAuthProvider } from './context/AdminAuthContext'
 import { ProfileProvider } from './context/ProfileContext'
 import { TimetableProvider } from './context/TimetableContext'
@@ -20,6 +21,18 @@ const AdminTimetable = lazy(async () => ({
 }))
 
 const DEMO_KEY = 'uni-timetable:demo-mode'
+const BOOT_KEY = 'trackclass:boot-seen'
+const BOOT_DURATION = 1750
+
+function shouldShowBoot(): boolean {
+  if (typeof window === 'undefined') return false
+  try {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return false
+    return window.sessionStorage.getItem(BOOT_KEY) !== '1'
+  } catch {
+    return true
+  }
+}
 
 function RouteLoading() {
   return (
@@ -67,6 +80,25 @@ function ConfigGate() {
 }
 
 export default function App() {
+  const [booting, setBooting] = useState(shouldShowBoot)
+
+  useEffect(() => {
+    if (!booting) return
+
+    const previousOverflow = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+
+    try {
+      window.sessionStorage.setItem(BOOT_KEY, '1')
+    } catch {}
+
+    const timer = window.setTimeout(() => setBooting(false), BOOT_DURATION)
+    return () => {
+      window.clearTimeout(timer)
+      document.body.style.overflow = previousOverflow
+    }
+  }, [booting])
+
   return (
     <MotionConfig reducedMotion="user">
       <BrowserRouter>
@@ -78,6 +110,7 @@ export default function App() {
           </ProfileProvider>
         </AdminAuthProvider>
       </BrowserRouter>
+      <AnimatePresence>{booting ? <BootSplash /> : null}</AnimatePresence>
     </MotionConfig>
   )
 }

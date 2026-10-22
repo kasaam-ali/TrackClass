@@ -12,6 +12,7 @@ import { resolveChatQuery } from '../../lib/chat/resolver'
 import type { ChatMessage, ChatReply } from '../../lib/chat/types'
 import type { TimetableSnapshot } from '../../lib/timetable/types'
 import { useNow } from '../../lib/useNow'
+import { StreamingText } from './StreamingText'
 
 const SUGGESTIONS = [
   'Meri agli class konsi hai?',
@@ -49,6 +50,7 @@ export function TimetableChat({ snapshot, sectionKey }: TimetableChatProps) {
   const [messages, setMessages] = useState<ChatMessage[]>(() => loadChatHistory(sectionKey))
   const [input, setInput] = useState('')
   const [busy, setBusy] = useState(false)
+  const [streamingId, setStreamingId] = useState<string | null>(null)
   const endRef = useRef<HTMLDivElement | null>(null)
 
   useEffect(() => {
@@ -58,6 +60,14 @@ export function TimetableChat({ snapshot, sectionKey }: TimetableChatProps) {
   useEffect(() => {
     endRef.current?.scrollIntoView({ behavior: 'smooth', block: 'nearest' })
   }, [messages, busy])
+
+  useEffect(() => {
+    if (!streamingId) return
+    const timer = window.setInterval(() => {
+      endRef.current?.scrollIntoView({ block: 'nearest' })
+    }, 180)
+    return () => window.clearInterval(timer)
+  }, [streamingId])
 
   const send = async (raw: string) => {
     const text = raw.trim()
@@ -74,26 +84,29 @@ export function TimetableChat({ snapshot, sectionKey }: TimetableChatProps) {
     setInput('')
     setBusy(true)
 
+    const pushReply = (reply: ChatReply, source: ChatMessage['source']) => {
+      const message = toMessage(reply, source)
+      setMessages((current) => [...current, message])
+      setStreamingId(message.id)
+    }
+
     const localReply = resolveChatQuery(text, { snapshot, sectionKey, meta, now })
     if (localReply) {
-      setMessages((current) => [...current, toMessage(localReply, 'local')])
+      pushReply(localReply, 'local')
       setBusy(false)
       return
     }
 
     const aiReply = await askTimetableAi(text, sectionKey, now)
     if (aiReply) {
-      setMessages((current) => [...current, toMessage(aiReply, 'ai')])
+      pushReply(aiReply, 'ai')
     } else {
-      setMessages((current) => [
-        ...current,
-        toMessage(
-          {
-            text: 'Main sirf timetable, rooms, teachers, aur sections ke sawalon ka jawab de sakta hoon. Free rooms, free slots, next class, ya teacher ka naam poochh kar dekhein.',
-          },
-          'fallback',
-        ),
-      ])
+      pushReply(
+        {
+          text: 'Main sirf timetable, rooms, teachers, aur sections ke sawalon ka jawab de sakta hoon. Free rooms, free slots, next class, ya teacher ka naam poochh kar dekhein.',
+        },
+        'fallback',
+      )
     }
     setBusy(false)
   }
@@ -126,6 +139,7 @@ export function TimetableChat({ snapshot, sectionKey }: TimetableChatProps) {
             onClick={() => {
               clearChatHistory(sectionKey)
               setMessages([])
+              setStreamingId(null)
             }}
             className="inline-flex items-center gap-1.5 rounded-xl border border-white/[0.08] bg-white/[0.03] px-2.5 py-1.5 text-[10px] font-medium text-slate-400 transition hover:border-white/15 hover:text-white"
           >
@@ -171,7 +185,17 @@ export function TimetableChat({ snapshot, sectionKey }: TimetableChatProps) {
                     : 'max-w-[90%] rounded-2xl rounded-bl-md border border-white/[0.07] bg-white/[0.03] px-4 py-3 text-sm text-slate-200'
                 }
               >
-                <p className="whitespace-pre-line leading-6">{message.text}</p>
+                <p className="whitespace-pre-line leading-6">
+                  <StreamingText
+                    text={message.text}
+                    animate={message.role === 'assistant' && message.id === streamingId}
+                    onDone={() => {
+                      setStreamingId((current) =>
+                        current === message.id ? null : current,
+                      )
+                    }}
+                  />
+                </p>
                 {message.cards && message.cards.length > 0 ? (
                   <div className="mt-3 space-y-2">
                     {message.cards.map((card, index) => (

@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react'
 import { CalendarRange } from 'lucide-react'
 import { Link } from 'react-router-dom'
+import { ThemeToggle } from './ThemeToggle'
 
 interface SiteHeaderProps {
   center?: ReactNode
@@ -39,7 +40,10 @@ export function SiteHeader({ center, actions, below }: SiteHeaderProps) {
           <div className="hidden flex-1 lg:block" />
         )}
 
-        <div className="ml-auto flex shrink-0 items-center gap-2">{actions}</div>
+        <div className="ml-auto flex shrink-0 items-center gap-2">
+          <ThemeToggle />
+          {actions}
+        </div>
       </div>
       {below}
     </header>
