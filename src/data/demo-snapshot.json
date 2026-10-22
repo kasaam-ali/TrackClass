@@ -1,0 +1,3480 @@
+{
+  "term": "Fall 2026",
+  "sourceFileName": "timetable-fall-2026.xlsx",
+  "parsedAt": "2026-10-21T18:13:43.218Z",
+  "departments": [
+    {
+      "code": "BSAI",
+      "name": "BS Artificial Intelligence"
+    },
+    {
+      "code": "BSCS",
+      "name": "BS Computer Science"
+    },
+    {
+      "code": "BSIT",
+      "name": "BS Information Technology"
+    }
+  ],
+  "sections": [
+    {
+      "key": "BSAI-S2-A-B3",
+      "departmentCode": "BSAI",
+      "semester": 2,
+      "sectionName": "A",
+      "batchLabel": "Batch 3",
+      "batchNumber": 3,
+      "displayName": "BSAI - Semester 2 - Section A (Batch 3)"
+    },
+    {
+      "key": "BSAI-S2-B-B3",
+      "departmentCode": "BSAI",
+      "semester": 2,
+      "sectionName": "B",
+      "batchLabel": "Batch 3",
+      "batchNumber": 3,
+      "displayName": "BSAI - Semester 2 - Section B (Batch 3)"
+    },
+    {
+      "key": "BSAI-S4-A-B2",
+      "departmentCode": "BSAI",
+      "semester": 4,
+      "sectionName": "A",
+      "batchLabel": "Batch 2",
+      "batchNumber": 2,
+      "displayName": "BSAI - Semester 4 - Section A (Batch 2)"
+    },
+    {
+      "key": "BSAI-S4-B-B2",
+      "departmentCode": "BSAI",
+      "semester": 4,
+      "sectionName": "B",
+      "batchLabel": "Batch 2",
+      "batchNumber": 2,
+      "displayName": "BSAI - Semester 4 - Section B (Batch 2)"
+    },
+    {
+      "key": "BSAI-S6-A-B1",
+      "departmentCode": "BSAI",
+      "semester": 6,
+      "sectionName": "A",
+      "batchLabel": "Batch 1",
+      "batchNumber": 1,
+      "displayName": "BSAI - Semester 6 - Section A (Batch 1)"
+    },
+    {
+      "key": "BSAI-S6-B-B1",
+      "departmentCode": "BSAI",
+      "semester": 6,
+      "sectionName": "B",
+      "batchLabel": "Batch 1",
+      "batchNumber": 1,
+      "displayName": "BSAI - Semester 6 - Section B (Batch 1)"
+    },
+    {
+      "key": "BSCS-S2-A-B17",
+      "departmentCode": "BSCS",
+      "semester": 2,
+      "sectionName": "A",
+      "batchLabel": "Batch 17",
+      "batchNumber": 17,
+      "displayName": "BSCS - Semester 2 - Section A (Batch 17)"
+    },
+    {
+      "key": "BSCS-S2-B-B17",
+      "departmentCode": "BSCS",
+      "semester": 2,
+      "sectionName": "B",
+      "batchLabel": "Batch 17",
+      "batchNumber": 17,
+      "displayName": "BSCS - Semester 2 - Section B (Batch 17)"
+    },
+    {
+      "key": "BSCS-S4-A-B16",
+      "departmentCode": "BSCS",
+      "semester": 4,
+      "sectionName": "A",
+      "batchLabel": "Batch 16",
+      "batchNumber": 16,
+      "displayName": "BSCS - Semester 4 - Section A (Batch 16)"
+    },
+    {
+      "key": "BSCS-S4-B-B16",
+      "departmentCode": "BSCS",
+      "semester": 4,
+      "sectionName": "B",
+      "batchLabel": "Batch 16",
+      "batchNumber": 16,
+      "displayName": "BSCS - Semester 4 - Section B (Batch 16)"
+    },
+    {
+      "key": "BSCS-S6-A-B15",
+      "departmentCode": "BSCS",
+      "semester": 6,
+      "sectionName": "A",
+      "batchLabel": "Batch 15",
+      "batchNumber": 15,
+      "displayName": "BSCS - Semester 6 - Section A (Batch 15)"
+    },
+    {
+      "key": "BSCS-S6-B-B15",
+      "departmentCode": "BSCS",
+      "semester": 6,
+      "sectionName": "B",
+      "batchLabel": "Batch 15",
+      "batchNumber": 15,
+      "displayName": "BSCS - Semester 6 - Section B (Batch 15)"
+    },
+    {
+      "key": "BSCS-S8-A-B14",
+      "departmentCode": "BSCS",
+      "semester": 8,
+      "sectionName": "A",
+      "batchLabel": "Batch 14",
+      "batchNumber": 14,
+      "displayName": "BSCS - Semester 8 - Section A (Batch 14)"
+    },
+    {
+      "key": "BSCS-S8-B-B14",
+      "departmentCode": "BSCS",
+      "semester": 8,
+      "sectionName": "B",
+      "batchLabel": "Batch 14",
+      "batchNumber": 14,
+      "displayName": "BSCS - Semester 8 - Section B (Batch 14)"
+    },
+    {
+      "key": "BSIT-S2-A-B12",
+      "departmentCode": "BSIT",
+      "semester": 2,
+      "sectionName": "A",
+      "batchLabel": "Batch 12",
+      "batchNumber": 12,
+      "displayName": "BSIT - Semester 2 - Section A (Batch 12)"
+    },
+    {
+      "key": "BSIT-S2-B-B12",
+      "departmentCode": "BSIT",
+      "semester": 2,
+      "sectionName": "B",
+      "batchLabel": "Batch 12",
+      "batchNumber": 12,
+      "displayName": "BSIT - Semester 2 - Section B (Batch 12)"
+    },
+    {
+      "key": "BSIT-S4-A-B11",
+      "departmentCode": "BSIT",
+      "semester": 4,
+      "sectionName": "A",
+      "batchLabel": "Batch 11",
+      "batchNumber": 11,
+      "displayName": "BSIT - Semester 4 - Section A (Batch 11)"
+    },
+    {
+      "key": "BSIT-S4-B-B11",
+      "departmentCode": "BSIT",
+      "semester": 4,
+      "sectionName": "B",
+      "batchLabel": "Batch 11",
+      "batchNumber": 11,
+      "displayName": "BSIT - Semester 4 - Section B (Batch 11)"
+    },
+    {
+      "key": "BSIT-S6-A-B10",
+      "departmentCode": "BSIT",
+      "semester": 6,
+      "sectionName": "A",
+      "batchLabel": "Batch 10",
+      "batchNumber": 10,
+      "displayName": "BSIT - Semester 6 - Section A (Batch 10)"
+    },
+    {
+      "key": "BSIT-S6-B-B10",
+      "departmentCode": "BSIT",
+      "semester": 6,
+      "sectionName": "B",
+      "batchLabel": "Batch 10",
+      "batchNumber": 10,
+      "displayName": "BSIT - Semester 6 - Section B (Batch 10)"
+    },
+    {
+      "key": "BSIT-S8-A-B9",
+      "departmentCode": "BSIT",
+      "semester": 8,
+      "sectionName": "A",
+      "batchLabel": "Batch 9",
+      "batchNumber": 9,
+      "displayName": "BSIT - Semester 8 - Section A (Batch 9)"
+    },
+    {
+      "key": "BSIT-S8-B-B9",
+      "departmentCode": "BSIT",
+      "semester": 8,
+      "sectionName": "B",
+      "batchLabel": "Batch 9",
+      "batchNumber": 9,
+      "displayName": "BSIT - Semester 8 - Section B (Batch 9)"
+    }
+  ],
+  "periods": [
+    {
+      "departmentCode": "BSAI",
+      "dayOfWeek": 1,
+      "slotIndex": 1,
+      "startTime": "09:00",
+      "endTime": "12:00",
+      "label": "Slot 1 (09:00-12:00)"
+    },
+    {
+      "departmentCode": "BSAI",
+      "dayOfWeek": 1,
+      "slotIndex": 2,
+      "startTime": "12:00",
+      "endTime": "15:00",
+      "label": "Slot 2 (12:00-15:00)"
+    },
+    {
+      "departmentCode": "BSAI",
+      "dayOfWeek": 2,
+      "slotIndex": 1,
+      "startTime": "09:00",
+      "endTime": "12:00",
+      "label": "Slot 1 (09:00-12:00)"
+    },
+    {
+      "departmentCode": "BSAI",
+      "dayOfWeek": 2,
+      "slotIndex": 2,
+      "startTime": "12:00",
+      "endTime": "15:00",
+      "label": "Slot 2 (12:00-15:00)"
+    },
+    {
+      "departmentCode": "BSAI",
+      "dayOfWeek": 3,
+      "slotIndex": 1,
+      "startTime": "09:00",
+      "endTime": "12:00",
+      "label": "Slot 1 (09:00-12:00)"
+    },
+    {
+      "departmentCode": "BSAI",
+      "dayOfWeek": 3,
+      "slotIndex": 2,
+      "startTime": "12:00",
+      "endTime": "15:00",
+      "label": "Slot 2 (12:00-15:00)"
+    },
+    {
+      "departmentCode": "BSAI",
+      "dayOfWeek": 4,
+      "slotIndex": 1,
+      "startTime": "09:00",
+      "endTime": "12:00",
+      "label": "Slot 1 (09:00-12:00)"
+    },
+    {
+      "departmentCode": "BSAI",
+      "dayOfWeek": 4,
+      "slotIndex": 2,
+      "startTime": "12:00",
+      "endTime": "15:00",
+      "label": "Slot 2 (12:00-15:00)"
+    },
+    {
+      "departmentCode": "BSAI",
+      "dayOfWeek": 5,
+      "slotIndex": 1,
+      "startTime": "09:00",
+      "endTime": "11:30",
+      "label": "Slot 1 (09:00-11:30)"
+    },
+    {
+      "departmentCode": "BSAI",
+      "dayOfWeek": 5,
+      "slotIndex": 2,
+      "startTime": "11:30",
+      "endTime": "14:00",
+      "label": "Slot 2 (11:30-14:00)"
+    },
+    {
+      "departmentCode": "BSCS",
+      "dayOfWeek": 1,
+      "slotIndex": 1,
+      "startTime": "09:00",
+      "endTime": "12:00",
+      "label": "Slot 1 (09:00-12:00)"
+    },
+    {
+      "departmentCode": "BSCS",
+      "dayOfWeek": 1,
+      "slotIndex": 2,
+      "startTime": "12:10",
+      "endTime": "15:10",
+      "label": "Slot 2 (12:10-15:10)"
+    },
+    {
+      "departmentCode": "BSCS",
+      "dayOfWeek": 2,
+      "slotIndex": 1,
+      "startTime": "09:00",
+      "endTime": "12:00",
+      "label": "Slot 1 (09:00-12:00)"
+    },
+    {
+      "departmentCode": "BSCS",
+      "dayOfWeek": 2,
+      "slotIndex": 2,
+      "startTime": "12:10",
+      "endTime": "15:10",
+      "label": "Slot 2 (12:10-15:10)"
+    },
+    {
+      "departmentCode": "BSCS",
+      "dayOfWeek": 3,
+      "slotIndex": 1,
+      "startTime": "09:00",
+      "endTime": "12:00",
+      "label": "Slot 1 (09:00-12:00)"
+    },
+    {
+      "departmentCode": "BSCS",
+      "dayOfWeek": 3,
+      "slotIndex": 2,
+      "startTime": "12:10",
+      "endTime": "15:10",
+      "label": "Slot 2 (12:10-15:10)"
+    },
+    {
+      "departmentCode": "BSCS",
+      "dayOfWeek": 4,
+      "slotIndex": 1,
+      "startTime": "09:00",
+      "endTime": "12:00",
+      "label": "Slot 1 (09:00-12:00)"
+    },
+    {
+      "departmentCode": "BSCS",
+      "dayOfWeek": 4,
+      "slotIndex": 2,
+      "startTime": "12:10",
+      "endTime": "15:10",
+      "label": "Slot 2 (12:10-15:10)"
+    },
+    {
+      "departmentCode": "BSCS",
+      "dayOfWeek": 5,
+      "slotIndex": 1,
+      "startTime": "09:00",
+      "endTime": "11:30",
+      "label": "Slot 1 (09:00-11:30)"
+    },
+    {
+      "departmentCode": "BSCS",
+      "dayOfWeek": 5,
+      "slotIndex": 2,
+      "startTime": "11:30",
+      "endTime": "14:00",
+      "label": "Slot 2 (11:30-14:00)"
+    },
+    {
+      "departmentCode": "BSIT",
+      "dayOfWeek": 1,
+      "slotIndex": 1,
+      "startTime": "09:00",
+      "endTime": "12:00",
+      "label": "Slot 1 (09:00-12:00)"
+    },
+    {
+      "departmentCode": "BSIT",
+      "dayOfWeek": 1,
+      "slotIndex": 2,
+      "startTime": "12:00",
+      "endTime": "15:00",
+      "label": "Slot 2 (12:00-15:00)"
+    },
+    {
+      "departmentCode": "BSIT",
+      "dayOfWeek": 2,
+      "slotIndex": 1,
+      "startTime": "09:00",
+      "endTime": "12:00",
+      "label": "Slot 1 (09:00-12:00)"
+    },
+    {
+      "departmentCode": "BSIT",
+      "dayOfWeek": 2,
+      "slotIndex": 2,
+      "startTime": "12:00",
+      "endTime": "15:00",
+      "label": "Slot 2 (12:00-15:00)"
+    },
+    {
+      "departmentCode": "BSIT",
+      "dayOfWeek": 3,
+      "slotIndex": 1,
+      "startTime": "09:00",
+      "endTime": "12:00",
+      "label": "Slot 1 (09:00-12:00)"
+    },
+    {
+      "departmentCode": "BSIT",
+      "dayOfWeek": 3,
+      "slotIndex": 2,
+      "startTime": "12:00",
+      "endTime": "15:00",
+      "label": "Slot 2 (12:00-15:00)"
+    },
+    {
+      "departmentCode": "BSIT",
+      "dayOfWeek": 4,
+      "slotIndex": 1,
+      "startTime": "09:00",
+      "endTime": "12:00",
+      "label": "Slot 1 (09:00-12:00)"
+    },
+    {
+      "departmentCode": "BSIT",
+      "dayOfWeek": 4,
+      "slotIndex": 2,
+      "startTime": "12:00",
+      "endTime": "15:00",
+      "label": "Slot 2 (12:00-15:00)"
+    },
+    {
+      "departmentCode": "BSIT",
+      "dayOfWeek": 5,
+      "slotIndex": 1,
+      "startTime": "09:00",
+      "endTime": "11:30",
+      "label": "Slot 1 (09:00-11:30)"
+    },
+    {
+      "departmentCode": "BSIT",
+      "dayOfWeek": 5,
+      "slotIndex": 2,
+      "startTime": "11:30",
+      "endTime": "14:00",
+      "label": "Slot 2 (11:30-14:00)"
+    }
+  ],
+  "entries": [
+    {
+      "sectionKey": "BSAI-S2-A-B3",
+      "dayOfWeek": 1,
+      "slotIndex": 1,
+      "cellIndex": 0,
+      "rawText": "GES-226 Pakistan Studies (General Eduation) 2(2+0) Mr. Ali Salman Room:A9",
+      "subjectCode": "GES-226",
+      "subjectName": "Pakistan Studies",
+      "teacherName": "Mr. Ali Salman",
+      "roomNames": [
+        "A9"
+      ],
+      "category": "General Eduation",
+      "credits": "2(2+0)"
+    },
+    {
+      "sectionKey": "BSAI-S2-A-B3",
+      "dayOfWeek": 1,
+      "slotIndex": 2,
+      "cellIndex": 0,
+      "rawText": "GIS-225 Islamic Studies/",
+      "subjectCode": "GIS-225",
+      "subjectName": "Islamic Studies",
+      "teacherName": "Mr. Abdul Rehman",
+      "roomNames": [
+        "A9"
+      ],
+      "category": null,
+      "credits": null
+    },
+    {
+      "sectionKey": "BSAI-S2-A-B3",
+      "dayOfWeek": 1,
+      "slotIndex": 2,
+      "cellIndex": 1,
+      "rawText": "CSC-227 Understanding of Quran-I Mr.Abdul Rehman Room:A9",
+      "subjectCode": "CSC-227",
+      "subjectName": "Understanding of Quran-I Mr.Abdul Rehman",
+      "teacherName": "Mr. Abdul Rehman",
+      "roomNames": [
+        "A9"
+      ],
+      "category": null,
+      "credits": null
+    },
+    {
+      "sectionKey": "BSAI-S2-A-B3",
+      "dayOfWeek": 2,
+      "slotIndex": 1,
+      "cellIndex": 0,
+      "rawText": "MTH-234 Discrete Structure (IDS- Mandatory) 3(3+0) Mr. Muhammad Ehsanaullah Room:A9",
+      "subjectCode": "MTH-234",
+      "subjectName": "Discrete Structure",
+      "teacherName": "Mr. Muhammad Ehsanaullah",
+      "roomNames": [
+        "A9"
+      ],
+      "category": "IDS- Mandatory",
+      "credits": "3(3+0)"
+    },
+    {
+      "sectionKey": "BSAI-S2-A-B3",
+      "dayOfWeek": 2,
+      "slotIndex": 2,
+      "cellIndex": 0,
+      "rawText": "GQR-223 Quantitative Reasoning-II (General Education) 3(3+0) Mr. Zulqarnain Room:A9",
+      "subjectCode": "GQR-223",
+      "subjectName": "Quantitative Reasoning-II",
+      "teacherName": "Mr. Zulqarnain",
+      "roomNames": [
+        "A9"
+      ],
+      "category": "General Education",
+      "credits": "3(3+0)"
+    },
+    {
+      "sectionKey": "BSAI-S2-A-B3",
+      "dayOfWeek": 3,
+      "slotIndex": 1,
+      "cellIndex": 0,
+      "rawText": "AIC-212 Object Oriented Programmig Lab (Major) 4(3+1) Mr.Saad Ahmed Mr.Smart Lab",
+      "subjectCode": "AIC-212",
+      "subjectName": "Object Oriented Programmig Lab Mr.Saad Ahmed Mr.Smart Lab",
+      "teacherName": "Mr. Saad Ahmed",
+      "roomNames": [
+        "Smart Lab"
+      ],
+      "category": "Major",
+      "credits": "4(3+1)"
+    },
+    {
+      "sectionKey": "BSAI-S2-A-B3",
+      "dayOfWeek": 3,
+      "slotIndex": 2,
+      "cellIndex": 0,
+      "rawText": "AIC-212 Object Oriented Programmig (Major) 4(3+1) Mr.Saad Ahmed Room:A8",
+      "subjectCode": "AIC-212",
+      "subjectName": "Object Oriented Programmig Mr.Saad Ahmed",
+      "teacherName": "Mr. Saad Ahmed",
+      "roomNames": [
+        "A8"
+      ],
+      "category": "Major",
+      "credits": "4(3+1)"
+    },
+    {
+      "sectionKey": "BSAI-S2-A-B3",
+      "dayOfWeek": 4,
+      "slotIndex": 1,
+      "cellIndex": 0,
+      "rawText": "AIC-211 Data Structures Lab (Major) 4(3+1) Ms. Maria Room:Lab 02",
+      "subjectCode": "AIC-211",
+      "subjectName": "Data Structures Lab",
+      "teacherName": "Ms. Maria",
+      "roomNames": [
+        "Lab 02"
+      ],
+      "category": "Major",
+      "credits": "4(3+1)"
+    },
+    {
+      "sectionKey": "BSAI-S2-A-B3",
+      "dayOfWeek": 4,
+      "slotIndex": 2,
+      "cellIndex": 0,
+      "rawText": "AIC-211 Data Structures (Major) 4(3+1) Ms. Maria Room:A8",
+      "subjectCode": "AIC-211",
+      "subjectName": "Data Structures",
+      "teacherName": "Ms. Maria",
+      "roomNames": [
+        "A8"
+      ],
+      "category": "Major",
+      "credits": "4(3+1)"
+    },
+    {
+      "sectionKey": "BSAI-S2-A-B3",
+      "dayOfWeek": 5,
+      "slotIndex": 1,
+      "cellIndex": 0,
+      "rawText": "MTH-238 Mathematic – II (For students other than Intermediate pre-engineering) NC Mr. Muhammad Afzal Room:A3 & A8",
+      "subjectCode": "MTH-238",
+      "subjectName": "Mathematic – II NC",
+      "teacherName": "Mr. Muhammad Afzal",
+      "roomNames": [
+        "A3",
+        "A8"
+      ],
+      "category": "For students other than Intermediate pre-engineering",
+      "credits": null
+    },
+    {
+      "sectionKey": "BSAI-S2-A-B3",
+      "dayOfWeek": 5,
+      "slotIndex": 2,
+      "cellIndex": 0,
+      "rawText": "Wrold Relgion-I (General Eduation) 1(0+1) / Ethics (General Education) 2(2+0) Mr.Namat Ullah Room:A5",
+      "subjectCode": null,
+      "subjectName": "Wrold Relgion-I / Ethics Mr.Namat Ullah",
+      "teacherName": "Mr. Namat Ullah",
+      "roomNames": [
+        "A5"
+      ],
+      "category": "General Eduation",
+      "credits": "1(0+1)"
+    },
+    {
+      "sectionKey": "BSAI-S2-B-B3",
+      "dayOfWeek": 1,
+      "slotIndex": 1,
+      "cellIndex": 0,
+      "rawText": "GIS-225 Islamic Studies/",
+      "subjectCode": "GIS-225",
+      "subjectName": "Islamic Studies",
+      "teacherName": "Mr. Abdul Rehman",
+      "roomNames": [
+        "IoT Lab"
+      ],
+      "category": null,
+      "credits": null
+    },
+    {
+      "sectionKey": "BSAI-S2-B-B3",
+      "dayOfWeek": 1,
+      "slotIndex": 1,
+      "cellIndex": 1,
+      "rawText": "CSC-227 Understanding of Quran-I Mr.Abdul Rehman Room:IoT Lab",
+      "subjectCode": "CSC-227",
+      "subjectName": "Understanding of Quran-I Mr.Abdul Rehman",
+      "teacherName": "Mr. Abdul Rehman",
+      "roomNames": [
+        "IoT Lab"
+      ],
+      "category": null,
+      "credits": null
+    },
+    {
+      "sectionKey": "BSAI-S2-B-B3",
+      "dayOfWeek": 2,
+      "slotIndex": 1,
+      "cellIndex": 0,
+      "rawText": "GQR-223 Quantitative Reasoning-II (General Education) 3(3+0) Mr. Zulqarnain Room:IoT Lab",
+      "subjectCode": "GQR-223",
+      "subjectName": "Quantitative Reasoning-II",
+      "teacherName": "Mr. Zulqarnain",
+      "roomNames": [
+        "IoT Lab"
+      ],
+      "category": "General Education",
+      "credits": "3(3+0)"
+    },
+    {
+      "sectionKey": "BSAI-S2-B-B3",
+      "dayOfWeek": 2,
+      "slotIndex": 2,
+      "cellIndex": 0,
+      "rawText": "MTH-234 Discrete Structure (IDS- Mandatory) 3(3+0) Mr. Muhammad Ehsanaullah Room: Room:A7",
+      "subjectCode": "MTH-234",
+      "subjectName": "Discrete Structure",
+      "teacherName": "Mr. Muhammad Ehsanaullah",
+      "roomNames": [],
+      "category": "IDS- Mandatory",
+      "credits": "3(3+0)"
+    },
+    {
+      "sectionKey": "BSAI-S2-B-B3",
+      "dayOfWeek": 3,
+      "slotIndex": 1,
+      "cellIndex": 0,
+      "rawText": "GES-226 Pakistan Studies (General Eduation) 2(2+0) Mr. Ali Salman Room:A4 Class Time ( 09:00 To 11:00) /",
+      "subjectCode": "GES-226",
+      "subjectName": "Pakistan Studies",
+      "teacherName": "Mr. Ali Salman",
+      "roomNames": [
+        "A4"
+      ],
+      "category": "General Eduation",
+      "credits": "2(2+0)"
+    },
+    {
+      "sectionKey": "BSAI-S2-B-B3",
+      "dayOfWeek": 3,
+      "slotIndex": 1,
+      "cellIndex": 1,
+      "rawText": "AIC-211 Data Structures (Major) 4(3+1) Ms. Maria Room:A4 Class Time ( 11:00 To 12:00)",
+      "subjectCode": "AIC-211",
+      "subjectName": "Data Structures",
+      "teacherName": "Ms. Maria",
+      "roomNames": [
+        "A4"
+      ],
+      "category": "Major",
+      "credits": "4(3+1)"
+    },
+    {
+      "sectionKey": "BSAI-S2-B-B3",
+      "dayOfWeek": 3,
+      "slotIndex": 2,
+      "cellIndex": 0,
+      "rawText": "AIC-211 Data Structures (Major) 4(3+1) Ms. Maria Room:Smart Lab",
+      "subjectCode": "AIC-211",
+      "subjectName": "Data Structures",
+      "teacherName": "Ms. Maria",
+      "roomNames": [
+        "Smart Lab"
+      ],
+      "category": "Major",
+      "credits": "4(3+1)"
+    },
+    {
+      "sectionKey": "BSAI-S2-B-B3",
+      "dayOfWeek": 4,
+      "slotIndex": 1,
+      "cellIndex": 0,
+      "rawText": "AIC-212 Object Oriented Programmig (Major) 4(3+1) Mr. Saad Ahmed Room:A12",
+      "subjectCode": "AIC-212",
+      "subjectName": "Object Oriented Programmig",
+      "teacherName": "Mr. Saad Ahmed",
+      "roomNames": [
+        "A12"
+      ],
+      "category": "Major",
+      "credits": "4(3+1)"
+    },
+    {
+      "sectionKey": "BSAI-S2-B-B3",
+      "dayOfWeek": 4,
+      "slotIndex": 2,
+      "cellIndex": 0,
+      "rawText": "AIC-212 Object Oriented Programmig (Major) 4(3+1) Mr. Saad Ahmed Room:Lab 01",
+      "subjectCode": "AIC-212",
+      "subjectName": "Object Oriented Programmig",
+      "teacherName": "Mr. Saad Ahmed",
+      "roomNames": [
+        "Lab 01"
+      ],
+      "category": "Major",
+      "credits": "4(3+1)"
+    },
+    {
+      "sectionKey": "BSAI-S2-B-B3",
+      "dayOfWeek": 5,
+      "slotIndex": 1,
+      "cellIndex": 0,
+      "rawText": "MTH-238 Mathematic – II (For students other than Intermediate pre-engineering) NC Mr. Muhammad Afzal Room: A3 & A8",
+      "subjectCode": "MTH-238",
+      "subjectName": "Mathematic – II NC",
+      "teacherName": "Mr. Muhammad Afzal",
+      "roomNames": [
+        "A3",
+        "A8"
+      ],
+      "category": "For students other than Intermediate pre-engineering",
+      "credits": null
+    },
+    {
+      "sectionKey": "BSAI-S2-B-B3",
+      "dayOfWeek": 5,
+      "slotIndex": 2,
+      "cellIndex": 0,
+      "rawText": "Wrold Relgion-I (General Eduation) 1(0+1) / Ethics (General Education) 2(2+0) Mr.Namat Ullah Room:A5",
+      "subjectCode": null,
+      "subjectName": "Wrold Relgion-I / Ethics Mr.Namat Ullah",
+      "teacherName": "Mr. Namat Ullah",
+      "roomNames": [
+        "A5"
+      ],
+      "category": "General Eduation",
+      "credits": "1(0+1)"
+    },
+    {
+      "sectionKey": "BSAI-S4-A-B2",
+      "dayOfWeek": 1,
+      "slotIndex": 1,
+      "cellIndex": 0,
+      "rawText": "BAI-443 Database Systems Lab (Computing Core) 4(3-1) Mr. Muhammad Shoaib Abro Room:Smart Lab",
+      "subjectCode": "BAI-443",
+      "subjectName": "Database Systems Lab",
+      "teacherName": "Mr. Muhammad Shoaib Abro",
+      "roomNames": [
+        "Smart Lab"
+      ],
+      "category": "Computing Core",
+      "credits": "4(3-1)"
+    },
+    {
+      "sectionKey": "BSAI-S4-A-B2",
+      "dayOfWeek": 1,
+      "slotIndex": 2,
+      "cellIndex": 0,
+      "rawText": "BAI-443 Database Systems (Computing Core) 4(3-1) Mr. Muhammad Shoaib Abro A8",
+      "subjectCode": "BAI-443",
+      "subjectName": "Database Systems A8",
+      "teacherName": "Mr. Muhammad Shoaib Abro",
+      "roomNames": [
+        "A8"
+      ],
+      "category": "Computing Core",
+      "credits": "4(3-1)"
+    },
+    {
+      "sectionKey": "BSAI-S4-A-B2",
+      "dayOfWeek": 2,
+      "slotIndex": 2,
+      "cellIndex": 0,
+      "rawText": "BAI-442 Software Engineering (Computing Core) 3(3-0) Ms. Nadia Hassen Uddin Room:A3",
+      "subjectCode": "BAI-442",
+      "subjectName": "Software Engineering",
+      "teacherName": "Ms. Nadia Hassen Uddin",
+      "roomNames": [
+        "A3"
+      ],
+      "category": "Computing Core",
+      "credits": "3(3-0)"
+    },
+    {
+      "sectionKey": "BSAI-S4-A-B2",
+      "dayOfWeek": 3,
+      "slotIndex": 1,
+      "cellIndex": 0,
+      "rawText": "GES-445 Entrepreneurship & Startup (General Education) 3(3-0) Ms. Hanifan Room:A12",
+      "subjectCode": "GES-445",
+      "subjectName": "Entrepreneurship & Startup",
+      "teacherName": "Ms. Hanifan",
+      "roomNames": [
+        "A12"
+      ],
+      "category": "General Education",
+      "credits": "3(3-0)"
+    },
+    {
+      "sectionKey": "BSAI-S4-A-B2",
+      "dayOfWeek": 4,
+      "slotIndex": 1,
+      "cellIndex": 0,
+      "rawText": "BAI-441 Computer Networks (Computing Core) 3(2-1) Mr. Abdul Razzak Room:IoT Lab",
+      "subjectCode": "BAI-441",
+      "subjectName": "Computer Networks",
+      "teacherName": "Mr. Abdul Razzak",
+      "roomNames": [
+        "IoT Lab"
+      ],
+      "category": "Computing Core",
+      "credits": "3(2-1)"
+    },
+    {
+      "sectionKey": "BSAI-S4-A-B2",
+      "dayOfWeek": 4,
+      "slotIndex": 2,
+      "cellIndex": 0,
+      "rawText": "BAI-441 Computer Networks (Computing Core) 3(2-1) Mr. Abdul Razzak Room:Lab 02",
+      "subjectCode": "BAI-441",
+      "subjectName": "Computer Networks",
+      "teacherName": "Mr. Abdul Razzak",
+      "roomNames": [
+        "Lab 02"
+      ],
+      "category": "Computing Core",
+      "credits": "3(2-1)"
+    },
+    {
+      "sectionKey": "BSAI-S4-A-B2",
+      "dayOfWeek": 5,
+      "slotIndex": 1,
+      "cellIndex": 0,
+      "rawText": "GES-444Pakistan Studies (General Education) 2(2-0) Mr.Shahzad Room: A11",
+      "subjectCode": "GES-444",
+      "subjectName": "Pakistan Studies Mr.Shahzad",
+      "teacherName": "Mr. Shahzad",
+      "roomNames": [
+        "A11"
+      ],
+      "category": "General Education",
+      "credits": "2(2-0)"
+    },
+    {
+      "sectionKey": "BSAI-S4-A-B2",
+      "dayOfWeek": 5,
+      "slotIndex": 2,
+      "cellIndex": 0,
+      "rawText": "GPS-446 Ideology and Constitution of Pakistan (General Education) 2(2-0) Mr. Ali Ashar Room:A1",
+      "subjectCode": "GPS-446",
+      "subjectName": "Ideology and Constitution of Pakistan",
+      "teacherName": "Mr. Ali Ashar",
+      "roomNames": [
+        "A1"
+      ],
+      "category": "General Education",
+      "credits": "2(2-0)"
+    },
+    {
+      "sectionKey": "BSAI-S4-B-B2",
+      "dayOfWeek": 1,
+      "slotIndex": 2,
+      "cellIndex": 0,
+      "rawText": "BAI-442 Software Engineering (Computing Core) 3(3-0) Ms. Nadia Hassen Uddin Room:A7",
+      "subjectCode": "BAI-442",
+      "subjectName": "Software Engineering",
+      "teacherName": "Ms. Nadia Hassen Uddin",
+      "roomNames": [
+        "A7"
+      ],
+      "category": "Computing Core",
+      "credits": "3(3-0)"
+    },
+    {
+      "sectionKey": "BSAI-S4-B-B2",
+      "dayOfWeek": 2,
+      "slotIndex": 1,
+      "cellIndex": 0,
+      "rawText": "BAI-441 Computer Networks Lab (Computing Core) 3(2-1) Mr. Abdul Razzak Room:Lab 02",
+      "subjectCode": "BAI-441",
+      "subjectName": "Computer Networks Lab",
+      "teacherName": "Mr. Abdul Razzak",
+      "roomNames": [
+        "Lab 02"
+      ],
+      "category": "Computing Core",
+      "credits": "3(2-1)"
+    },
+    {
+      "sectionKey": "BSAI-S4-B-B2",
+      "dayOfWeek": 2,
+      "slotIndex": 2,
+      "cellIndex": 0,
+      "rawText": "BAI-441 Computer Networks (Computing Core) 3(2-1) Mr. Abdul Razzak Room:A12",
+      "subjectCode": "BAI-441",
+      "subjectName": "Computer Networks",
+      "teacherName": "Mr. Abdul Razzak",
+      "roomNames": [
+        "A12"
+      ],
+      "category": "Computing Core",
+      "credits": "3(2-1)"
+    },
+    {
+      "sectionKey": "BSAI-S4-B-B2",
+      "dayOfWeek": 3,
+      "slotIndex": 2,
+      "cellIndex": 0,
+      "rawText": "GES-445 Entrepreneurship & Startup (General Education) 3(3-0) Ms. Hanifan Room:IoT lab",
+      "subjectCode": "GES-445",
+      "subjectName": "Entrepreneurship & Startup",
+      "teacherName": "Ms. Hanifan",
+      "roomNames": [
+        "IoT Lab"
+      ],
+      "category": "General Education",
+      "credits": "3(3-0)"
+    },
+    {
+      "sectionKey": "BSAI-S4-B-B2",
+      "dayOfWeek": 4,
+      "slotIndex": 1,
+      "cellIndex": 0,
+      "rawText": "BAI-443 Database Systems (Computing Core) 4(3-1) Mr. Muhammad Shoaib Abro Room:Lab 01",
+      "subjectCode": "BAI-443",
+      "subjectName": "Database Systems",
+      "teacherName": "Mr. Muhammad Shoaib Abro",
+      "roomNames": [
+        "Lab 01"
+      ],
+      "category": "Computing Core",
+      "credits": "4(3-1)"
+    },
+    {
+      "sectionKey": "BSAI-S4-B-B2",
+      "dayOfWeek": 4,
+      "slotIndex": 2,
+      "cellIndex": 0,
+      "rawText": "BAI-443 Database Systems Lab (Computing Core) 4(3-1) Mr. Muhammad Shoaib Abro Room:IoT Lab",
+      "subjectCode": "BAI-443",
+      "subjectName": "Database Systems Lab",
+      "teacherName": "Mr. Muhammad Shoaib Abro",
+      "roomNames": [
+        "IoT Lab"
+      ],
+      "category": "Computing Core",
+      "credits": "4(3-1)"
+    },
+    {
+      "sectionKey": "BSAI-S4-B-B2",
+      "dayOfWeek": 5,
+      "slotIndex": 1,
+      "cellIndex": 0,
+      "rawText": "GPS-446 Ideology and Constitution of Pakistan (General Education) 2(2-0) Mr. Ali Ashar Room:A6",
+      "subjectCode": "GPS-446",
+      "subjectName": "Ideology and Constitution of Pakistan",
+      "teacherName": "Mr. Ali Ashar",
+      "roomNames": [
+        "A6"
+      ],
+      "category": "General Education",
+      "credits": "2(2-0)"
+    },
+    {
+      "sectionKey": "BSAI-S4-B-B2",
+      "dayOfWeek": 5,
+      "slotIndex": 2,
+      "cellIndex": 0,
+      "rawText": "GES-444Pakistan Studies (General Education) 2(2-0) Mr.Shahzad Room: A2",
+      "subjectCode": "GES-444",
+      "subjectName": "Pakistan Studies Mr.Shahzad",
+      "teacherName": "Mr. Shahzad",
+      "roomNames": [
+        "A2"
+      ],
+      "category": "General Education",
+      "credits": "2(2-0)"
+    },
+    {
+      "sectionKey": "BSAI-S6-A-B1",
+      "dayOfWeek": 1,
+      "slotIndex": 1,
+      "cellIndex": 0,
+      "rawText": "BIA-561 Machine Learning (Domain Core) 3(2-1) Mr. Ghulam Ahmed Room:A8",
+      "subjectCode": "BIA-561",
+      "subjectName": "Machine Learning",
+      "teacherName": "Mr. Ghulam Ahmed",
+      "roomNames": [
+        "A8"
+      ],
+      "category": "Domain Core",
+      "credits": "3(2-1)"
+    },
+    {
+      "sectionKey": "BSAI-S6-A-B1",
+      "dayOfWeek": 1,
+      "slotIndex": 2,
+      "cellIndex": 0,
+      "rawText": "BAI-562 Data Mining (Domain Elective) 3(2-1) Mr. Abdul Basit Room:IoT Lab",
+      "subjectCode": "BAI-562",
+      "subjectName": "Data Mining",
+      "teacherName": "Mr. Abdul Basit",
+      "roomNames": [
+        "IoT Lab"
+      ],
+      "category": "Domain Elective",
+      "credits": "3(2-1)"
+    },
+    {
+      "sectionKey": "BSAI-S6-A-B1",
+      "dayOfWeek": 2,
+      "slotIndex": 1,
+      "cellIndex": 0,
+      "rawText": "BIA-561 Machine Learning (Domain Core) 3(2-1) Mr. Ghulam Ahmed Room:Smart Lab",
+      "subjectCode": "BIA-561",
+      "subjectName": "Machine Learning",
+      "teacherName": "Mr. Ghulam Ahmed",
+      "roomNames": [
+        "Smart Lab"
+      ],
+      "category": "Domain Core",
+      "credits": "3(2-1)"
+    },
+    {
+      "sectionKey": "BSAI-S6-A-B1",
+      "dayOfWeek": 2,
+      "slotIndex": 2,
+      "cellIndex": 0,
+      "rawText": "BAI-563 Parallel & Distributing Computing (Domain Core) 3(3-0) Mr. Anwar Ali Room:A8",
+      "subjectCode": "BAI-563",
+      "subjectName": "Parallel & Distributing Computing",
+      "teacherName": "Mr. Anwar Ali",
+      "roomNames": [
+        "A8"
+      ],
+      "category": "Domain Core",
+      "credits": "3(3-0)"
+    },
+    {
+      "sectionKey": "BSAI-S6-A-B1",
+      "dayOfWeek": 3,
+      "slotIndex": 2,
+      "cellIndex": 0,
+      "rawText": "BAI-566 Financial Accounting (Elective Supporting) 3(3-0) Ms. Tania Nadeem Room:A6",
+      "subjectCode": "BAI-566",
+      "subjectName": "Financial Accounting",
+      "teacherName": "Ms. Tania Nadeem",
+      "roomNames": [
+        "A6"
+      ],
+      "category": "Elective Supporting",
+      "credits": "3(3-0)"
+    },
+    {
+      "sectionKey": "BSAI-S6-A-B1",
+      "dayOfWeek": 4,
+      "slotIndex": 1,
+      "cellIndex": 0,
+      "rawText": "BAI-564 Computer Vision (Domain Core) 3(2-1) Abdul Basit Room:A7",
+      "subjectCode": "BAI-564",
+      "subjectName": "Computer Vision",
+      "teacherName": "Abdul Basit",
+      "roomNames": [
+        "A7"
+      ],
+      "category": "Domain Core",
+      "credits": "3(2-1)"
+    },
+    {
+      "sectionKey": "BSAI-S6-A-B1",
+      "dayOfWeek": 4,
+      "slotIndex": 2,
+      "cellIndex": 0,
+      "rawText": "BAI-564 Computer Vision Lab (Domain Core) 3(2-1) Abdul Basit Room:A12",
+      "subjectCode": "BAI-564",
+      "subjectName": "Computer Vision Lab",
+      "teacherName": "Abdul Basit",
+      "roomNames": [
+        "A12"
+      ],
+      "category": "Domain Core",
+      "credits": "3(2-1)"
+    },
+    {
+      "sectionKey": "BSAI-S6-A-B1",
+      "dayOfWeek": 5,
+      "slotIndex": 1,
+      "cellIndex": 0,
+      "rawText": "BAI-565 Analysis of Algorithms (Computing Core) 3(3-0) Mr. Muhammad Sharif Room:A9",
+      "subjectCode": "BAI-565",
+      "subjectName": "Analysis of Algorithms",
+      "teacherName": "Mr. Muhammad Sharif",
+      "roomNames": [
+        "A9"
+      ],
+      "category": "Computing Core",
+      "credits": "3(3-0)"
+    },
+    {
+      "sectionKey": "BSAI-S6-B-B1",
+      "dayOfWeek": 1,
+      "slotIndex": 1,
+      "cellIndex": 0,
+      "rawText": "BAI-562 Data Mining (Domain Elective) 3(2-1) Abdul Basit Room:A2",
+      "subjectCode": "BAI-562",
+      "subjectName": "Data Mining",
+      "teacherName": "Abdul Basit",
+      "roomNames": [
+        "A2"
+      ],
+      "category": "Domain Elective",
+      "credits": "3(2-1)"
+    },
+    {
+      "sectionKey": "BSAI-S6-B-B1",
+      "dayOfWeek": 1,
+      "slotIndex": 2,
+      "cellIndex": 0,
+      "rawText": "BIA-561 Machine Learning (Domain Core) 3(2-1) Mr. Ghulam Ahmed Room:Dld Lab",
+      "subjectCode": "BIA-561",
+      "subjectName": "Machine Learning",
+      "teacherName": "Mr. Ghulam Ahmed",
+      "roomNames": [
+        "DLD Lab"
+      ],
+      "category": "Domain Core",
+      "credits": "3(2-1)"
+    },
+    {
+      "sectionKey": "BSAI-S6-B-B1",
+      "dayOfWeek": 2,
+      "slotIndex": 1,
+      "cellIndex": 0,
+      "rawText": "BAI-564 Computer Vision (Domain Core) 3(2-1) Mr. Sher Muhammad Room:A8",
+      "subjectCode": "BAI-564",
+      "subjectName": "Computer Vision",
+      "teacherName": "Mr. Sher Muhammad",
+      "roomNames": [
+        "A8"
+      ],
+      "category": "Domain Core",
+      "credits": "3(2-1)"
+    },
+    {
+      "sectionKey": "BSAI-S6-B-B1",
+      "dayOfWeek": 3,
+      "slotIndex": 1,
+      "cellIndex": 0,
+      "rawText": "BAI-563 Parallel & Distributing Computing (Domain Core) 3(3-0) Mr.Naresh Room: A1",
+      "subjectCode": "BAI-563",
+      "subjectName": "Parallel & Distributing Computing Mr.Naresh",
+      "teacherName": "Mr. Naresh",
+      "roomNames": [
+        "A1"
+      ],
+      "category": "Domain Core",
+      "credits": "3(3-0)"
+    },
+    {
+      "sectionKey": "BSAI-S6-B-B1",
+      "dayOfWeek": 3,
+      "slotIndex": 2,
+      "cellIndex": 0,
+      "rawText": "BIA-561 Machine Learning (Domain Core) 3(2-1) Mr. Ghulam Ahmed Room:Lab 01",
+      "subjectCode": "BIA-561",
+      "subjectName": "Machine Learning",
+      "teacherName": "Mr. Ghulam Ahmed",
+      "roomNames": [
+        "Lab 01"
+      ],
+      "category": "Domain Core",
+      "credits": "3(2-1)"
+    },
+    {
+      "sectionKey": "BSAI-S6-B-B1",
+      "dayOfWeek": 5,
+      "slotIndex": 1,
+      "cellIndex": 0,
+      "rawText": "BAI-565 Analysis of Algorithms (Computing Core) 3(3-0) Dr. Zaffar Ahmed Shaikh Room:A10",
+      "subjectCode": "BAI-565",
+      "subjectName": "Analysis of Algorithms",
+      "teacherName": "Dr. Zaffar Ahmed Shaikh",
+      "roomNames": [
+        "A10"
+      ],
+      "category": "Computing Core",
+      "credits": "3(3-0)"
+    },
+    {
+      "sectionKey": "BSAI-S6-B-B1",
+      "dayOfWeek": 5,
+      "slotIndex": 2,
+      "cellIndex": 0,
+      "rawText": "BAI-566 Financial Accounting (Elective Supporting) 3(3-0) Ms. Tania Nadeem Room:A6",
+      "subjectCode": "BAI-566",
+      "subjectName": "Financial Accounting",
+      "teacherName": "Ms. Tania Nadeem",
+      "roomNames": [
+        "A6"
+      ],
+      "category": "Elective Supporting",
+      "credits": "3(3-0)"
+    },
+    {
+      "sectionKey": "BSCS-S2-A-B17",
+      "dayOfWeek": 1,
+      "slotIndex": 1,
+      "cellIndex": 0,
+      "rawText": "CSC-211 Data Structures Lab (Major) 4(3+1) Mr. Abid Ali Room: Lab 01",
+      "subjectCode": "CSC-211",
+      "subjectName": "Data Structures Lab",
+      "teacherName": "Mr. Abid Ali",
+      "roomNames": [
+        "Lab 01"
+      ],
+      "category": "Major",
+      "credits": "4(3+1)"
+    },
+    {
+      "sectionKey": "BSCS-S2-A-B17",
+      "dayOfWeek": 1,
+      "slotIndex": 2,
+      "cellIndex": 0,
+      "rawText": "CSC-211 Data Structures (Major) 4(3+1) Mr. Abid Ali Room: A3",
+      "subjectCode": "CSC-211",
+      "subjectName": "Data Structures",
+      "teacherName": "Mr. Abid Ali",
+      "roomNames": [
+        "A3"
+      ],
+      "category": "Major",
+      "credits": "4(3+1)"
+    },
+    {
+      "sectionKey": "BSCS-S2-A-B17",
+      "dayOfWeek": 2,
+      "slotIndex": 1,
+      "cellIndex": 0,
+      "rawText": "GES-226 Pakistan Studies (General Eduation) 2(2+0) Mr. Ali Salman Room:A3",
+      "subjectCode": "GES-226",
+      "subjectName": "Pakistan Studies",
+      "teacherName": "Mr. Ali Salman",
+      "roomNames": [
+        "A3"
+      ],
+      "category": "General Eduation",
+      "credits": "2(2+0)"
+    },
+    {
+      "sectionKey": "BSCS-S2-A-B17",
+      "dayOfWeek": 2,
+      "slotIndex": 2,
+      "cellIndex": 0,
+      "rawText": "CSC-212 Object Oriented Programmig Lab (Major) 4(3+1+C8:I8) Mr. Mohsin Room: Lab 01",
+      "subjectCode": "CSC-212",
+      "subjectName": "Object Oriented Programmig Lab",
+      "teacherName": "Mr. Mohsin",
+      "roomNames": [
+        "Lab 01"
+      ],
+      "category": "Major",
+      "credits": "4(3+1)"
+    },
+    {
+      "sectionKey": "BSCS-S2-A-B17",
+      "dayOfWeek": 3,
+      "slotIndex": 1,
+      "cellIndex": 0,
+      "rawText": "GQR-223 Quantitative Reasoning-II (General Education) 3(3+0) Ms. Rida Naseer Room:A3",
+      "subjectCode": "GQR-223",
+      "subjectName": "Quantitative Reasoning-II",
+      "teacherName": "Ms. Rida Naseer",
+      "roomNames": [
+        "A3"
+      ],
+      "category": "General Education",
+      "credits": "3(3+0)"
+    },
+    {
+      "sectionKey": "BSCS-S2-A-B17",
+      "dayOfWeek": 3,
+      "slotIndex": 2,
+      "cellIndex": 0,
+      "rawText": "MTH-234 Discrete Structur (IDS- Mandatory) 3(3+0) Mr. Muhammad Afzal Room:A3",
+      "subjectCode": "MTH-234",
+      "subjectName": "Discrete Structur",
+      "teacherName": "Mr. Muhammad Afzal",
+      "roomNames": [
+        "A3"
+      ],
+      "category": "IDS- Mandatory",
+      "credits": "3(3+0)"
+    },
+    {
+      "sectionKey": "BSCS-S2-A-B17",
+      "dayOfWeek": 4,
+      "slotIndex": 1,
+      "cellIndex": 0,
+      "rawText": "GIS-225 Islamic Studies (2(2+0) Dr. Ahmed Khan Room:A8",
+      "subjectCode": "GIS-225",
+      "subjectName": "Islamic Studies (",
+      "teacherName": "Dr. Ahmed Khan",
+      "roomNames": [
+        "A8"
+      ],
+      "category": null,
+      "credits": "2(2+0)"
+    },
+    {
+      "sectionKey": "BSCS-S2-A-B17",
+      "dayOfWeek": 4,
+      "slotIndex": 2,
+      "cellIndex": 0,
+      "rawText": "CSC-212 Object Oriented Programmig (Major) 4(3+1+C8:I8) Mr. Mohsin Room: A3",
+      "subjectCode": "CSC-212",
+      "subjectName": "Object Oriented Programmig",
+      "teacherName": "Mr. Mohsin",
+      "roomNames": [
+        "A3"
+      ],
+      "category": "Major",
+      "credits": "4(3+1)"
+    },
+    {
+      "sectionKey": "BSCS-S2-A-B17",
+      "dayOfWeek": 5,
+      "slotIndex": 1,
+      "cellIndex": 0,
+      "rawText": "MTH-238 Mathematic – II Mr. Muhammad Afzal /",
+      "subjectCode": "MTH-238",
+      "subjectName": "Mathematic – II",
+      "teacherName": "Mr. Muhammad Afzal",
+      "roomNames": [
+        "A3",
+        "A8"
+      ],
+      "category": null,
+      "credits": null
+    },
+    {
+      "sectionKey": "BSCS-S2-A-B17",
+      "dayOfWeek": 5,
+      "slotIndex": 1,
+      "cellIndex": 1,
+      "rawText": "CSC-227 Understanding of Quran-I 1(0+1) Dr. Ahmed Khan Room:A3 & A8",
+      "subjectCode": "CSC-227",
+      "subjectName": "Understanding of Quran-I",
+      "teacherName": "Dr. Ahmed Khan",
+      "roomNames": [
+        "A3",
+        "A8"
+      ],
+      "category": null,
+      "credits": "1(0+1)"
+    },
+    {
+      "sectionKey": "BSCS-S2-A-B17",
+      "dayOfWeek": 5,
+      "slotIndex": 2,
+      "cellIndex": 0,
+      "rawText": "GIS-225 Ethics (General Education) /",
+      "subjectCode": "GIS-225",
+      "subjectName": "Ethics",
+      "teacherName": "Mr. Namat Ullah Siddiqi",
+      "roomNames": [
+        "A5"
+      ],
+      "category": "General Education",
+      "credits": null
+    },
+    {
+      "sectionKey": "BSCS-S2-A-B17",
+      "dayOfWeek": 5,
+      "slotIndex": 2,
+      "cellIndex": 1,
+      "rawText": "CSC-227 Wrold Relgion-I 1(0+1) (General Eduation) Mr.Namat Ullah Siddiqi Room:A5",
+      "subjectCode": "CSC-227",
+      "subjectName": "Wrold Relgion-I Mr.Namat Ullah Siddiqi",
+      "teacherName": "Mr. Namat Ullah Siddiqi",
+      "roomNames": [
+        "A5"
+      ],
+      "category": "General Eduation",
+      "credits": "1(0+1)"
+    },
+    {
+      "sectionKey": "BSCS-S2-B-B17",
+      "dayOfWeek": 1,
+      "slotIndex": 1,
+      "cellIndex": 0,
+      "rawText": "CSC-212 Object Oriented Programmig Lab (Major) 4(3+1+C8:I8) Mr. Mohsin Room:A3",
+      "subjectCode": "CSC-212",
+      "subjectName": "Object Oriented Programmig Lab",
+      "teacherName": "Mr. Mohsin",
+      "roomNames": [
+        "A3"
+      ],
+      "category": "Major",
+      "credits": "4(3+1)"
+    },
+    {
+      "sectionKey": "BSCS-S2-B-B17",
+      "dayOfWeek": 1,
+      "slotIndex": 2,
+      "cellIndex": 0,
+      "rawText": "CSC-212 Object Oriented Programmig (Major) 4(3+1+C8:I8) Mr. Mohsin Room: Lab 01",
+      "subjectCode": "CSC-212",
+      "subjectName": "Object Oriented Programmig",
+      "teacherName": "Mr. Mohsin",
+      "roomNames": [
+        "Lab 01"
+      ],
+      "category": "Major",
+      "credits": "4(3+1)"
+    },
+    {
+      "sectionKey": "BSCS-S2-B-B17",
+      "dayOfWeek": 2,
+      "slotIndex": 1,
+      "cellIndex": 0,
+      "rawText": "CSC-211 Data Structures Lab (Major) 4(3+1) Mr. Abid Ali Room: Lab 01",
+      "subjectCode": "CSC-211",
+      "subjectName": "Data Structures Lab",
+      "teacherName": "Mr. Abid Ali",
+      "roomNames": [
+        "Lab 01"
+      ],
+      "category": "Major",
+      "credits": "4(3+1)"
+    },
+    {
+      "sectionKey": "BSCS-S2-B-B17",
+      "dayOfWeek": 2,
+      "slotIndex": 2,
+      "cellIndex": 0,
+      "rawText": "CSC-211 Data Structures (Major) 4(3+1) Mr. Abid Ali Room: A10",
+      "subjectCode": "CSC-211",
+      "subjectName": "Data Structures",
+      "teacherName": "Mr. Abid Ali",
+      "roomNames": [
+        "A10"
+      ],
+      "category": "Major",
+      "credits": "4(3+1)"
+    },
+    {
+      "sectionKey": "BSCS-S2-B-B17",
+      "dayOfWeek": 3,
+      "slotIndex": 1,
+      "cellIndex": 0,
+      "rawText": "MTH-234 Discrete Structur (IDS- Mandatory) 3(3+0) Mr. Muhammad Afzal Room:A5",
+      "subjectCode": "MTH-234",
+      "subjectName": "Discrete Structur",
+      "teacherName": "Mr. Muhammad Afzal",
+      "roomNames": [
+        "A5"
+      ],
+      "category": "IDS- Mandatory",
+      "credits": "3(3+0)"
+    },
+    {
+      "sectionKey": "BSCS-S2-B-B17",
+      "dayOfWeek": 3,
+      "slotIndex": 2,
+      "cellIndex": 0,
+      "rawText": "GES-226 Pakistan Studies (General Eduation) 2(2+0) Mr. Faisal Room:Dld Lab",
+      "subjectCode": "GES-226",
+      "subjectName": "Pakistan Studies",
+      "teacherName": "Mr. Faisal",
+      "roomNames": [
+        "DLD Lab"
+      ],
+      "category": "General Eduation",
+      "credits": "2(2+0)"
+    },
+    {
+      "sectionKey": "BSCS-S2-B-B17",
+      "dayOfWeek": 4,
+      "slotIndex": 1,
+      "cellIndex": 0,
+      "rawText": "GQR-223 Quantitative Reasoning-II (General Education) 3(3+0) Ms. Rida Naseer Room:A5",
+      "subjectCode": "GQR-223",
+      "subjectName": "Quantitative Reasoning-II",
+      "teacherName": "Ms. Rida Naseer",
+      "roomNames": [
+        "A5"
+      ],
+      "category": "General Education",
+      "credits": "3(3+0)"
+    },
+    {
+      "sectionKey": "BSCS-S2-B-B17",
+      "dayOfWeek": 4,
+      "slotIndex": 2,
+      "cellIndex": 0,
+      "rawText": "GIS-225 Islamic Studies/ Ethics (General Education) 2(2+0) Dr. Ahmed Khan Room:A2",
+      "subjectCode": "GIS-225",
+      "subjectName": "Islamic Studies/ Ethics",
+      "teacherName": "Dr. Ahmed Khan",
+      "roomNames": [
+        "A2"
+      ],
+      "category": "General Education",
+      "credits": "2(2+0)"
+    },
+    {
+      "sectionKey": "BSCS-S2-B-B17",
+      "dayOfWeek": 5,
+      "slotIndex": 1,
+      "cellIndex": 0,
+      "rawText": "MTH-238 Mathematic – II Mr. Muhammad Afzal /",
+      "subjectCode": "MTH-238",
+      "subjectName": "Mathematic – II",
+      "teacherName": "Mr. Muhammad Afzal",
+      "roomNames": [
+        "A3",
+        "A8"
+      ],
+      "category": null,
+      "credits": null
+    },
+    {
+      "sectionKey": "BSCS-S2-B-B17",
+      "dayOfWeek": 5,
+      "slotIndex": 1,
+      "cellIndex": 1,
+      "rawText": "CSC-227 Understanding of Quran-I 1(0+1) Dr. Ahmed Khan Room:A3 & A8",
+      "subjectCode": "CSC-227",
+      "subjectName": "Understanding of Quran-I",
+      "teacherName": "Dr. Ahmed Khan",
+      "roomNames": [
+        "A3",
+        "A8"
+      ],
+      "category": null,
+      "credits": "1(0+1)"
+    },
+    {
+      "sectionKey": "BSCS-S2-B-B17",
+      "dayOfWeek": 5,
+      "slotIndex": 2,
+      "cellIndex": 0,
+      "rawText": "GIS-225 Ethics (General Education) /",
+      "subjectCode": "GIS-225",
+      "subjectName": "Ethics",
+      "teacherName": "Mr. Namat Ullah",
+      "roomNames": [
+        "A5"
+      ],
+      "category": "General Education",
+      "credits": null
+    },
+    {
+      "sectionKey": "BSCS-S2-B-B17",
+      "dayOfWeek": 5,
+      "slotIndex": 2,
+      "cellIndex": 1,
+      "rawText": "CSC-227 Wrold Relgion-I 1(0+1) (General Eduation) Mr.Namat Ullah Room:A5",
+      "subjectCode": "CSC-227",
+      "subjectName": "Wrold Relgion-I Mr.Namat Ullah",
+      "teacherName": "Mr. Namat Ullah",
+      "roomNames": [
+        "A5"
+      ],
+      "category": "General Eduation",
+      "credits": "1(0+1)"
+    },
+    {
+      "sectionKey": "BSCS-S4-A-B16",
+      "dayOfWeek": 1,
+      "slotIndex": 1,
+      "cellIndex": 0,
+      "rawText": "GES-444 Pakistan Studies (General Education) 2(2-0) Mr. Muhammad Ali Panhyar Room:A1",
+      "subjectCode": "GES-444",
+      "subjectName": "Pakistan Studies",
+      "teacherName": "Mr. Muhammad Ali Panhyar",
+      "roomNames": [
+        "A1"
+      ],
+      "category": "General Education",
+      "credits": "2(2-0)"
+    },
+    {
+      "sectionKey": "BSCS-S4-A-B16",
+      "dayOfWeek": 1,
+      "slotIndex": 2,
+      "cellIndex": 0,
+      "rawText": "GES-445 Entrepreneurship & Startup General Education) 3(3-0) Mr. Attique Rafique Room:A1",
+      "subjectCode": "GES-445",
+      "subjectName": "Entrepreneurship & Startup General Education)",
+      "teacherName": "Mr. Attique Rafique",
+      "roomNames": [
+        "A1"
+      ],
+      "category": null,
+      "credits": "3(3-0)"
+    },
+    {
+      "sectionKey": "BSCS-S4-A-B16",
+      "dayOfWeek": 2,
+      "slotIndex": 1,
+      "cellIndex": 0,
+      "rawText": "BCS-441 Analysis of Algorithms (Computing Core) 3(3-0) Dr. Zaffar Ahmed Shaikh Room:A1",
+      "subjectCode": "BCS-441",
+      "subjectName": "Analysis of Algorithms",
+      "teacherName": "Dr. Zaffar Ahmed Shaikh",
+      "roomNames": [
+        "A1"
+      ],
+      "category": "Computing Core",
+      "credits": "3(3-0)"
+    },
+    {
+      "sectionKey": "BSCS-S4-A-B16",
+      "dayOfWeek": 2,
+      "slotIndex": 2,
+      "cellIndex": 0,
+      "rawText": "BCS-446 Financial Accounting (Elective Supporting) 3(3-0) Mr. Faisal Sarwar Room: A6",
+      "subjectCode": "BCS-446",
+      "subjectName": "Financial Accounting",
+      "teacherName": "Mr. Faisal Sarwar",
+      "roomNames": [
+        "A6"
+      ],
+      "category": "Elective Supporting",
+      "credits": "3(3-0)"
+    },
+    {
+      "sectionKey": "BSCS-S4-A-B16",
+      "dayOfWeek": 4,
+      "slotIndex": 1,
+      "cellIndex": 0,
+      "rawText": "BCS-443 Operating Systems (Computing Core) 3(2-1) Mr. Anwar Ali Room: A6",
+      "subjectCode": "BCS-443",
+      "subjectName": "Operating Systems",
+      "teacherName": "Mr. Anwar Ali",
+      "roomNames": [
+        "A6"
+      ],
+      "category": "Computing Core",
+      "credits": "3(2-1)"
+    },
+    {
+      "sectionKey": "BSCS-S4-A-B16",
+      "dayOfWeek": 4,
+      "slotIndex": 2,
+      "cellIndex": 0,
+      "rawText": "BCS-443 Operating Systems (Computing Core) 3(2-1) Mr. Anwar Ali Room:dld lab",
+      "subjectCode": "BCS-443",
+      "subjectName": "Operating Systems",
+      "teacherName": "Mr. Anwar Ali",
+      "roomNames": [
+        "DLD Lab"
+      ],
+      "category": "Computing Core",
+      "credits": "3(2-1)"
+    },
+    {
+      "sectionKey": "BSCS-S4-A-B16",
+      "dayOfWeek": 5,
+      "slotIndex": 1,
+      "cellIndex": 0,
+      "rawText": "BCS-442 Advance Database Management Systems (Domain Core) 3(2-1) Mr. Khuda Bukhsh Room:A2",
+      "subjectCode": "BCS-442",
+      "subjectName": "Advance Database Management Systems",
+      "teacherName": "Mr. Khuda Bukhsh",
+      "roomNames": [
+        "A2"
+      ],
+      "category": "Domain Core",
+      "credits": "3(2-1)"
+    },
+    {
+      "sectionKey": "BSCS-S4-A-B16",
+      "dayOfWeek": 5,
+      "slotIndex": 2,
+      "cellIndex": 0,
+      "rawText": "BCS-442 Advance Database Management Systems Lab (Domain Core) 3(2-1) Mr. Khuda Bukhsh Room: Lab 01",
+      "subjectCode": "BCS-442",
+      "subjectName": "Advance Database Management Systems Lab",
+      "teacherName": "Mr. Khuda Bukhsh",
+      "roomNames": [
+        "Lab 01"
+      ],
+      "category": "Domain Core",
+      "credits": "3(2-1)"
+    },
+    {
+      "sectionKey": "BSCS-S4-B-B16",
+      "dayOfWeek": 1,
+      "slotIndex": 1,
+      "cellIndex": 0,
+      "rawText": "GES-445 Entrepreneurship & Startup General Education) 3(3-0) Mr. Attique Rafique Room:Dld Lab",
+      "subjectCode": "GES-445",
+      "subjectName": "Entrepreneurship & Startup General Education)",
+      "teacherName": "Mr. Attique Rafique",
+      "roomNames": [
+        "DLD Lab"
+      ],
+      "category": null,
+      "credits": "3(3-0)"
+    },
+    {
+      "sectionKey": "BSCS-S4-B-B16",
+      "dayOfWeek": 1,
+      "slotIndex": 2,
+      "cellIndex": 0,
+      "rawText": "GES-444 Pakistan Studies (General Education) 2(2-0) Mr. Muhammad Ali Panhyar Room:A4",
+      "subjectCode": "GES-444",
+      "subjectName": "Pakistan Studies",
+      "teacherName": "Mr. Muhammad Ali Panhyar",
+      "roomNames": [
+        "A4"
+      ],
+      "category": "General Education",
+      "credits": "2(2-0)"
+    },
+    {
+      "sectionKey": "BSCS-S4-B-B16",
+      "dayOfWeek": 3,
+      "slotIndex": 1,
+      "cellIndex": 0,
+      "rawText": "BCS-442 Advance Database Management Systems (Domain Core) 3(2-1) Mr. Abid Ali Room:Lab 01",
+      "subjectCode": "BCS-442",
+      "subjectName": "Advance Database Management Systems",
+      "teacherName": "Mr. Abid Ali",
+      "roomNames": [
+        "Lab 01"
+      ],
+      "category": "Domain Core",
+      "credits": "3(2-1)"
+    },
+    {
+      "sectionKey": "BSCS-S4-B-B16",
+      "dayOfWeek": 3,
+      "slotIndex": 2,
+      "cellIndex": 0,
+      "rawText": "BCS-442 Advance Database Management Systems (Domain Core) 3(2-1) Mr. Abid Ali Room: A5",
+      "subjectCode": "BCS-442",
+      "subjectName": "Advance Database Management Systems",
+      "teacherName": "Mr. Abid Ali",
+      "roomNames": [
+        "A5"
+      ],
+      "category": "Domain Core",
+      "credits": "3(2-1)"
+    },
+    {
+      "sectionKey": "BSCS-S4-B-B16",
+      "dayOfWeek": 4,
+      "slotIndex": 1,
+      "cellIndex": 0,
+      "rawText": "BCS-441 Analysis of Algorithms (Computing Core) 3(3-0) Dr. Zaffar Ahmed Shaikh Room:A4",
+      "subjectCode": "BCS-441",
+      "subjectName": "Analysis of Algorithms",
+      "teacherName": "Dr. Zaffar Ahmed Shaikh",
+      "roomNames": [
+        "A4"
+      ],
+      "category": "Computing Core",
+      "credits": "3(3-0)"
+    },
+    {
+      "sectionKey": "BSCS-S4-B-B16",
+      "dayOfWeek": 4,
+      "slotIndex": 2,
+      "cellIndex": 0,
+      "rawText": "BCS-446 Financial Accounting (Elective Supporting) 3(3-0) Mr. Faisal Sarwar Room:A1",
+      "subjectCode": "BCS-446",
+      "subjectName": "Financial Accounting",
+      "teacherName": "Mr. Faisal Sarwar",
+      "roomNames": [
+        "A1"
+      ],
+      "category": "Elective Supporting",
+      "credits": "3(3-0)"
+    },
+    {
+      "sectionKey": "BSCS-S4-B-B16",
+      "dayOfWeek": 5,
+      "slotIndex": 1,
+      "cellIndex": 0,
+      "rawText": "BCS-443 Operating Systems (Computing Core) 3(2-1) Mr.Abdul Razzak Room: Dld Lab",
+      "subjectCode": "BCS-443",
+      "subjectName": "Operating Systems Mr.Abdul Razzak",
+      "teacherName": "Mr. Abdul Razzak",
+      "roomNames": [
+        "DLD Lab"
+      ],
+      "category": "Computing Core",
+      "credits": "3(2-1)"
+    },
+    {
+      "sectionKey": "BSCS-S4-B-B16",
+      "dayOfWeek": 5,
+      "slotIndex": 2,
+      "cellIndex": 0,
+      "rawText": "BCS-443 Operating Systems (Computing Core) 3(2-1) Mr.Abdul Razzak Room:A3",
+      "subjectCode": "BCS-443",
+      "subjectName": "Operating Systems Mr.Abdul Razzak",
+      "teacherName": "Mr. Abdul Razzak",
+      "roomNames": [
+        "A3"
+      ],
+      "category": "Computing Core",
+      "credits": "3(2-1)"
+    },
+    {
+      "sectionKey": "BSCS-S6-A-B15",
+      "dayOfWeek": 1,
+      "slotIndex": 2,
+      "cellIndex": 0,
+      "rawText": "BCS-565 Web Engineering (Domain Elective) 3(2-1) Ms. Nadia Murad Room:A12",
+      "subjectCode": "BCS-565",
+      "subjectName": "Web Engineering",
+      "teacherName": "Ms. Nadia Murad",
+      "roomNames": [
+        "A12"
+      ],
+      "category": "Domain Elective",
+      "credits": "3(2-1)"
+    },
+    {
+      "sectionKey": "BSCS-S6-A-B15",
+      "dayOfWeek": 2,
+      "slotIndex": 1,
+      "cellIndex": 0,
+      "rawText": "BCS-561 Data Mining ( Domain Elective) 3(3-0) MS. Ambreen Room:A4",
+      "subjectCode": "BCS-561",
+      "subjectName": "Data Mining MS. Ambreen",
+      "teacherName": "Ms. Ambreen",
+      "roomNames": [
+        "A4"
+      ],
+      "category": "Domain Elective",
+      "credits": "3(3-0)"
+    },
+    {
+      "sectionKey": "BSCS-S6-A-B15",
+      "dayOfWeek": 2,
+      "slotIndex": 2,
+      "cellIndex": 0,
+      "rawText": "BCS-562 Parallel & Distibuted Computing (Domain Core) 3(3-0) Mr.Naresh Room:A4",
+      "subjectCode": "BCS-562",
+      "subjectName": "Parallel & Distibuted Computing Mr.Naresh",
+      "teacherName": "Mr. Naresh",
+      "roomNames": [
+        "A4"
+      ],
+      "category": "Domain Core",
+      "credits": "3(3-0)"
+    },
+    {
+      "sectionKey": "BSCS-S6-A-B15",
+      "dayOfWeek": 3,
+      "slotIndex": 1,
+      "cellIndex": 0,
+      "rawText": "BCS-563 Artificial Intelligence (Computing Core) 3(3-0) MS. Ambreen Room:A2",
+      "subjectCode": "BCS-563",
+      "subjectName": "Artificial Intelligence MS. Ambreen",
+      "teacherName": "Ms. Ambreen",
+      "roomNames": [
+        "A2"
+      ],
+      "category": "Computing Core",
+      "credits": "3(3-0)"
+    },
+    {
+      "sectionKey": "BSCS-S6-A-B15",
+      "dayOfWeek": 4,
+      "slotIndex": 1,
+      "cellIndex": 0,
+      "rawText": "BCS-564 Information Security (Computing Core) 3(3-0) Mr. Khuda Bukhsh Room:A2",
+      "subjectCode": "BCS-564",
+      "subjectName": "Information Security",
+      "teacherName": "Mr. Khuda Bukhsh",
+      "roomNames": [
+        "A2"
+      ],
+      "category": "Computing Core",
+      "credits": "3(3-0)"
+    },
+    {
+      "sectionKey": "BSCS-S6-A-B15",
+      "dayOfWeek": 4,
+      "slotIndex": 2,
+      "cellIndex": 0,
+      "rawText": "BCS-566 Data Science (Domain Elective) 3(2-1) Mr. Ghulam Ahmed Room:A4",
+      "subjectCode": "BCS-566",
+      "subjectName": "Data Science",
+      "teacherName": "Mr. Ghulam Ahmed",
+      "roomNames": [
+        "A4"
+      ],
+      "category": "Domain Elective",
+      "credits": "3(2-1)"
+    },
+    {
+      "sectionKey": "BSCS-S6-A-B15",
+      "dayOfWeek": 5,
+      "slotIndex": 1,
+      "cellIndex": 0,
+      "rawText": "BCS-566 Data Science Lab (Domain Elective) 3(2-1) Mr. Ghulam Ahmed Room:Lab 02",
+      "subjectCode": "BCS-566",
+      "subjectName": "Data Science Lab",
+      "teacherName": "Mr. Ghulam Ahmed",
+      "roomNames": [
+        "Lab 02"
+      ],
+      "category": "Domain Elective",
+      "credits": "3(2-1)"
+    },
+    {
+      "sectionKey": "BSCS-S6-A-B15",
+      "dayOfWeek": 5,
+      "slotIndex": 2,
+      "cellIndex": 0,
+      "rawText": "BCS-565 Web Engineering Lab (Domain Elective) 3(2-1) Ms. Nadia Murad Room:Smart Lab",
+      "subjectCode": "BCS-565",
+      "subjectName": "Web Engineering Lab",
+      "teacherName": "Ms. Nadia Murad",
+      "roomNames": [
+        "Smart Lab"
+      ],
+      "category": "Domain Elective",
+      "credits": "3(2-1)"
+    },
+    {
+      "sectionKey": "BSCS-S6-B-B15",
+      "dayOfWeek": 1,
+      "slotIndex": 1,
+      "cellIndex": 0,
+      "rawText": "BCS-561 Data Mining ( Domain Elective) 3(3-0) MS. Ambreen Room: A4",
+      "subjectCode": "BCS-561",
+      "subjectName": "Data Mining MS. Ambreen",
+      "teacherName": "Ms. Ambreen",
+      "roomNames": [
+        "A4"
+      ],
+      "category": "Domain Elective",
+      "credits": "3(3-0)"
+    },
+    {
+      "sectionKey": "BSCS-S6-B-B15",
+      "dayOfWeek": 2,
+      "slotIndex": 1,
+      "cellIndex": 0,
+      "rawText": "BCS-564 Information Security (Computing Core) 3(3-0) Mr. Khuda Bukhsh Room:A2",
+      "subjectCode": "BCS-564",
+      "subjectName": "Information Security",
+      "teacherName": "Mr. Khuda Bukhsh",
+      "roomNames": [
+        "A2"
+      ],
+      "category": "Computing Core",
+      "credits": "3(3-0)"
+    },
+    {
+      "sectionKey": "BSCS-S6-B-B15",
+      "dayOfWeek": 2,
+      "slotIndex": 2,
+      "cellIndex": 0,
+      "rawText": "BCS-566 Data Science (Domain Elective) 3(2-1) Mr. Ghulam Ahmed Room:Smart Lab",
+      "subjectCode": "BCS-566",
+      "subjectName": "Data Science",
+      "teacherName": "Mr. Ghulam Ahmed",
+      "roomNames": [
+        "Smart Lab"
+      ],
+      "category": "Domain Elective",
+      "credits": "3(2-1)"
+    },
+    {
+      "sectionKey": "BSCS-S6-B-B15",
+      "dayOfWeek": 3,
+      "slotIndex": 1,
+      "cellIndex": 0,
+      "rawText": "BCS-562 Parallel & Distibuted Computing (Domain Core) 3(3-0) Mr. Anwar Ali Room:A8",
+      "subjectCode": "BCS-562",
+      "subjectName": "Parallel & Distibuted Computing",
+      "teacherName": "Mr. Anwar Ali",
+      "roomNames": [
+        "A8"
+      ],
+      "category": "Domain Core",
+      "credits": "3(3-0)"
+    },
+    {
+      "sectionKey": "BSCS-S6-B-B15",
+      "dayOfWeek": 3,
+      "slotIndex": 2,
+      "cellIndex": 0,
+      "rawText": "BCS-565 Web Engineering (Domain Elective) 3(2-1) Ms. Nadia Murad Room:A1",
+      "subjectCode": "BCS-565",
+      "subjectName": "Web Engineering",
+      "teacherName": "Ms. Nadia Murad",
+      "roomNames": [
+        "A1"
+      ],
+      "category": "Domain Elective",
+      "credits": "3(2-1)"
+    },
+    {
+      "sectionKey": "BSCS-S6-B-B15",
+      "dayOfWeek": 4,
+      "slotIndex": 2,
+      "cellIndex": 0,
+      "rawText": "BCS-563 Artificial Intelligence (Computing Core) 3(3-0) MS. Ambreen Room:A5",
+      "subjectCode": "BCS-563",
+      "subjectName": "Artificial Intelligence MS. Ambreen",
+      "teacherName": "Ms. Ambreen",
+      "roomNames": [
+        "A5"
+      ],
+      "category": "Computing Core",
+      "credits": "3(3-0)"
+    },
+    {
+      "sectionKey": "BSCS-S6-B-B15",
+      "dayOfWeek": 5,
+      "slotIndex": 1,
+      "cellIndex": 0,
+      "rawText": "BCS-565 Web Engineering Lab (Domain Elective) 3(2-1) Ms. Nadia Murad Room:Smart Lab",
+      "subjectCode": "BCS-565",
+      "subjectName": "Web Engineering Lab",
+      "teacherName": "Ms. Nadia Murad",
+      "roomNames": [
+        "Smart Lab"
+      ],
+      "category": "Domain Elective",
+      "credits": "3(2-1)"
+    },
+    {
+      "sectionKey": "BSCS-S6-B-B15",
+      "dayOfWeek": 5,
+      "slotIndex": 2,
+      "cellIndex": 0,
+      "rawText": "BCS-566 Data Science Lab (Domain Elective) 3(2-1) Mr. Ghulam Ahmed Room:Lab 2",
+      "subjectCode": "BCS-566",
+      "subjectName": "Data Science Lab",
+      "teacherName": "Mr. Ghulam Ahmed",
+      "roomNames": [
+        "Lab 02"
+      ],
+      "category": "Domain Elective",
+      "credits": "3(2-1)"
+    },
+    {
+      "sectionKey": "BSCS-S8-A-B14",
+      "dayOfWeek": 1,
+      "slotIndex": 1,
+      "cellIndex": 0,
+      "rawText": "UE-682 Economics (University Elective IV Elective Related) 3(3-0) Mr. SHARJEEL NAWAZ Room:A7",
+      "subjectCode": "UE-682",
+      "subjectName": "Economics",
+      "teacherName": "Mr. SHARJEEL NAWAZ",
+      "roomNames": [
+        "A7"
+      ],
+      "category": "University Elective IV Elective Related",
+      "credits": "3(3-0)"
+    },
+    {
+      "sectionKey": "BSCS-S8-A-B14",
+      "dayOfWeek": 3,
+      "slotIndex": 2,
+      "cellIndex": 0,
+      "rawText": "CS-681 Computer Vision (Computer Science Electiver V) Mr. Muhammad Sharif Room:A11",
+      "subjectCode": "CS-681",
+      "subjectName": "Computer Vision",
+      "teacherName": "Mr. Muhammad Sharif",
+      "roomNames": [
+        "A11"
+      ],
+      "category": "Computer Science Electiver V",
+      "credits": null
+    },
+    {
+      "sectionKey": "BSCS-S8-A-B14",
+      "dayOfWeek": 4,
+      "slotIndex": 1,
+      "cellIndex": 0,
+      "rawText": "UE-685 Social Services (University Elective V)(Social Services Related) 1(1+0) Mr.Ali Ashar Room:A3",
+      "subjectCode": "UE-685",
+      "subjectName": "Social Services Mr.Ali Ashar",
+      "teacherName": "Mr. Ali Ashar",
+      "roomNames": [
+        "A3"
+      ],
+      "category": "University Elective V",
+      "credits": "1(1+0)"
+    },
+    {
+      "sectionKey": "BSCS-S8-A-B14",
+      "dayOfWeek": 4,
+      "slotIndex": 2,
+      "cellIndex": 0,
+      "rawText": "CS-684 Information Security (Computing Core) 3(3-0) Ms. Tahreem Asif Room:A7",
+      "subjectCode": "CS-684",
+      "subjectName": "Information Security",
+      "teacherName": "Ms. Tahreem Asif",
+      "roomNames": [
+        "A7"
+      ],
+      "category": "Computing Core",
+      "credits": "3(3-0)"
+    },
+    {
+      "sectionKey": "BSCS-S8-A-B14",
+      "dayOfWeek": 5,
+      "slotIndex": 1,
+      "cellIndex": 0,
+      "rawText": "CS-683 Final Year Project II (Computing Core) 3(0-3) Prof. Dr. Mazhar Ali Room:Lab 01",
+      "subjectCode": "CS-683",
+      "subjectName": "Final Year Project II",
+      "teacherName": "Prof. Dr. Mazhar Ali",
+      "roomNames": [
+        "Lab 01"
+      ],
+      "category": "Computing Core",
+      "credits": "3(0-3)"
+    },
+    {
+      "sectionKey": "BSCS-S8-B-B14",
+      "dayOfWeek": 1,
+      "slotIndex": 2,
+      "cellIndex": 0,
+      "rawText": "CS-681 Computer Vision (Computer Science Electiver V) Mr. Muhammad Sharif Room:A7",
+      "subjectCode": "CS-681",
+      "subjectName": "Computer Vision",
+      "teacherName": "Mr. Muhammad Sharif",
+      "roomNames": [
+        "A7"
+      ],
+      "category": "Computer Science Electiver V",
+      "credits": null
+    },
+    {
+      "sectionKey": "BSCS-S8-B-B14",
+      "dayOfWeek": 3,
+      "slotIndex": 1,
+      "cellIndex": 0,
+      "rawText": "UE-682 Economics (University Elective IV Elective Related) 3(3-0) Mr. SHARJEEL NAWAZ Room:A6",
+      "subjectCode": "UE-682",
+      "subjectName": "Economics",
+      "teacherName": "Mr. SHARJEEL NAWAZ",
+      "roomNames": [
+        "A6"
+      ],
+      "category": "University Elective IV Elective Related",
+      "credits": "3(3-0)"
+    },
+    {
+      "sectionKey": "BSCS-S8-B-B14",
+      "dayOfWeek": 4,
+      "slotIndex": 1,
+      "cellIndex": 0,
+      "rawText": "UE-685 Social Services (University Elective V)(Social Services Related) 1(1+0) Mr.Ali Ashar Room:A8",
+      "subjectCode": "UE-685",
+      "subjectName": "Social Services Mr.Ali Ashar",
+      "teacherName": "Mr. Ali Ashar",
+      "roomNames": [
+        "A8"
+      ],
+      "category": "University Elective V",
+      "credits": "1(1+0)"
+    },
+    {
+      "sectionKey": "BSCS-S8-B-B14",
+      "dayOfWeek": 5,
+      "slotIndex": 1,
+      "cellIndex": 0,
+      "rawText": "CS-684 Information Security (Computing Core) 3(3-0) Ms. Tahreem Asif Room:A7",
+      "subjectCode": "CS-684",
+      "subjectName": "Information Security",
+      "teacherName": "Ms. Tahreem Asif",
+      "roomNames": [
+        "A7"
+      ],
+      "category": "Computing Core",
+      "credits": "3(3-0)"
+    },
+    {
+      "sectionKey": "BSCS-S8-B-B14",
+      "dayOfWeek": 5,
+      "slotIndex": 2,
+      "cellIndex": 0,
+      "rawText": "CS-683 Final Year Project II (Computing Core) 3(0-3) Dr. Shafique Ahmed Awan Room:A8",
+      "subjectCode": "CS-683",
+      "subjectName": "Final Year Project II",
+      "teacherName": "Dr. Shafique Ahmed Awan",
+      "roomNames": [
+        "A8"
+      ],
+      "category": "Computing Core",
+      "credits": "3(0-3)"
+    },
+    {
+      "sectionKey": "BSIT-S2-A-B12",
+      "dayOfWeek": 1,
+      "slotIndex": 1,
+      "cellIndex": 0,
+      "rawText": "ITC-211 Data Structures (Major) 4(3+1) Mr. Rishabh Room Lab 02",
+      "subjectCode": "ITC-211",
+      "subjectName": "Data Structures",
+      "teacherName": "Mr. Rishabh",
+      "roomNames": [
+        "Lab 02"
+      ],
+      "category": "Major",
+      "credits": "4(3+1)"
+    },
+    {
+      "sectionKey": "BSIT-S2-A-B12",
+      "dayOfWeek": 1,
+      "slotIndex": 2,
+      "cellIndex": 0,
+      "rawText": "ITC-211 Data Structures (Major) 4(3+1) Mr. Rishabh Room:A10",
+      "subjectCode": "ITC-211",
+      "subjectName": "Data Structures",
+      "teacherName": "Mr. Rishabh",
+      "roomNames": [
+        "A10"
+      ],
+      "category": "Major",
+      "credits": "4(3+1)"
+    },
+    {
+      "sectionKey": "BSIT-S2-A-B12",
+      "dayOfWeek": 2,
+      "slotIndex": 1,
+      "cellIndex": 0,
+      "rawText": "ITC-212 Object Oriented Programmig (Major) 4(3+1) Ms. Maria Room:A10",
+      "subjectCode": "ITC-212",
+      "subjectName": "Object Oriented Programmig",
+      "teacherName": "Ms. Maria",
+      "roomNames": [
+        "A10"
+      ],
+      "category": "Major",
+      "credits": "4(3+1)"
+    },
+    {
+      "sectionKey": "BSIT-S2-A-B12",
+      "dayOfWeek": 2,
+      "slotIndex": 2,
+      "cellIndex": 0,
+      "rawText": "ITC-212 Object Oriented Programmig (Major) 4(3+1) Ms. Maria Room:A1",
+      "subjectCode": "ITC-212",
+      "subjectName": "Object Oriented Programmig",
+      "teacherName": "Ms. Maria",
+      "roomNames": [
+        "A1"
+      ],
+      "category": "Major",
+      "credits": "4(3+1)"
+    },
+    {
+      "sectionKey": "BSIT-S2-A-B12",
+      "dayOfWeek": 3,
+      "slotIndex": 1,
+      "cellIndex": 0,
+      "rawText": "GQR-223 Quantitative Reasoning-II (General Education) 3(3+0) Mr. Zulqarnain Room:A10",
+      "subjectCode": "GQR-223",
+      "subjectName": "Quantitative Reasoning-II",
+      "teacherName": "Mr. Zulqarnain",
+      "roomNames": [
+        "A10"
+      ],
+      "category": "General Education",
+      "credits": "3(3+0)"
+    },
+    {
+      "sectionKey": "BSIT-S2-A-B12",
+      "dayOfWeek": 3,
+      "slotIndex": 2,
+      "cellIndex": 0,
+      "rawText": "MTH-234 Discrete Structure (IDS- Mandatory) 3(3+0) Mr.Muhammad Shoaib Room:A10",
+      "subjectCode": "MTH-234",
+      "subjectName": "Discrete Structure Mr.Muhammad Shoaib",
+      "teacherName": "Mr. Muhammad Shoaib",
+      "roomNames": [
+        "A10"
+      ],
+      "category": "IDS- Mandatory",
+      "credits": "3(3+0)"
+    },
+    {
+      "sectionKey": "BSIT-S2-A-B12",
+      "dayOfWeek": 4,
+      "slotIndex": 1,
+      "cellIndex": 0,
+      "rawText": "GIS-225 Islamic Studies/",
+      "subjectCode": "GIS-225",
+      "subjectName": "Islamic Studies",
+      "teacherName": "Mr. Muhammad Qasim Siddiqi",
+      "roomNames": [
+        "A10"
+      ],
+      "category": null,
+      "credits": null
+    },
+    {
+      "sectionKey": "BSIT-S2-A-B12",
+      "dayOfWeek": 4,
+      "slotIndex": 1,
+      "cellIndex": 1,
+      "rawText": "CSC-227 Understanding of Quran-I Mr. Muhammad Qasim Siddiqi Room:A10",
+      "subjectCode": "CSC-227",
+      "subjectName": "Understanding of Quran-I",
+      "teacherName": "Mr. Muhammad Qasim Siddiqi",
+      "roomNames": [
+        "A10"
+      ],
+      "category": null,
+      "credits": null
+    },
+    {
+      "sectionKey": "BSIT-S2-A-B12",
+      "dayOfWeek": 4,
+      "slotIndex": 2,
+      "cellIndex": 0,
+      "rawText": "GES-226 Pakistan Studies (General Eduation) 2(2+0) Mr.Namat Ullah Room:A10",
+      "subjectCode": "GES-226",
+      "subjectName": "Pakistan Studies Mr.Namat Ullah",
+      "teacherName": "Mr. Namat Ullah",
+      "roomNames": [
+        "A10"
+      ],
+      "category": "General Eduation",
+      "credits": "2(2+0)"
+    },
+    {
+      "sectionKey": "BSIT-S2-A-B12",
+      "dayOfWeek": 5,
+      "slotIndex": 1,
+      "cellIndex": 0,
+      "rawText": "MTH-238 Mathematic – II (For students other than Intermediate pre-engineering) NC Mr. Muhammad Afzal Room:A3 & A8",
+      "subjectCode": "MTH-238",
+      "subjectName": "Mathematic – II NC",
+      "teacherName": "Mr. Muhammad Afzal",
+      "roomNames": [
+        "A3",
+        "A8"
+      ],
+      "category": "For students other than Intermediate pre-engineering",
+      "credits": null
+    },
+    {
+      "sectionKey": "BSIT-S2-A-B12",
+      "dayOfWeek": 5,
+      "slotIndex": 2,
+      "cellIndex": 0,
+      "rawText": "Wrold Relgion-I (General Eduation) 1(0+1) / Mr.Namat Ullah (General Education) 2(2+0) Dr. Mr.Namat Ullah Room:A5",
+      "subjectCode": null,
+      "subjectName": "Wrold Relgion-I / Mr.Namat Ullah Dr. Mr.Namat Ullah",
+      "teacherName": "Mr. Namat Ullah",
+      "roomNames": [
+        "A5"
+      ],
+      "category": "General Eduation",
+      "credits": "1(0+1)"
+    },
+    {
+      "sectionKey": "BSIT-S2-B-B12",
+      "dayOfWeek": 1,
+      "slotIndex": 1,
+      "cellIndex": 0,
+      "rawText": "ITC-212 Object Oriented Programmig (Major) 4(3+1) Ms.Maria Room:A10",
+      "subjectCode": "ITC-212",
+      "subjectName": "Object Oriented Programmig Ms.Maria",
+      "teacherName": "Ms. Maria",
+      "roomNames": [
+        "A10"
+      ],
+      "category": "Major",
+      "credits": "4(3+1)"
+    },
+    {
+      "sectionKey": "BSIT-S2-B-B12",
+      "dayOfWeek": 1,
+      "slotIndex": 2,
+      "cellIndex": 0,
+      "rawText": "ITC-212 Object Oriented Programmig (Major) 4(3+1) Ms.Maria Room:Lab 02",
+      "subjectCode": "ITC-212",
+      "subjectName": "Object Oriented Programmig Ms.Maria",
+      "teacherName": "Ms. Maria",
+      "roomNames": [
+        "Lab 02"
+      ],
+      "category": "Major",
+      "credits": "4(3+1)"
+    },
+    {
+      "sectionKey": "BSIT-S2-B-B12",
+      "dayOfWeek": 2,
+      "slotIndex": 1,
+      "cellIndex": 0,
+      "rawText": "ITC-211 Data Structures (Major) 4(3+1) Mr. Rishabh Room:A5",
+      "subjectCode": "ITC-211",
+      "subjectName": "Data Structures",
+      "teacherName": "Mr. Rishabh",
+      "roomNames": [
+        "A5"
+      ],
+      "category": "Major",
+      "credits": "4(3+1)"
+    },
+    {
+      "sectionKey": "BSIT-S2-B-B12",
+      "dayOfWeek": 2,
+      "slotIndex": 2,
+      "cellIndex": 0,
+      "rawText": "ITC-211 Data Structures (Major) 4(3+1) Mr. Rishabh Room:Lab 02",
+      "subjectCode": "ITC-211",
+      "subjectName": "Data Structures",
+      "teacherName": "Mr. Rishabh",
+      "roomNames": [
+        "Lab 02"
+      ],
+      "category": "Major",
+      "credits": "4(3+1)"
+    },
+    {
+      "sectionKey": "BSIT-S2-B-B12",
+      "dayOfWeek": 3,
+      "slotIndex": 1,
+      "cellIndex": 0,
+      "rawText": "MTH-234 Discrete Structure (IDS- Mandatory) 3(3+0) Mr.Muhammad Shoaib Room:A10",
+      "subjectCode": "MTH-234",
+      "subjectName": "Discrete Structure Mr.Muhammad Shoaib",
+      "teacherName": "Mr. Muhammad Shoaib",
+      "roomNames": [
+        "A10"
+      ],
+      "category": "IDS- Mandatory",
+      "credits": "3(3+0)"
+    },
+    {
+      "sectionKey": "BSIT-S2-B-B12",
+      "dayOfWeek": 3,
+      "slotIndex": 2,
+      "cellIndex": 0,
+      "rawText": "GQR-223 Quantitative Reasoning-II (General Education) 3(3+0) Ms.Rida Naseer Room:A11",
+      "subjectCode": "GQR-223",
+      "subjectName": "Quantitative Reasoning-II Ms.Rida Naseer",
+      "teacherName": "Ms. Rida Naseer",
+      "roomNames": [
+        "A11"
+      ],
+      "category": "General Education",
+      "credits": "3(3+0)"
+    },
+    {
+      "sectionKey": "BSIT-S2-B-B12",
+      "dayOfWeek": 4,
+      "slotIndex": 1,
+      "cellIndex": 0,
+      "rawText": "GES-226 Pakistan Studies (General Eduation) 2(2+0) Mr.Namat Ullah Room:A11",
+      "subjectCode": "GES-226",
+      "subjectName": "Pakistan Studies Mr.Namat Ullah",
+      "teacherName": "Mr. Namat Ullah",
+      "roomNames": [
+        "A11"
+      ],
+      "category": "General Eduation",
+      "credits": "2(2+0)"
+    },
+    {
+      "sectionKey": "BSIT-S2-B-B12",
+      "dayOfWeek": 4,
+      "slotIndex": 2,
+      "cellIndex": 0,
+      "rawText": "GIS-225 Islamic Studies/",
+      "subjectCode": "GIS-225",
+      "subjectName": "Islamic Studies",
+      "teacherName": "Mr. Muhammad Qasim Siddiqi",
+      "roomNames": [
+        "A11"
+      ],
+      "category": null,
+      "credits": null
+    },
+    {
+      "sectionKey": "BSIT-S2-B-B12",
+      "dayOfWeek": 4,
+      "slotIndex": 2,
+      "cellIndex": 1,
+      "rawText": "CSC-227 Understanding of Quran-I Mr. Muhammad Qasim Siddiqi Room:A11",
+      "subjectCode": "CSC-227",
+      "subjectName": "Understanding of Quran-I",
+      "teacherName": "Mr. Muhammad Qasim Siddiqi",
+      "roomNames": [
+        "A11"
+      ],
+      "category": null,
+      "credits": null
+    },
+    {
+      "sectionKey": "BSIT-S2-B-B12",
+      "dayOfWeek": 5,
+      "slotIndex": 1,
+      "cellIndex": 0,
+      "rawText": "MTH-238 Mathematic – II (For students other than Intermediate pre-engineering) NC Mr. Muhammad Afzal Room:A3 & A8",
+      "subjectCode": "MTH-238",
+      "subjectName": "Mathematic – II NC",
+      "teacherName": "Mr. Muhammad Afzal",
+      "roomNames": [
+        "A3",
+        "A8"
+      ],
+      "category": "For students other than Intermediate pre-engineering",
+      "credits": null
+    },
+    {
+      "sectionKey": "BSIT-S2-B-B12",
+      "dayOfWeek": 5,
+      "slotIndex": 2,
+      "cellIndex": 0,
+      "rawText": "Wrold Relgion-I (General Eduation) 1(0+1) / Ethics (General Education) 2(2+0)Mr.Namat Ullah Room:A5",
+      "subjectCode": null,
+      "subjectName": "Wrold Relgion-I / Ethics Mr.Namat Ullah",
+      "teacherName": "Mr. Namat Ullah",
+      "roomNames": [
+        "A5"
+      ],
+      "category": "General Eduation",
+      "credits": "1(0+1)"
+    },
+    {
+      "sectionKey": "BSIT-S4-A-B11",
+      "dayOfWeek": 1,
+      "slotIndex": 1,
+      "cellIndex": 0,
+      "rawText": "BIT-444 Database Administration & Management (Domain Core) 3(2-1) Ms. Tahreem Asif Room:A5",
+      "subjectCode": "BIT-444",
+      "subjectName": "Database Administration & Management",
+      "teacherName": "Ms. Tahreem Asif",
+      "roomNames": [
+        "A5"
+      ],
+      "category": "Domain Core",
+      "credits": "3(2-1)"
+    },
+    {
+      "sectionKey": "BSIT-S4-A-B11",
+      "dayOfWeek": 2,
+      "slotIndex": 1,
+      "cellIndex": 0,
+      "rawText": "BIT-444 Database Administration & Management (Domain Lab Core) 3(2-1) Ms. Tahreem Asif Room:Dld Lab",
+      "subjectCode": "BIT-444",
+      "subjectName": "Database Administration & Management",
+      "teacherName": "Ms. Tahreem Asif",
+      "roomNames": [
+        "DLD Lab"
+      ],
+      "category": "Domain Lab Core",
+      "credits": "3(2-1)"
+    },
+    {
+      "sectionKey": "BSIT-S4-A-B11",
+      "dayOfWeek": 2,
+      "slotIndex": 2,
+      "cellIndex": 0,
+      "rawText": "BIT-442 Information Security (Computing Core) 3(2-1) Mr. Sher Muhammad Room:A11",
+      "subjectCode": "BIT-442",
+      "subjectName": "Information Security",
+      "teacherName": "Mr. Sher Muhammad",
+      "roomNames": [
+        "A11"
+      ],
+      "category": "Computing Core",
+      "credits": "3(2-1)"
+    },
+    {
+      "sectionKey": "BSIT-S4-A-B11",
+      "dayOfWeek": 3,
+      "slotIndex": 1,
+      "cellIndex": 0,
+      "rawText": "GES-446 Entrepreneurship & Startup (General Education) 3(3-0) Mr. Faizan Room:A9",
+      "subjectCode": "GES-446",
+      "subjectName": "Entrepreneurship & Startup",
+      "teacherName": "Mr. Faizan",
+      "roomNames": [
+        "A9"
+      ],
+      "category": "General Education",
+      "credits": "3(3-0)"
+    },
+    {
+      "sectionKey": "BSIT-S4-A-B11",
+      "dayOfWeek": 3,
+      "slotIndex": 2,
+      "cellIndex": 0,
+      "rawText": "BIT-442 Information Security (Computing Core) 3(2-1) Mr. Sher Muhammad Room:Lab 02",
+      "subjectCode": "BIT-442",
+      "subjectName": "Information Security",
+      "teacherName": "Mr. Sher Muhammad",
+      "roomNames": [
+        "Lab 02"
+      ],
+      "category": "Computing Core",
+      "credits": "3(2-1)"
+    },
+    {
+      "sectionKey": "BSIT-S4-A-B11",
+      "dayOfWeek": 4,
+      "slotIndex": 1,
+      "cellIndex": 0,
+      "rawText": "BIT-443 Computer Networks (Computing Core) 3(2-1) Mr.Naresh Room:dld lab",
+      "subjectCode": "BIT-443",
+      "subjectName": "Computer Networks Mr.Naresh",
+      "teacherName": "Mr. Naresh",
+      "roomNames": [
+        "DLD Lab"
+      ],
+      "category": "Computing Core",
+      "credits": "3(2-1)"
+    },
+    {
+      "sectionKey": "BSIT-S4-A-B11",
+      "dayOfWeek": 4,
+      "slotIndex": 2,
+      "cellIndex": 0,
+      "rawText": "GES-445 Pakistan Studies (General Education) 2(2-0) Mr. Faisal Room:A9",
+      "subjectCode": "GES-445",
+      "subjectName": "Pakistan Studies",
+      "teacherName": "Mr. Faisal",
+      "roomNames": [
+        "A9"
+      ],
+      "category": "General Education",
+      "credits": "2(2-0)"
+    },
+    {
+      "sectionKey": "BSIT-S4-A-B11",
+      "dayOfWeek": 5,
+      "slotIndex": 1,
+      "cellIndex": 0,
+      "rawText": "BIT-443 Computer Networks (Computing Core) 3(2-1) Mr.Naresh Room:IoT Lab",
+      "subjectCode": "BIT-443",
+      "subjectName": "Computer Networks Mr.Naresh",
+      "teacherName": "Mr. Naresh",
+      "roomNames": [
+        "IoT Lab"
+      ],
+      "category": "Computing Core",
+      "credits": "3(2-1)"
+    },
+    {
+      "sectionKey": "BSIT-S4-A-B11",
+      "dayOfWeek": 5,
+      "slotIndex": 2,
+      "cellIndex": 0,
+      "rawText": "BIT-441 Operating Systems (Computing Core) 3(2-1) Mr.Muhammad Anwar Jabbar Room:A10",
+      "subjectCode": "BIT-441",
+      "subjectName": "Operating Systems Mr.Muhammad Anwar Jabbar",
+      "teacherName": "Mr. Muhammad Anwar Jabbar",
+      "roomNames": [
+        "A10"
+      ],
+      "category": "Computing Core",
+      "credits": "3(2-1)"
+    },
+    {
+      "sectionKey": "BSIT-S4-B-B11",
+      "dayOfWeek": 1,
+      "slotIndex": 1,
+      "cellIndex": 0,
+      "rawText": "BIT-443 Computer Networks (Computing Core) 3(2-1) Mr.Naresh Room:A11",
+      "subjectCode": "BIT-443",
+      "subjectName": "Computer Networks Mr.Naresh",
+      "teacherName": "Mr. Naresh",
+      "roomNames": [
+        "A11"
+      ],
+      "category": "Computing Core",
+      "credits": "3(2-1)"
+    },
+    {
+      "sectionKey": "BSIT-S4-B-B11",
+      "dayOfWeek": 1,
+      "slotIndex": 2,
+      "cellIndex": 0,
+      "rawText": "BIT-444 Database Administration & Management (Domain Core) 3(2-1) Ms. Tahreem Asif Room: A5",
+      "subjectCode": "BIT-444",
+      "subjectName": "Database Administration & Management",
+      "teacherName": "Ms. Tahreem Asif",
+      "roomNames": [
+        "A5"
+      ],
+      "category": "Domain Core",
+      "credits": "3(2-1)"
+    },
+    {
+      "sectionKey": "BSIT-S4-B-B11",
+      "dayOfWeek": 2,
+      "slotIndex": 2,
+      "cellIndex": 0,
+      "rawText": "BIT-444 Database Administration & Management (Domain Core) 3(2-1) Ms. Tahreem Asif Room:Dld Lab",
+      "subjectCode": "BIT-444",
+      "subjectName": "Database Administration & Management",
+      "teacherName": "Ms. Tahreem Asif",
+      "roomNames": [
+        "DLD Lab"
+      ],
+      "category": "Domain Core",
+      "credits": "3(2-1)"
+    },
+    {
+      "sectionKey": "BSIT-S4-B-B11",
+      "dayOfWeek": 3,
+      "slotIndex": 1,
+      "cellIndex": 0,
+      "rawText": "BIT-442 Information Security (Computing Core) 3(2-1) Mr. Sher Muhammad Room:Lab 02",
+      "subjectCode": "BIT-442",
+      "subjectName": "Information Security",
+      "teacherName": "Mr. Sher Muhammad",
+      "roomNames": [
+        "Lab 02"
+      ],
+      "category": "Computing Core",
+      "credits": "3(2-1)"
+    },
+    {
+      "sectionKey": "BSIT-S4-B-B11",
+      "dayOfWeek": 3,
+      "slotIndex": 2,
+      "cellIndex": 0,
+      "rawText": "GES-446 Entrepreneurship & Startup (General Education) 3(3-0) Mr. Faizan Room:A9",
+      "subjectCode": "GES-446",
+      "subjectName": "Entrepreneurship & Startup",
+      "teacherName": "Mr. Faizan",
+      "roomNames": [
+        "A9"
+      ],
+      "category": "General Education",
+      "credits": "3(3-0)"
+    },
+    {
+      "sectionKey": "BSIT-S4-B-B11",
+      "dayOfWeek": 4,
+      "slotIndex": 1,
+      "cellIndex": 0,
+      "rawText": "GES-445 Pakistan Studies (General Education) 2(2-0) Mr. Faisal Room:A9",
+      "subjectCode": "GES-445",
+      "subjectName": "Pakistan Studies",
+      "teacherName": "Mr. Faisal",
+      "roomNames": [
+        "A9"
+      ],
+      "category": "General Education",
+      "credits": "2(2-0)"
+    },
+    {
+      "sectionKey": "BSIT-S4-B-B11",
+      "dayOfWeek": 4,
+      "slotIndex": 2,
+      "cellIndex": 0,
+      "rawText": "BIT-441 Operating Systems Lab (Computing Core) 3(2-1) Mr.Muhammad Anwar Jabbar Room:Smart Lab",
+      "subjectCode": "BIT-441",
+      "subjectName": "Operating Systems Lab Mr.Muhammad Anwar Jabbar",
+      "teacherName": "Mr. Muhammad Anwar Jabbar",
+      "roomNames": [
+        "Smart Lab"
+      ],
+      "category": "Computing Core",
+      "credits": "3(2-1)"
+    },
+    {
+      "sectionKey": "BSIT-S4-B-B11",
+      "dayOfWeek": 5,
+      "slotIndex": 1,
+      "cellIndex": 0,
+      "rawText": "BIT-442 Information Security (Computing Core) 3(2-1) Mr. Sher Muhammad Room:",
+      "subjectCode": "BIT-442",
+      "subjectName": "Information Security",
+      "teacherName": "Mr. Sher Muhammad",
+      "roomNames": [],
+      "category": "Computing Core",
+      "credits": "3(2-1)"
+    },
+    {
+      "sectionKey": "BSIT-S4-B-B11",
+      "dayOfWeek": 5,
+      "slotIndex": 2,
+      "cellIndex": 0,
+      "rawText": "BIT-443 Computer Networks (Computing Core) 3(2-1) Mr.Naresh Room:Dld Lab",
+      "subjectCode": "BIT-443",
+      "subjectName": "Computer Networks Mr.Naresh",
+      "teacherName": "Mr. Naresh",
+      "roomNames": [
+        "DLD Lab"
+      ],
+      "category": "Computing Core",
+      "credits": "3(2-1)"
+    },
+    {
+      "sectionKey": "BSIT-S6-A-B10",
+      "dayOfWeek": 2,
+      "slotIndex": 1,
+      "cellIndex": 0,
+      "rawText": "BIT-565 Cloud Computing (Domain Elective) 3(3-0) MS. Nadia Murad Room:A6",
+      "subjectCode": "BIT-565",
+      "subjectName": "Cloud Computing MS. Nadia Murad",
+      "teacherName": "Ms. Nadia Murad",
+      "roomNames": [
+        "A6"
+      ],
+      "category": "Domain Elective",
+      "credits": "3(3-0)"
+    },
+    {
+      "sectionKey": "BSIT-S6-A-B10",
+      "dayOfWeek": 3,
+      "slotIndex": 1,
+      "cellIndex": 0,
+      "rawText": "BIT-563 Financial Accounting (Elective Supporting) 3(3-0) Ms. Tania Nadeem Room:Dld Lab",
+      "subjectCode": "BIT-563",
+      "subjectName": "Financial Accounting",
+      "teacherName": "Ms. Tania Nadeem",
+      "roomNames": [
+        "DLD Lab"
+      ],
+      "category": "Elective Supporting",
+      "credits": "3(3-0)"
+    },
+    {
+      "sectionKey": "BSIT-S6-A-B10",
+      "dayOfWeek": 3,
+      "slotIndex": 2,
+      "cellIndex": 0,
+      "rawText": "BIT-566 Data Mining (Domain Elective) 3(3-0) Ms. Nadia Haseen Uddin Room:A4",
+      "subjectCode": "BIT-566",
+      "subjectName": "Data Mining",
+      "teacherName": "Ms. Nadia Haseen Uddin",
+      "roomNames": [
+        "A4"
+      ],
+      "category": "Domain Elective",
+      "credits": "3(3-0)"
+    },
+    {
+      "sectionKey": "BSIT-S6-A-B10",
+      "dayOfWeek": 4,
+      "slotIndex": 1,
+      "cellIndex": 0,
+      "rawText": "BIT-562 System & Network Administration Lab (Domain Core) 3(2-1) Mr.Muhammad Anwar Jabbar Room:Smart Lab",
+      "subjectCode": "BIT-562",
+      "subjectName": "System & Network Administration Lab Mr.Muhammad Anwar Jabbar",
+      "teacherName": "Mr. Muhammad Anwar Jabbar",
+      "roomNames": [
+        "Smart Lab"
+      ],
+      "category": "Domain Core",
+      "credits": "3(2-1)"
+    },
+    {
+      "sectionKey": "BSIT-S6-A-B10",
+      "dayOfWeek": 5,
+      "slotIndex": 1,
+      "cellIndex": 0,
+      "rawText": "BIT-561 Blockchain Technologies (Domain Elective) 3(3-0) Mr. Mohsin Room:A5",
+      "subjectCode": "BIT-561",
+      "subjectName": "Blockchain Technologies",
+      "teacherName": "Mr. Mohsin",
+      "roomNames": [
+        "A5"
+      ],
+      "category": "Domain Elective",
+      "credits": "3(3-0)"
+    },
+    {
+      "sectionKey": "BSIT-S6-A-B10",
+      "dayOfWeek": 5,
+      "slotIndex": 2,
+      "cellIndex": 0,
+      "rawText": "BIT-564 Web Technologies (Domain Core) 3(3-0) Mr. Akhtar Hamid Hussain Room: A9",
+      "subjectCode": "BIT-564",
+      "subjectName": "Web Technologies",
+      "teacherName": "Mr. Akhtar Hamid Hussain",
+      "roomNames": [
+        "A9"
+      ],
+      "category": "Domain Core",
+      "credits": "3(3-0)"
+    },
+    {
+      "sectionKey": "BSIT-S6-B-B10",
+      "dayOfWeek": 1,
+      "slotIndex": 1,
+      "cellIndex": 0,
+      "rawText": "BIT-562 System & Network Administration (Domain Core) 3(2-1) Mr. Anwar Ali Room: A12",
+      "subjectCode": "BIT-562",
+      "subjectName": "System & Network Administration",
+      "teacherName": "Mr. Anwar Ali",
+      "roomNames": [
+        "A12"
+      ],
+      "category": "Domain Core",
+      "credits": "3(2-1)"
+    },
+    {
+      "sectionKey": "BSIT-S6-B-B10",
+      "dayOfWeek": 1,
+      "slotIndex": 2,
+      "cellIndex": 0,
+      "rawText": "BIT-562 System & Network Administration Lab (Domain Core) 3(2-1) Mr. Anwar Ali Room: Smart Lab",
+      "subjectCode": "BIT-562",
+      "subjectName": "System & Network Administration Lab",
+      "teacherName": "Mr. Anwar Ali",
+      "roomNames": [
+        "Smart Lab"
+      ],
+      "category": "Domain Core",
+      "credits": "3(2-1)"
+    },
+    {
+      "sectionKey": "BSIT-S6-B-B10",
+      "dayOfWeek": 2,
+      "slotIndex": 1,
+      "cellIndex": 0,
+      "rawText": "BIT-566 Data Mining (Domain Elective) 3(3-0) Ms. Nadia Haseen Uddin Room: A12",
+      "subjectCode": "BIT-566",
+      "subjectName": "Data Mining",
+      "teacherName": "Ms. Nadia Haseen Uddin",
+      "roomNames": [
+        "A12"
+      ],
+      "category": "Domain Elective",
+      "credits": "3(3-0)"
+    },
+    {
+      "sectionKey": "BSIT-S6-B-B10",
+      "dayOfWeek": 2,
+      "slotIndex": 2,
+      "cellIndex": 0,
+      "rawText": "BIT-563 Financial Accounting (Elective Supporting) 3(3-0) Ms. Hanifan Room:A5",
+      "subjectCode": "BIT-563",
+      "subjectName": "Financial Accounting",
+      "teacherName": "Ms. Hanifan",
+      "roomNames": [
+        "A5"
+      ],
+      "category": "Elective Supporting",
+      "credits": "3(3-0)"
+    },
+    {
+      "sectionKey": "BSIT-S6-B-B10",
+      "dayOfWeek": 4,
+      "slotIndex": 1,
+      "cellIndex": 0,
+      "rawText": "BIT-565 Cloud Computing (Domain Elective) 3(3-0) MS. Nadia Murad Room:A1",
+      "subjectCode": "BIT-565",
+      "subjectName": "Cloud Computing MS. Nadia Murad",
+      "teacherName": "Ms. Nadia Murad",
+      "roomNames": [
+        "A1"
+      ],
+      "category": "Domain Elective",
+      "credits": "3(3-0)"
+    },
+    {
+      "sectionKey": "BSIT-S6-B-B10",
+      "dayOfWeek": 5,
+      "slotIndex": 1,
+      "cellIndex": 0,
+      "rawText": "BIT-564 Web Technologies (Domain Core) 3(3-0) Mr. Akhtar Hamid Hussain Room: A12",
+      "subjectCode": "BIT-564",
+      "subjectName": "Web Technologies",
+      "teacherName": "Mr. Akhtar Hamid Hussain",
+      "roomNames": [
+        "A12"
+      ],
+      "category": "Domain Core",
+      "credits": "3(3-0)"
+    },
+    {
+      "sectionKey": "BSIT-S6-B-B10",
+      "dayOfWeek": 5,
+      "slotIndex": 2,
+      "cellIndex": 0,
+      "rawText": "BIT-561 Blockchain Technologies (Domain Elective) 3(3-0) Mr. Mohsin Room:A4",
+      "subjectCode": "BIT-561",
+      "subjectName": "Blockchain Technologies",
+      "teacherName": "Mr. Mohsin",
+      "roomNames": [
+        "A4"
+      ],
+      "category": "Domain Elective",
+      "credits": "3(3-0)"
+    },
+    {
+      "sectionKey": "BSIT-S8-A-B9",
+      "dayOfWeek": 1,
+      "slotIndex": 2,
+      "cellIndex": 0,
+      "rawText": "IT-682 Cyber Security (IT Core) 3(3+0) Mr. Sher Mohammad Room:A2",
+      "subjectCode": "IT-682",
+      "subjectName": "Cyber Security",
+      "teacherName": "Mr. Sher Mohammad",
+      "roomNames": [
+        "A2"
+      ],
+      "category": "IT Core",
+      "credits": "3(3+0)"
+    },
+    {
+      "sectionKey": "BSIT-S8-A-B9",
+      "dayOfWeek": 2,
+      "slotIndex": 1,
+      "cellIndex": 0,
+      "rawText": "IT-684 Database Administration and Management (IT Core) 4(3+1) Mr. Muhammad Shoaib Abro Room:A7",
+      "subjectCode": "IT-684",
+      "subjectName": "Database Administration and Management",
+      "teacherName": "Mr. Muhammad Shoaib Abro",
+      "roomNames": [
+        "A7"
+      ],
+      "category": "IT Core",
+      "credits": "4(3+1)"
+    },
+    {
+      "sectionKey": "BSIT-S8-A-B9",
+      "dayOfWeek": 2,
+      "slotIndex": 2,
+      "cellIndex": 0,
+      "rawText": "IT-684 Database Administration and Management (IT Core) 4(3+1) Mr. Muhammad Shoaib Abro Room: IoT Lab",
+      "subjectCode": "IT-684",
+      "subjectName": "Database Administration and Management",
+      "teacherName": "Mr. Muhammad Shoaib Abro",
+      "roomNames": [
+        "IoT Lab"
+      ],
+      "category": "IT Core",
+      "credits": "4(3+1)"
+    },
+    {
+      "sectionKey": "BSIT-S8-A-B9",
+      "dayOfWeek": 3,
+      "slotIndex": 1,
+      "cellIndex": 0,
+      "rawText": "IT-683 Mobile Application Development Lab (IT Elective V) 3(2+1) Mr. Rishabh Room:IoT Lab",
+      "subjectCode": "IT-683",
+      "subjectName": "Mobile Application Development Lab",
+      "teacherName": "Mr. Rishabh",
+      "roomNames": [
+        "IoT Lab"
+      ],
+      "category": "IT Elective V",
+      "credits": "3(2+1)"
+    },
+    {
+      "sectionKey": "BSIT-S8-A-B9",
+      "dayOfWeek": 3,
+      "slotIndex": 2,
+      "cellIndex": 0,
+      "rawText": "IT-683 Mobile Application Development (IT Elective V) 3(2+1) Mr. Rishabh Room: A12",
+      "subjectCode": "IT-683",
+      "subjectName": "Mobile Application Development",
+      "teacherName": "Mr. Rishabh",
+      "roomNames": [
+        "A12"
+      ],
+      "category": "IT Elective V",
+      "credits": "3(2+1)"
+    },
+    {
+      "sectionKey": "BSIT-S8-A-B9",
+      "dayOfWeek": 4,
+      "slotIndex": 1,
+      "cellIndex": 0,
+      "rawText": "UE-685 Social Services (University Elective V) (Social Services Related) 1(1+0) Mr.Ali Ashar Room:A8",
+      "subjectCode": "UE-685",
+      "subjectName": "Social Services Mr.Ali Ashar",
+      "teacherName": "Mr. Ali Ashar",
+      "roomNames": [
+        "A8"
+      ],
+      "category": "University Elective V",
+      "credits": "1(1+0)"
+    },
+    {
+      "sectionKey": "BSIT-S8-A-B9",
+      "dayOfWeek": 5,
+      "slotIndex": 1,
+      "cellIndex": 0,
+      "rawText": "IT-681 Final Year Project Part II (Computing Core) 3(0-3) Dr. Muhammad Asad Abbasi Room: A4",
+      "subjectCode": "IT-681",
+      "subjectName": "Final Year Project Part II",
+      "teacherName": "Dr. Muhammad Asad Abbasi",
+      "roomNames": [
+        "A4"
+      ],
+      "category": "Computing Core",
+      "credits": "3(0-3)"
+    },
+    {
+      "sectionKey": "BSIT-S8-B-B9",
+      "dayOfWeek": 1,
+      "slotIndex": 1,
+      "cellIndex": 0,
+      "rawText": "IT-682 Cyber Security (IT Core) 3(3+0) Mr. Sher Mohammad Room:A6",
+      "subjectCode": "IT-682",
+      "subjectName": "Cyber Security",
+      "teacherName": "Mr. Sher Mohammad",
+      "roomNames": [
+        "A6"
+      ],
+      "category": "IT Core",
+      "credits": "3(3+0)"
+    },
+    {
+      "sectionKey": "BSIT-S8-B-B9",
+      "dayOfWeek": 3,
+      "slotIndex": 1,
+      "cellIndex": 0,
+      "rawText": "IT-684 Database Administration and Management (IT Core) 4(3+1) Ms. Tahreem Room:",
+      "subjectCode": "IT-684",
+      "subjectName": "Database Administration and Management",
+      "teacherName": "Ms. Tahreem",
+      "roomNames": [],
+      "category": "IT Core",
+      "credits": "4(3+1)"
+    },
+    {
+      "sectionKey": "BSIT-S8-B-B9",
+      "dayOfWeek": 3,
+      "slotIndex": 2,
+      "cellIndex": 0,
+      "rawText": "IT-684 Database Administration and Management Lab (IT Core) 4(3+1) Ms. Tahreem Room: A2",
+      "subjectCode": "IT-684",
+      "subjectName": "Database Administration and Management Lab",
+      "teacherName": "Ms. Tahreem",
+      "roomNames": [
+        "A2"
+      ],
+      "category": "IT Core",
+      "credits": "4(3+1)"
+    },
+    {
+      "sectionKey": "BSIT-S8-B-B9",
+      "dayOfWeek": 4,
+      "slotIndex": 1,
+      "cellIndex": 0,
+      "rawText": "UE-685 Social Services (University Elective V) (Social Services Related) 1(1+0) Mr.Ali Ashar Room:A8",
+      "subjectCode": "UE-685",
+      "subjectName": "Social Services Mr.Ali Ashar",
+      "teacherName": "Mr. Ali Ashar",
+      "roomNames": [
+        "A8"
+      ],
+      "category": "University Elective V",
+      "credits": "1(1+0)"
+    },
+    {
+      "sectionKey": "BSIT-S8-B-B9",
+      "dayOfWeek": 4,
+      "slotIndex": 2,
+      "cellIndex": 0,
+      "rawText": "IT-683 Mobile Application Development (IT Elective V) 3(2+1) Mr. Rishabh Room:A6",
+      "subjectCode": "IT-683",
+      "subjectName": "Mobile Application Development",
+      "teacherName": "Mr. Rishabh",
+      "roomNames": [
+        "A6"
+      ],
+      "category": "IT Elective V",
+      "credits": "3(2+1)"
+    },
+    {
+      "sectionKey": "BSIT-S8-B-B9",
+      "dayOfWeek": 5,
+      "slotIndex": 1,
+      "cellIndex": 0,
+      "rawText": "IT-681 Final Year Project Part II (Computing Core) 3(0-3) Dr. Muhammad Asad Abbasi Room: A4",
+      "subjectCode": "IT-681",
+      "subjectName": "Final Year Project Part II",
+      "teacherName": "Dr. Muhammad Asad Abbasi",
+      "roomNames": [
+        "A4"
+      ],
+      "category": "Computing Core",
+      "credits": "3(0-3)"
+    },
+    {
+      "sectionKey": "BSIT-S8-B-B9",
+      "dayOfWeek": 5,
+      "slotIndex": 2,
+      "cellIndex": 0,
+      "rawText": "IT-683 Mobile Application Development (IT Elective V) 3(2+1) Mr. Rishabh Room:IoT Lab",
+      "subjectCode": "IT-683",
+      "subjectName": "Mobile Application Development",
+      "teacherName": "Mr. Rishabh",
+      "roomNames": [
+        "IoT Lab"
+      ],
+      "category": "IT Elective V",
+      "credits": "3(2+1)"
+    }
+  ],
+  "freeSlots": [
+    {
+      "sectionKey": "BSAI-S2-B-B3",
+      "dayOfWeek": 1,
+      "slotIndex": 2
+    },
+    {
+      "sectionKey": "BSAI-S4-A-B2",
+      "dayOfWeek": 2,
+      "slotIndex": 1
+    },
+    {
+      "sectionKey": "BSAI-S4-A-B2",
+      "dayOfWeek": 3,
+      "slotIndex": 2
+    },
+    {
+      "sectionKey": "BSAI-S4-B-B2",
+      "dayOfWeek": 1,
+      "slotIndex": 1
+    },
+    {
+      "sectionKey": "BSAI-S4-B-B2",
+      "dayOfWeek": 3,
+      "slotIndex": 1
+    },
+    {
+      "sectionKey": "BSAI-S6-A-B1",
+      "dayOfWeek": 3,
+      "slotIndex": 1
+    },
+    {
+      "sectionKey": "BSAI-S6-A-B1",
+      "dayOfWeek": 5,
+      "slotIndex": 2
+    },
+    {
+      "sectionKey": "BSAI-S6-B-B1",
+      "dayOfWeek": 2,
+      "slotIndex": 2
+    },
+    {
+      "sectionKey": "BSAI-S6-B-B1",
+      "dayOfWeek": 4,
+      "slotIndex": 1
+    },
+    {
+      "sectionKey": "BSAI-S6-B-B1",
+      "dayOfWeek": 4,
+      "slotIndex": 2
+    },
+    {
+      "sectionKey": "BSCS-S4-A-B16",
+      "dayOfWeek": 3,
+      "slotIndex": 1
+    },
+    {
+      "sectionKey": "BSCS-S4-A-B16",
+      "dayOfWeek": 3,
+      "slotIndex": 2
+    },
+    {
+      "sectionKey": "BSCS-S4-B-B16",
+      "dayOfWeek": 2,
+      "slotIndex": 1
+    },
+    {
+      "sectionKey": "BSCS-S4-B-B16",
+      "dayOfWeek": 2,
+      "slotIndex": 2
+    },
+    {
+      "sectionKey": "BSCS-S6-A-B15",
+      "dayOfWeek": 1,
+      "slotIndex": 1
+    },
+    {
+      "sectionKey": "BSCS-S6-A-B15",
+      "dayOfWeek": 3,
+      "slotIndex": 2
+    },
+    {
+      "sectionKey": "BSCS-S6-B-B15",
+      "dayOfWeek": 1,
+      "slotIndex": 2
+    },
+    {
+      "sectionKey": "BSCS-S6-B-B15",
+      "dayOfWeek": 4,
+      "slotIndex": 1
+    },
+    {
+      "sectionKey": "BSCS-S8-A-B14",
+      "dayOfWeek": 1,
+      "slotIndex": 2
+    },
+    {
+      "sectionKey": "BSCS-S8-A-B14",
+      "dayOfWeek": 2,
+      "slotIndex": 1
+    },
+    {
+      "sectionKey": "BSCS-S8-A-B14",
+      "dayOfWeek": 2,
+      "slotIndex": 2
+    },
+    {
+      "sectionKey": "BSCS-S8-A-B14",
+      "dayOfWeek": 3,
+      "slotIndex": 1
+    },
+    {
+      "sectionKey": "BSCS-S8-A-B14",
+      "dayOfWeek": 5,
+      "slotIndex": 2
+    },
+    {
+      "sectionKey": "BSCS-S8-B-B14",
+      "dayOfWeek": 1,
+      "slotIndex": 1
+    },
+    {
+      "sectionKey": "BSCS-S8-B-B14",
+      "dayOfWeek": 2,
+      "slotIndex": 1
+    },
+    {
+      "sectionKey": "BSCS-S8-B-B14",
+      "dayOfWeek": 2,
+      "slotIndex": 2
+    },
+    {
+      "sectionKey": "BSCS-S8-B-B14",
+      "dayOfWeek": 3,
+      "slotIndex": 2
+    },
+    {
+      "sectionKey": "BSCS-S8-B-B14",
+      "dayOfWeek": 4,
+      "slotIndex": 2
+    },
+    {
+      "sectionKey": "BSIT-S4-A-B11",
+      "dayOfWeek": 1,
+      "slotIndex": 2
+    },
+    {
+      "sectionKey": "BSIT-S4-B-B11",
+      "dayOfWeek": 2,
+      "slotIndex": 1
+    },
+    {
+      "sectionKey": "BSIT-S6-A-B10",
+      "dayOfWeek": 1,
+      "slotIndex": 1
+    },
+    {
+      "sectionKey": "BSIT-S6-A-B10",
+      "dayOfWeek": 1,
+      "slotIndex": 2
+    },
+    {
+      "sectionKey": "BSIT-S6-A-B10",
+      "dayOfWeek": 2,
+      "slotIndex": 2
+    },
+    {
+      "sectionKey": "BSIT-S6-A-B10",
+      "dayOfWeek": 4,
+      "slotIndex": 2
+    },
+    {
+      "sectionKey": "BSIT-S6-B-B10",
+      "dayOfWeek": 3,
+      "slotIndex": 1
+    },
+    {
+      "sectionKey": "BSIT-S6-B-B10",
+      "dayOfWeek": 3,
+      "slotIndex": 2
+    },
+    {
+      "sectionKey": "BSIT-S6-B-B10",
+      "dayOfWeek": 4,
+      "slotIndex": 2
+    },
+    {
+      "sectionKey": "BSIT-S8-A-B9",
+      "dayOfWeek": 1,
+      "slotIndex": 1
+    },
+    {
+      "sectionKey": "BSIT-S8-A-B9",
+      "dayOfWeek": 4,
+      "slotIndex": 2
+    },
+    {
+      "sectionKey": "BSIT-S8-A-B9",
+      "dayOfWeek": 5,
+      "slotIndex": 2
+    },
+    {
+      "sectionKey": "BSIT-S8-B-B9",
+      "dayOfWeek": 1,
+      "slotIndex": 2
+    },
+    {
+      "sectionKey": "BSIT-S8-B-B9",
+      "dayOfWeek": 2,
+      "slotIndex": 1
+    },
+    {
+      "sectionKey": "BSIT-S8-B-B9",
+      "dayOfWeek": 2,
+      "slotIndex": 2
+    }
+  ],
+  "stats": {
+    "departments": 3,
+    "sections": 22,
+    "slotCells": 220,
+    "occupiedCells": 177,
+    "freeCells": 43,
+    "entries": 186
+  }
+}
