@@ -1,6 +1,6 @@
-# 🎓 TrackClass
+<h1 align="center">🎓 TrackClass</h1>
 
-### Smart university timetables, free rooms, and teacher locations in one place.
+<h3 align="center">Smart university timetables, free rooms, and teacher locations in one place.</h3>
 
 TrackClass is a student-first timetable platform for **Fall 2026**. Students pick their section once and instantly get a live weekly timetable, free rooms, free slots, teacher locations, change notices, and a timetable-only AI assistant.
 

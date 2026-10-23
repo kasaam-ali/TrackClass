@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react'
 import { AmbientBackground } from './layout/AmbientBackground'
+import { SiteFooter } from './layout/SiteFooter'
 import { SiteHeader } from './layout/SiteHeader'
 
 interface PageShellProps {
@@ -22,11 +23,11 @@ export function PageShell({
   children,
 }: PageShellProps) {
   return (
-    <div className="relative min-h-screen">
+    <div className="relative flex min-h-screen flex-col">
       <AmbientBackground />
       <SiteHeader center={center} actions={actions} below={below} />
       <main
-        className={`mx-auto w-full max-w-7xl px-4 pb-20 sm:px-6 ${
+        className={`mx-auto w-full max-w-7xl flex-1 px-4 pb-20 sm:px-6 ${
           title ? 'pt-8 sm:pt-10' : 'pt-5 sm:pt-7'
         }`}
       >
@@ -45,6 +46,7 @@ export function PageShell({
         ) : null}
         {children}
       </main>
+      <SiteFooter />
     </div>
   )
 }
