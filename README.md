@@ -16,9 +16,10 @@ TrackClass is a student-first timetable platform for **Fall 2026**. Students pic
 [![PWA](https://img.shields.io/badge/PWA-Offline_Ready-5A0FC8?style=flat-square&logo=pwa&logoColor=white)](https://vite-pwa-org.netlify.app)
 [![Light and Dark](https://img.shields.io/badge/Theme-Light_%2B_Dark-38BDF8?style=flat-square&logo=halfmoon&logoColor=white)](#-design--motion)
 [![Vitest](https://img.shields.io/badge/Tests-39_Passing-34D399?style=flat-square&logo=vitest&logoColor=white)](#-verification)
+[![Live Demo](https://img.shields.io/badge/Live_Demo-track--class--rho.vercel.app-000000?style=flat-square&logo=vercel&logoColor=white)](https://track-class-rho.vercel.app/)
 [![Last commit](https://img.shields.io/github/last-commit/kasaam-ali/TrackClass?style=flat-square&logo=github&color=0EA5E9)](https://github.com/kasaam-ali/TrackClass/commits/main)
 
-[Features](#-features) • [Design & Motion](#-design--motion) • [Quick Start](#-quick-start) • [Supabase Setup](#-supabase-setup) • [Architecture](#-architecture) • [Scripts](#-scripts) • [Roadmap](#-roadmap)
+[Live Demo](https://track-class-rho.vercel.app/) • [Features](#-features) • [Design & Motion](#-design--motion) • [Quick Start](#-quick-start) • [Supabase Setup](#-supabase-setup) • [Architecture](#-architecture) • [Scripts](#-scripts) • [Roadmap](#-roadmap)
 
 </div>
 
@@ -27,6 +28,8 @@ TrackClass is a student-first timetable platform for **Fall 2026**. Students pic
 ## 🌟 Overview
 
 TrackClass turns the official university Excel timetable into a clean, fast, and installable web app.
+
+> **Live app:** [https://track-class-rho.vercel.app/](https://track-class-rho.vercel.app/)
 
 > **Current dataset:** 3 departments, 22 sections, 186 entries, and 43 free cells.
 
@@ -65,6 +68,7 @@ TrackClass ships with two complete surface systems and a motion layer that stays
 
 - **Light and dark modes.** The sun/moon control lives in the header, persists in `localStorage`, and respects the operating system preference on first visit.
 - **Branded first load.** A short boot sequence animates the logo, progress states, and a miniature timetable grid. It runs once per browser session.
+- **Dashboard motion.** Animated stat counters, a pointer-tracking hero spotlight, a slow gradient drift, and staggered timetable cells keep the dashboard alive without adding noise.
 - **Streaming assistant.** New assistant replies reveal word by word with a blinking caret, while history messages render instantly.
 - **Reduced motion.** The boot sequence is skipped and Framer Motion respects the user preference when reduced motion is enabled.
 - **Theme-aware surfaces.** Glass panels, borders, grids, glows, scrollbars, and semantic text colors all switch cleanly between light and dark.
@@ -307,8 +311,8 @@ The test suite covers parsing, cross-section engines, snapshot rebuilding, and t
 - [x] AI Edge Function source
 - [x] Responsive light and dark themes
 - [x] First-load motion and streaming assistant replies
+- [x] Deploy the frontend to Netlify or Vercel
 - [ ] Deploy the Edge Function with provider secrets
-- [ ] Deploy the frontend to Netlify or Vercel
 - [ ] Add end-to-end browser tests
 - [ ] Add multi-term archive support
 
