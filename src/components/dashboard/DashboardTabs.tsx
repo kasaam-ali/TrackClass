@@ -52,8 +52,10 @@ export function DashboardTabs({ active, onChange }: DashboardTabsProps) {
             aria-selected={selected}
             aria-controls={`panel-${tab.id}`}
             onClick={() => onChange(tab.id)}
-            className={`relative inline-flex min-h-9 items-center gap-2 rounded-xl px-3 py-2 text-[11px] font-semibold transition-colors duration-200 ${
-              selected ? 'text-white' : 'text-slate-400 hover:text-slate-200'
+            className={`group relative inline-flex min-h-9 items-center gap-2 rounded-xl px-3 py-2 text-[11px] font-semibold transition-colors duration-200 ${
+              selected
+                ? 'text-white'
+                : 'text-slate-400 hover:bg-white/[0.035] hover:text-slate-200'
             }`}
           >
             {selected ? (
@@ -64,7 +66,9 @@ export function DashboardTabs({ active, onChange }: DashboardTabsProps) {
               />
             ) : null}
             <Icon
-              className={`relative size-3.5 ${selected ? 'text-brand-300' : ''}`}
+              className={`relative size-3.5 transition-transform duration-200 group-hover:scale-110 ${
+                selected ? 'text-brand-300' : ''
+              }`}
               aria-hidden="true"
             />
             <span className="relative">{tab.label}</span>

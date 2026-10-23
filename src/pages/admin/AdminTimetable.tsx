@@ -2,8 +2,10 @@ import { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Download, RefreshCw, UploadCloud } from 'lucide-react'
 import { AdminGate } from '../../components/admin/AdminGate'
+import { Reveal, Stagger, StaggerItem } from '../../components/motion/Reveal'
 import { PageShell } from '../../components/PageShell'
 import { WeeklyGrid } from '../../components/timetable/WeeklyGrid'
+import { LoadingPanel } from '../../components/ui/LoadingState'
 import { useAdminAuth } from '../../context/AdminAuthContext'
 import { useTimetable } from '../../context/TimetableContext'
 import type { SnapshotDiff } from '../../lib/timetable/engines'
@@ -95,10 +97,11 @@ function AdminTimetableContent() {
   if (loading) {
     return (
       <PageShell title="Current timetable" subtitle="Loading the active version." actions={actions}>
-        <div className="flex items-center gap-3 glass-panel rounded-2xl p-6 text-sm text-slate-400">
-          <RefreshCw className="size-4 animate-spin text-brand-400" aria-hidden="true" />
-          Loading...
-        </div>
+        <LoadingPanel
+          label="Loading the active version..."
+          detail="Fetching published timetable data."
+          rows={4}
+        />
       </PageShell>
     )
   }
@@ -125,21 +128,21 @@ function AdminTimetableContent() {
       subtitle={`${snapshot.term}${meta ? ` · Version ${meta.versionNumber} · Updated ${formatDate(meta.updatedAt)}` : ''}`}
       actions={actions}
     >
-      <div className="grid gap-4 sm:grid-cols-4">
+      <Stagger className="grid gap-4 sm:grid-cols-4">
         {[
           ['Departments', snapshot.stats.departments],
           ['Sections', snapshot.stats.sections],
           ['Entries', snapshot.stats.entries],
           ['Free cells', snapshot.stats.freeCells],
         ].map(([label, value]) => (
-          <div key={label} className="glass-panel rounded-2xl p-4">
+          <StaggerItem key={label} whileHover={{ y: -3, scale: 1.004 }} className="glass-panel card-lift rounded-2xl p-4">
             <p className="text-[10px] uppercase tracking-wide text-slate-500">{label}</p>
             <p className="mt-1 text-xl font-semibold text-white">{value}</p>
-          </div>
+          </StaggerItem>
         ))}
-      </div>
+      </Stagger>
 
-      <div className="mt-4 flex flex-wrap items-center gap-3 glass-panel rounded-2xl p-4">
+      <Reveal className="mt-4 flex flex-wrap items-center gap-3 glass-panel rounded-2xl p-4">
         <div className="min-w-0 flex-1">
           <p className="text-[10px] uppercase tracking-wide text-slate-500">Admin note</p>
           <p className="mt-1 truncate text-sm text-slate-300">{meta?.note ?? 'No note'}</p>
@@ -170,10 +173,11 @@ function AdminTimetableContent() {
           <RefreshCw className="size-3.5" aria-hidden="true" />
           Reload
         </button>
-      </div>
+      </Reveal>
 
-      <section className="mt-6 glass-panel rounded-2xl p-5">
-        <div className="flex flex-wrap items-end gap-3">
+      <Reveal>
+        <section className="mt-6 glass-panel rounded-2xl p-5">
+          <div className="flex flex-wrap items-end gap-3">
           <div>
             <label htmlFor="admin-department" className="text-[10px] uppercase tracking-wide text-slate-500">
               Department
@@ -232,18 +236,22 @@ function AdminTimetableContent() {
               ))}
             </select>
           </div>
-        </div>
-      </section>
+          </div>
+        </section>
+      </Reveal>
 
       {section ? (
         <>
-          <section className="mt-4 glass-panel rounded-2xl p-5">
-            <h2 className="mb-4 text-sm font-semibold text-white">Weekly grid</h2>
-            <WeeklyGrid snapshot={snapshot} sectionKey={section.key} />
-          </section>
+          <Reveal>
+            <section className="mt-4 glass-panel rounded-2xl p-5">
+              <h2 className="mb-4 text-sm font-semibold text-white">Weekly grid</h2>
+              <WeeklyGrid snapshot={snapshot} sectionKey={section.key} />
+            </section>
+          </Reveal>
 
-          <section className="mt-4 glass-panel rounded-2xl p-5">
-            <div className="mb-3 flex items-center justify-between">
+          <Reveal delay={0.05}>
+            <section className="mt-4 glass-panel rounded-2xl p-5">
+              <div className="mb-3 flex items-center justify-between">
               <h2 className="text-sm font-semibold text-white">Parsed entries</h2>
               <span className="text-[11px] text-slate-500">{entries.length} entries</span>
             </div>
@@ -296,8 +304,9 @@ function AdminTimetableContent() {
                   ))}
                 </tbody>
               </table>
-            </div>
-          </section>
+              </div>
+            </section>
+          </Reveal>
         </>
       ) : null}
     </PageShell>

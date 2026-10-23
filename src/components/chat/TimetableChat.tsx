@@ -264,7 +264,7 @@ export function TimetableChat({ snapshot, sectionKey }: TimetableChatProps) {
               onClick={() => {
                 void send(suggestion)
               }}
-              className="shrink-0 rounded-full border border-white/[0.08] bg-white/[0.025] px-3 py-1.5 text-[10px] text-slate-400 transition hover:border-brand-400/30 hover:bg-brand-400/[0.06] hover:text-white disabled:cursor-not-allowed disabled:opacity-50"
+              className="shrink-0 rounded-full border border-white/[0.08] bg-white/[0.025] px-3 py-1.5 text-[10px] text-slate-400 transition duration-200 hover:-translate-y-0.5 hover:border-brand-400/30 hover:bg-brand-400/[0.06] hover:text-white disabled:cursor-not-allowed disabled:opacity-50"
             >
               {suggestion}
             </button>
@@ -282,7 +282,7 @@ export function TimetableChat({ snapshot, sectionKey }: TimetableChatProps) {
           <button
             type="submit"
             disabled={busy || !input.trim()}
-            className="inline-flex items-center justify-center gap-2 rounded-xl bg-brand-500 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-brand-400 disabled:cursor-not-allowed disabled:bg-white/[0.05] disabled:text-slate-600"
+            className="inline-flex items-center justify-center gap-2 rounded-xl bg-brand-500 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-brand-400 hover:shadow-[0_16px_34px_-22px_rgba(56,189,248,0.9)] disabled:cursor-not-allowed disabled:bg-white/[0.05] disabled:text-slate-600"
           >
             <Send className="size-4" aria-hidden="true" />
             <span className="hidden sm:inline">Send</span>

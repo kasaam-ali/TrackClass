@@ -90,7 +90,7 @@ export function AdminLogin() {
       title="Admin login"
       subtitle="Only the university timetable admin can publish a new version."
     >
-      <form onSubmit={onSubmit} className="glass-panel mx-auto max-w-md space-y-4 rounded-3xl p-6">
+      <form onSubmit={onSubmit} className="glass-panel animate-rise mx-auto max-w-md space-y-4 rounded-3xl p-6">
         <div className="mb-2 flex items-center gap-3">
           <span className="grid size-10 place-items-center rounded-2xl border border-brand-400/20 bg-brand-400/10">
             <ShieldCheck className="size-5 text-brand-300" aria-hidden="true" />
@@ -111,7 +111,7 @@ export function AdminLogin() {
             autoComplete="email"
             value={email}
             onChange={(event) => setEmail(event.target.value)}
-            className="mt-1.5 w-full rounded-xl border border-white/[0.08] bg-ink-900/70 px-3 py-2.5 text-sm text-white transition focus:border-brand-400/50 focus:outline-none"
+            className="mt-1.5 w-full rounded-xl border border-white/[0.08] bg-ink-900/70 px-3 py-2.5 text-sm text-white transition focus:border-brand-400/50 focus:outline-none focus:ring-2 focus:ring-brand-400/15"
           />
         </div>
         <div>
@@ -125,12 +125,12 @@ export function AdminLogin() {
             autoComplete="current-password"
             value={password}
             onChange={(event) => setPassword(event.target.value)}
-            className="mt-1.5 w-full rounded-xl border border-white/[0.08] bg-ink-900/70 px-3 py-2.5 text-sm text-white transition focus:border-brand-400/50 focus:outline-none"
+            className="mt-1.5 w-full rounded-xl border border-white/[0.08] bg-ink-900/70 px-3 py-2.5 text-sm text-white transition focus:border-brand-400/50 focus:outline-none focus:ring-2 focus:ring-brand-400/15"
           />
         </div>
 
         {error ? (
-          <p className="rounded-lg border border-rose-500/30 bg-rose-500/10 px-3 py-2 text-xs text-rose-300">
+          <p className="animate-fade rounded-lg border border-rose-500/30 bg-rose-500/10 px-3 py-2 text-xs text-rose-300">
             {error}
           </p>
         ) : null}

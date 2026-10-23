@@ -49,14 +49,14 @@ export function SectionRail({ sections, activeKey, onSelect }: SectionRailProps)
                 aria-pressed={active}
                 title={section.displayName}
                 onClick={() => onSelect(section)}
-                className={`group inline-flex min-h-8 shrink-0 items-center gap-1.5 rounded-full border px-3 py-1.5 text-[10px] font-semibold transition-all duration-200 ${
+                className={`group inline-flex min-h-8 shrink-0 items-center gap-1.5 rounded-full border px-3 py-1.5 text-[10px] font-semibold transition-all duration-200 hover:-translate-y-0.5 ${
                   active
                     ? 'border-brand-400/40 bg-brand-400/10 text-brand-200 shadow-[0_0_24px_-10px_rgba(56,189,248,0.8)]'
                     : 'border-transparent bg-white/[0.03] text-slate-500 hover:border-white/10 hover:bg-white/[0.06] hover:text-slate-300'
                 }`}
               >
                 <span
-                  className={`size-1.5 rounded-full ${
+                  className={`size-1.5 rounded-full transition-transform duration-200 group-hover:scale-125 ${
                     DEPARTMENT_STYLES[section.departmentCode] ?? 'bg-slate-500'
                   } ${active ? 'opacity-100' : 'opacity-60 group-hover:opacity-100'}`}
                   aria-hidden="true"

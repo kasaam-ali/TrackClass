@@ -1,6 +1,7 @@
 ﻿import type { ReactNode } from 'react'
 import { Navigate } from 'react-router-dom'
 import { PageShell } from '../PageShell'
+import { LoadingPanel } from '../ui/LoadingState'
 import { useAdminAuth } from '../../context/AdminAuthContext'
 import { hasSupabaseConfig, missingConfigKeys } from '../../lib/env'
 
@@ -29,9 +30,11 @@ export function AdminGate({ children }: { children: ReactNode }) {
   if (loading) {
     return (
       <PageShell title="Checking session" subtitle="Verifying your admin account.">
-        <div className="glass-panel rounded-2xl p-6 text-sm text-slate-400">
-          Loading...
-        </div>
+        <LoadingPanel
+          label="Checking admin session..."
+          detail="Verifying your publisher access."
+          rows={2}
+        />
       </PageShell>
     )
   }

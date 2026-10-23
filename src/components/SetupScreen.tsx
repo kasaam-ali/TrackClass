@@ -1,6 +1,7 @@
 import { Database, Download, KeyRound, Terminal } from 'lucide-react'
 import { AmbientBackground } from './layout/AmbientBackground'
 import { ThemeToggle } from './layout/ThemeToggle'
+import { Stagger, StaggerItem } from './motion/Reveal'
 import { missingConfigKeys } from '../lib/env'
 
 interface SetupScreenProps {
@@ -45,22 +46,24 @@ export function SetupScreen({ onContinue }: SetupScreenProps) {
         </p>
       </div>
 
-      <div className="grid gap-4 sm:grid-cols-3">
+      <Stagger className="grid gap-4 sm:grid-cols-3">
         {steps.map((step, index) => (
-          <section key={step.title} className="glass-panel rounded-3xl p-5">
-            <div className="mb-4 flex items-center justify-between">
-              <span className="grid size-9 place-items-center rounded-xl border border-brand-400/20 bg-brand-400/10">
-                <step.icon className="size-4 text-brand-300" aria-hidden="true" />
-              </span>
-              <span className="font-display text-xs font-semibold text-slate-600">
-                0{index + 1}
-              </span>
-            </div>
-            <h2 className="mb-2 text-sm font-semibold text-white">{step.title}</h2>
-            <p className="text-xs leading-5 text-slate-400">{step.body}</p>
-          </section>
+          <StaggerItem key={step.title} whileHover={{ y: -3, scale: 1.004 }} className="h-full">
+            <section className="glass-panel card-lift h-full rounded-3xl p-5">
+              <div className="mb-4 flex items-center justify-between">
+                <span className="grid size-9 place-items-center rounded-xl border border-brand-400/20 bg-brand-400/10">
+                  <step.icon className="size-4 text-brand-300" aria-hidden="true" />
+                </span>
+                <span className="font-display text-xs font-semibold text-slate-600">
+                  0{index + 1}
+                </span>
+              </div>
+              <h2 className="mb-2 text-sm font-semibold text-white">{step.title}</h2>
+              <p className="text-xs leading-5 text-slate-400">{step.body}</p>
+            </section>
+          </StaggerItem>
         ))}
-      </div>
+      </Stagger>
 
       {missingConfigKeys.length > 0 ? (
         <div className="rounded-2xl border border-amber-400/20 bg-amber-400/[0.07] p-4">
@@ -75,10 +78,13 @@ export function SetupScreen({ onContinue }: SetupScreenProps) {
         <button
           type="button"
           onClick={onContinue}
-          className="inline-flex items-center justify-center gap-2 rounded-xl bg-brand-500 px-5 py-3 text-sm font-semibold text-white transition hover:bg-brand-400"
+          className="group inline-flex items-center justify-center gap-2 rounded-xl bg-brand-500 px-5 py-3 text-sm font-semibold text-white transition hover:bg-brand-400"
         >
           Continue in demo mode
-          <Download className="size-4" aria-hidden="true" />
+          <Download
+            className="size-4 transition-transform duration-200 group-hover:translate-y-0.5"
+            aria-hidden="true"
+          />
         </button>
         <a
           href="https://supabase.com/dashboard"

@@ -18,6 +18,7 @@ interface FreeRoomsPanelProps {
 
 const DAYS: DayOfWeek[] = [1, 2, 3, 4, 5]
 const SLOTS: SlotIndex[] = [1, 2]
+const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1]
 
 export function FreeRoomsPanel({ snapshot, initialDay, initialSlot }: FreeRoomsPanelProps) {
   const [day, setDay] = useState<DayOfWeek>(initialDay)
@@ -99,21 +100,35 @@ export function FreeRoomsPanel({ snapshot, initialDay, initialSlot }: FreeRoomsP
       <AnimatePresence mode="wait" initial={false}>
         <motion.div
           key={`${day}-${slot}`}
-          initial={{ opacity: 0, y: 6 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -4 }}
-          transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
+          initial="hidden"
+          animate="show"
+          exit="exit"
+          variants={{
+            hidden: { opacity: 0, y: 6 },
+            show: {
+              opacity: 1,
+              y: 0,
+              transition: { duration: 0.24, ease: EASE, staggerChildren: 0.035 },
+            },
+            exit: { opacity: 0, y: -4, transition: { duration: 0.18, ease: EASE } },
+          }}
           className="mt-5 grid grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5"
         >
           {result.freeRooms.length > 0 ? (
             result.freeRooms.map((room) => (
-              <div
+              <motion.div
                 key={room}
-                className="group flex items-center gap-2 rounded-xl border border-accent-400/15 bg-accent-500/[0.055] px-3 py-2.5 transition hover:border-accent-400/35 hover:bg-accent-500/[0.1]"
+                variants={{
+                  hidden: { opacity: 0, y: 6 },
+                  show: { opacity: 1, y: 0 },
+                }}
+                whileHover={{ y: -2 }}
+                transition={{ duration: 0.18, ease: EASE }}
+                className="group flex items-center gap-2 rounded-xl border border-accent-400/15 bg-accent-500/[0.055] px-3 py-2.5 transition-colors duration-200 hover:border-accent-400/35 hover:bg-accent-500/[0.1] hover:shadow-[0_14px_34px_-24px_rgba(16,185,129,0.65)]"
               >
-                <span className="size-1.5 rounded-full bg-accent-400 shadow-[0_0_10px_rgba(52,211,153,0.8)]" />
+                <span className="size-1.5 rounded-full bg-accent-400 shadow-[0_0_10px_rgba(52,211,153,0.8)] transition-transform duration-200 group-hover:scale-125" />
                 <span className="truncate text-xs font-semibold text-accent-200">{room}</span>
-              </div>
+              </motion.div>
             ))
           ) : (
             <div className="col-span-full rounded-2xl border border-dashed border-white/[0.08] px-4 py-8 text-center">
@@ -124,7 +139,7 @@ export function FreeRoomsPanel({ snapshot, initialDay, initialSlot }: FreeRoomsP
       </AnimatePresence>
 
       <div className="mt-5 grid gap-3 border-t border-white/[0.06] pt-4 sm:grid-cols-2">
-        <div className="rounded-2xl border border-white/[0.05] bg-white/[0.02] p-3">
+        <div className="rounded-2xl border border-white/[0.05] bg-white/[0.02] p-3 transition-colors duration-200 hover:border-white/[0.1] hover:bg-white/[0.03]">
           <p className="flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-[0.14em] text-slate-500">
             <DoorOpen className="size-3 text-accent-400" aria-hidden="true" />
             {result.freeSections.length} sections without class
@@ -145,7 +160,7 @@ export function FreeRoomsPanel({ snapshot, initialDay, initialSlot }: FreeRoomsP
             ) : null}
           </div>
         </div>
-        <div className="rounded-2xl border border-white/[0.05] bg-white/[0.02] p-3">
+        <div className="rounded-2xl border border-white/[0.05] bg-white/[0.02] p-3 transition-colors duration-200 hover:border-white/[0.1] hover:bg-white/[0.03]">
           <p className="flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-[0.14em] text-slate-500">
             <Users className="size-3 text-brand-400" aria-hidden="true" />
             {result.occupiedSections.length} sections in class

@@ -18,6 +18,8 @@ import { ChangeBanner } from '../components/timetable/ChangeBanner'
 import { FreeRoomsPanel } from '../components/timetable/FreeRoomsPanel'
 import { TeacherLocator } from '../components/timetable/TeacherLocator'
 import { WeeklyGrid } from '../components/timetable/WeeklyGrid'
+import { Reveal } from '../components/motion/Reveal'
+import { LoadingPanel } from '../components/ui/LoadingState'
 import { useProfile } from '../context/ProfileContext'
 import { useTimetable } from '../context/TimetableContext'
 import { TIME_ZONE } from '../lib/timetable/engines'
@@ -57,7 +59,7 @@ function defaultDaySlot(
 }
 
 const iconButton =
-  'inline-flex size-9 items-center justify-center rounded-xl border border-white/[0.08] bg-white/[0.03] text-slate-400 transition hover:border-brand-400/30 hover:bg-brand-400/10 hover:text-white'
+  'inline-flex size-9 items-center justify-center rounded-xl border border-white/[0.08] bg-white/[0.03] text-slate-400 transition duration-200 hover:-translate-y-0.5 hover:border-brand-400/30 hover:bg-brand-400/10 hover:text-white hover:shadow-[0_12px_30px_-18px_rgba(56,189,248,0.8)]'
 
 export function StudentDashboard() {
   const { profile, setProfile } = useProfile()
@@ -70,10 +72,11 @@ export function StudentDashboard() {
   if (loading) {
     return (
       <PageShell title="Loading timetable" subtitle="Fetching the latest published version.">
-        <div className="glass-panel flex items-center gap-3 rounded-2xl p-6 text-sm text-slate-400">
-          <RefreshCw className="size-4 animate-spin text-brand-400" aria-hidden="true" />
-          Loading your section...
-        </div>
+        <LoadingPanel
+          label="Loading your section..."
+          detail="Fetching the latest published timetable."
+          rows={4}
+        />
       </PageShell>
     )
   }
@@ -215,8 +218,9 @@ export function StudentDashboard() {
           ) : null}
 
           {activeTab === 'timetable' ? (
-            <section className="glass-panel rounded-3xl p-4 sm:p-6">
-              <div className="mb-5 flex flex-wrap items-center justify-between gap-3">
+            <Reveal>
+              <section className="glass-panel rounded-3xl p-4 sm:p-6">
+                <div className="mb-5 flex flex-wrap items-center justify-between gap-3">
                 <div className="flex items-center gap-3">
                   <span className="grid size-10 place-items-center rounded-2xl border border-brand-400/20 bg-brand-400/10">
                     <CalendarDays className="size-5 text-brand-300" aria-hidden="true" />
@@ -235,17 +239,18 @@ export function StudentDashboard() {
                 </span>
               </div>
               <WeeklyGrid snapshot={snapshot} sectionKey={section.key} />
-              <div className="mt-4 flex flex-wrap items-center gap-4 border-t border-white/[0.06] pt-3 text-[10px] text-slate-500">
-                <span className="inline-flex items-center gap-1.5">
-                  <span className="size-2 rounded-sm border border-dashed border-accent-400/50 bg-accent-500/10" />
-                  Free slot
-                </span>
-                <span className="inline-flex items-center gap-1.5">
-                  <span className="size-2 rounded-sm bg-brand-400/70" />
-                  Scheduled class
-                </span>
-              </div>
-            </section>
+                <div className="mt-4 flex flex-wrap items-center gap-4 border-t border-white/[0.06] pt-3 text-[10px] text-slate-500">
+                  <span className="inline-flex items-center gap-1.5">
+                    <span className="size-2 rounded-sm border border-dashed border-accent-400/50 bg-accent-500/10" />
+                    Free slot
+                  </span>
+                  <span className="inline-flex items-center gap-1.5">
+                    <span className="size-2 rounded-sm bg-brand-400/70" />
+                    Scheduled class
+                  </span>
+                </div>
+              </section>
+            </Reveal>
           ) : null}
 
           {activeTab === 'rooms' ? (

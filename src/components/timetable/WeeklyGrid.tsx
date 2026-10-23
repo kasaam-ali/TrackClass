@@ -22,7 +22,7 @@ function SlotCard({ slot, isFree }: { slot: SectionGridSlot; isFree: boolean }) 
         'group relative h-full overflow-hidden rounded-2xl border p-3 transition-all duration-300',
         isFree
           ? 'border-dashed border-accent-400/20 bg-accent-500/[0.035]'
-          : 'border-white/[0.07] bg-gradient-to-br from-white/[0.045] to-white/[0.015] hover:-translate-y-0.5 hover:border-brand-400/25 hover:shadow-[0_18px_50px_-30px_rgba(56,189,248,0.55)]',
+          : 'border-white/[0.07] bg-gradient-to-br from-white/[0.045] to-white/[0.015] hover:-translate-y-0.5 hover:scale-[1.003] hover:border-brand-400/25 hover:shadow-[0_18px_50px_-30px_rgba(56,189,248,0.55)]',
       )}
     >
       {!isFree ? (

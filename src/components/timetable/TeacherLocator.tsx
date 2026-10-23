@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react'
+import { AnimatePresence, motion } from 'framer-motion'
 import { toZonedTime } from 'date-fns-tz'
 import { CalendarDays, GraduationCap, MapPin, Search, UserRound, X } from 'lucide-react'
 import {
@@ -11,6 +12,9 @@ import {
   type TimetableEntry,
   type TimetableSnapshot,
 } from '../../lib/timetable/types'
+import { Stagger, StaggerItem } from '../motion/Reveal'
+
+const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1]
 
 interface TeacherLocatorProps {
   snapshot: TimetableSnapshot
@@ -116,31 +120,44 @@ export function TeacherLocator({ snapshot, now }: TeacherLocatorProps) {
           placeholder="Search a teacher by name"
           className="w-full rounded-xl border border-white/[0.08] bg-ink-900/70 py-2.5 pl-10 pr-3 text-sm text-white placeholder:text-slate-600 transition focus:border-violet-400/50 focus:outline-none"
         />
-        {showResults ? (
-          <div className="absolute z-20 mt-2 w-full overflow-hidden rounded-2xl border border-white/[0.1] bg-ink-900/95 shadow-2xl backdrop-blur-xl">
-            {matches.length > 0 ? (
-              matches.map((teacher) => (
-                <button
-                  key={teacher.key}
-                  type="button"
-                  onClick={() => choose(teacher.key, teacher.displayName)}
-                  className="flex w-full items-center justify-between gap-3 border-b border-white/[0.04] px-3.5 py-2.5 text-left text-xs text-slate-300 transition last:border-0 hover:bg-violet-500/10 hover:text-white"
-                >
-                  <span className="truncate">{teacher.displayName}</span>
-                  <span className="shrink-0 text-[10px] text-slate-500">
-                    {teacher.entries.length} classes
-                  </span>
-                </button>
-              ))
-            ) : (
-              <p className="px-3.5 py-3 text-xs text-slate-500">No teacher found.</p>
-            )}
-          </div>
-        ) : null}
+        <AnimatePresence initial={false}>
+          {showResults ? (
+            <motion.div
+              initial={{ opacity: 0, y: -4, scale: 0.995 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: -4 }}
+              transition={{ duration: 0.18, ease: EASE }}
+              className="absolute z-20 mt-2 w-full overflow-hidden rounded-2xl border border-white/[0.1] bg-ink-900/95 shadow-2xl backdrop-blur-xl"
+            >
+              {matches.length > 0 ? (
+                matches.map((teacher) => (
+                  <button
+                    key={teacher.key}
+                    type="button"
+                    onClick={() => choose(teacher.key, teacher.displayName)}
+                    className="flex w-full items-center justify-between gap-3 border-b border-white/[0.04] px-3.5 py-2.5 text-left text-xs text-slate-300 transition last:border-0 hover:bg-violet-500/10 hover:text-white"
+                  >
+                    <span className="truncate">{teacher.displayName}</span>
+                    <span className="shrink-0 text-[10px] text-slate-500">
+                      {teacher.entries.length} classes
+                    </span>
+                  </button>
+                ))
+              ) : (
+                <p className="px-3.5 py-3 text-xs text-slate-500">No teacher found.</p>
+              )}
+            </motion.div>
+          ) : null}
+        </AnimatePresence>
       </div>
 
       {selected ? (
-        <div className="mt-5">
+        <motion.div
+          initial={{ opacity: 0, y: 6 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.3, ease: EASE }}
+          className="mt-5"
+        >
           <div className="flex flex-wrap items-center gap-3 rounded-2xl border border-violet-400/15 bg-violet-500/[0.055] px-4 py-3">
             <span className="grid size-9 place-items-center rounded-full border border-violet-400/25 bg-violet-500/15">
               <UserRound className="size-4 text-violet-300" aria-hidden="true" />
@@ -158,17 +175,18 @@ export function TeacherLocator({ snapshot, now }: TeacherLocatorProps) {
             ) : null}
           </div>
 
-          <div className="mt-3 grid gap-2 sm:grid-cols-2 xl:grid-cols-3">
+          <Stagger className="mt-3 grid gap-2 sm:grid-cols-2 xl:grid-cols-3">
             {selected.entries.map((entry) => {
               const active = entryIsActive(snapshot, entry, now)
               const sectionName = sectionNames.get(entry.sectionKey) ?? entry.sectionKey
               return (
-                <div
+                <StaggerItem
                   key={`${entry.sectionKey}-${entry.dayOfWeek}-${entry.slotIndex}-${entry.cellIndex}`}
+                  whileHover={active ? undefined : { y: -2 }}
                   className={
                     active
                       ? 'relative overflow-hidden rounded-2xl border border-accent-400/30 bg-accent-500/[0.08] p-3.5'
-                      : 'rounded-2xl border border-white/[0.06] bg-white/[0.02] p-3.5 transition hover:border-white/[0.12] hover:bg-white/[0.035]'
+                      : 'rounded-2xl border border-white/[0.06] bg-white/[0.02] p-3.5 transition-colors hover:border-white/[0.12] hover:bg-white/[0.035] hover:shadow-[0_16px_38px_-30px_rgba(15,23,42,0.7)]'
                   }
                 >
                   <div className="flex items-start justify-between gap-2">
@@ -193,11 +211,11 @@ export function TeacherLocator({ snapshot, now }: TeacherLocatorProps) {
                       {entry.roomNames.join(', ')}
                     </p>
                   ) : null}
-                </div>
+                </StaggerItem>
               )
             })}
-          </div>
-        </div>
+          </Stagger>
+        </motion.div>
       ) : (
         <div className="mt-5 rounded-2xl border border-dashed border-white/[0.08] px-4 py-10 text-center">
           <p className="text-sm font-medium text-slate-300">Find any teacher's weekly route</p>

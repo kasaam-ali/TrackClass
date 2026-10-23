@@ -24,6 +24,7 @@ import {
   type TimetableSnapshot,
 } from '../../lib/timetable/types'
 import type { TimetableMeta } from '../../lib/store'
+import { Reveal, Stagger, StaggerItem } from '../motion/Reveal'
 import { SectionStatus } from '../timetable/SectionStatus'
 import type { DashboardTabId } from './DashboardTabs'
 
@@ -149,7 +150,8 @@ export function OverviewPanel({ snapshot, section, meta, now, onTab }: OverviewP
 
   return (
     <div className="space-y-5">
-      <section className="glass-panel-strong relative overflow-hidden rounded-[2rem] p-5 sm:p-7">
+      <Reveal>
+        <section className="glass-panel-strong relative overflow-hidden rounded-[2rem] p-5 sm:p-7">
         <div
           className="pointer-events-none absolute -right-24 -top-32 size-80 rounded-full bg-brand-500/15 blur-[90px]"
           aria-hidden="true"
@@ -188,17 +190,16 @@ export function OverviewPanel({ snapshot, section, meta, now, onTab }: OverviewP
           </div>
           <SectionStatus snapshot={snapshot} sectionKey={section.key} now={now} />
         </div>
-      </section>
+        </section>
+      </Reveal>
 
-      <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
-        {stats.map((stat, index) => {
+      <Stagger className="grid grid-cols-2 gap-3 lg:grid-cols-4">
+        {stats.map((stat) => {
           const Icon = stat.icon
           return (
-            <motion.div
+            <StaggerItem
               key={stat.label}
-              initial={{ opacity: 0, y: 14 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.42, delay: index * 0.06, ease: [0.16, 1, 0.3, 1] }}
+              whileHover={{ y: -3, scale: 1.004 }}
               className="glass-panel card-lift rounded-2xl p-4"
             >
               <div className="flex items-start justify-between gap-2">
@@ -209,14 +210,15 @@ export function OverviewPanel({ snapshot, section, meta, now, onTab }: OverviewP
               </div>
               <p className="font-display mt-3 text-2xl font-semibold text-white">{stat.value}</p>
               <p className="mt-1 text-[10px] text-slate-500">{stat.hint}</p>
-            </motion.div>
+            </StaggerItem>
           )
         })}
-      </div>
+      </Stagger>
 
       <div className="grid gap-4 xl:grid-cols-[1.45fr_0.8fr]">
-        <section className="glass-panel rounded-3xl p-5">
-          <div className="flex items-center justify-between gap-3">
+        <Reveal className="min-w-0">
+          <section className="glass-panel h-full rounded-3xl p-5">
+            <div className="flex items-center justify-between gap-3">
             <div>
               <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-slate-500">
                 {focus.today ? 'Today' : DAY_NAMES[focus.day]}
@@ -300,11 +302,13 @@ export function OverviewPanel({ snapshot, section, meta, now, onTab }: OverviewP
                 No periods are scheduled for this day.
               </p>
             )}
-          </div>
-        </section>
+            </div>
+          </section>
+        </Reveal>
 
         <div className="space-y-4">
-          <section className="glass-panel relative overflow-hidden rounded-3xl p-5">
+          <Reveal delay={0.06}>
+            <section className="glass-panel card-lift relative overflow-hidden rounded-3xl p-5">
             <div
               className="pointer-events-none absolute -right-16 -top-20 size-44 rounded-full bg-accent-500/10 blur-3xl"
               aria-hidden="true"
@@ -339,15 +343,20 @@ export function OverviewPanel({ snapshot, section, meta, now, onTab }: OverviewP
               <button
                 type="button"
                 onClick={() => onTab('rooms')}
-                className="mt-4 inline-flex items-center gap-1.5 text-[11px] font-semibold text-brand-300 transition hover:text-brand-200"
+                className="group mt-4 inline-flex items-center gap-1.5 text-[11px] font-semibold text-brand-300 transition hover:text-brand-200"
               >
                 Explore all rooms
-                <ArrowRight className="size-3.5" aria-hidden="true" />
+                <ArrowRight
+                  className="size-3.5 transition-transform duration-200 group-hover:translate-x-0.5"
+                  aria-hidden="true"
+                />
               </button>
             </div>
-          </section>
+            </section>
+          </Reveal>
 
-          <section className="glass-panel relative overflow-hidden rounded-3xl p-5">
+          <Reveal delay={0.12}>
+            <section className="glass-panel card-lift relative overflow-hidden rounded-3xl p-5">
             <div
               className="pointer-events-none absolute -bottom-20 -right-10 size-44 rounded-full bg-violet-500/15 blur-3xl"
               aria-hidden="true"
@@ -365,13 +374,17 @@ export function OverviewPanel({ snapshot, section, meta, now, onTab }: OverviewP
               <button
                 type="button"
                 onClick={() => onTab('assistant')}
-                className="mt-4 inline-flex items-center gap-1.5 rounded-xl border border-violet-400/25 bg-violet-500/10 px-3 py-2 text-[11px] font-semibold text-violet-200 transition hover:border-violet-400/40 hover:bg-violet-500/15"
+                className="group mt-4 inline-flex items-center gap-1.5 rounded-xl border border-violet-400/25 bg-violet-500/10 px-3 py-2 text-[11px] font-semibold text-violet-200 transition hover:border-violet-400/40 hover:bg-violet-500/15"
               >
                 Open assistant
-                <ArrowRight className="size-3.5" aria-hidden="true" />
+                <ArrowRight
+                  className="size-3.5 transition-transform duration-200 group-hover:translate-x-0.5"
+                  aria-hidden="true"
+                />
               </button>
             </div>
-          </section>
+            </section>
+          </Reveal>
         </div>
       </div>
     </div>

@@ -3,6 +3,7 @@ import { AnimatePresence, MotionConfig } from 'framer-motion'
 import { BrowserRouter, Navigate, Route, Routes, useNavigate } from 'react-router-dom'
 import { SetupScreen } from './components/SetupScreen'
 import { BootSplash } from './components/layout/BootSplash'
+import { FullPageLoader } from './components/ui/LoadingState'
 import { AdminAuthProvider } from './context/AdminAuthContext'
 import { ProfileProvider } from './context/ProfileContext'
 import { TimetableProvider } from './context/TimetableContext'
@@ -34,17 +35,9 @@ function shouldShowBoot(): boolean {
   }
 }
 
-function RouteLoading() {
-  return (
-    <div className="grid min-h-screen place-items-center bg-ink-950 text-sm text-slate-400">
-      Loading...
-    </div>
-  )
-}
-
 function AppRoutes() {
   return (
-    <Suspense fallback={<RouteLoading />}>
+    <Suspense fallback={<FullPageLoader />}>
       <Routes>
         <Route path="/" element={<StudentDashboard />} />
         <Route path="/onboarding" element={<Onboarding />} />

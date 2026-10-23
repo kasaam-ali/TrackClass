@@ -8,7 +8,9 @@ import {
   UploadCloud,
 } from 'lucide-react'
 import { AdminGate } from '../../components/admin/AdminGate'
+import { Reveal, Stagger, StaggerItem } from '../../components/motion/Reveal'
 import { PageShell } from '../../components/PageShell'
+import { LoadingPanel } from '../../components/ui/LoadingState'
 import { useAdminAuth } from '../../context/AdminAuthContext'
 import { useTimetable } from '../../context/TimetableContext'
 import { supabase } from '../../lib/supabase'
@@ -155,22 +157,22 @@ function AdminUploadContent() {
         </div>
       }
     >
-      <div className="grid gap-4 sm:grid-cols-3">
-        <div className="glass-panel rounded-2xl p-4">
+      <Stagger className="grid gap-4 sm:grid-cols-3">
+        <StaggerItem whileHover={{ y: -3, scale: 1.004 }} className="glass-panel card-lift rounded-2xl p-4">
           <p className="text-[10px] uppercase tracking-wide text-slate-500">Active version</p>
           <p className="mt-1 text-lg font-semibold text-white">
             {meta ? `v${meta.versionNumber}` : 'None'}
           </p>
-        </div>
-        <div className="glass-panel rounded-2xl p-4">
+        </StaggerItem>
+        <StaggerItem whileHover={{ y: -3, scale: 1.004 }} className="glass-panel card-lift rounded-2xl p-4">
           <p className="text-[10px] uppercase tracking-wide text-slate-500">Updated</p>
           <p className="mt-1 text-sm font-medium text-white">{formatDate(meta?.updatedAt)}</p>
-        </div>
-        <div className="glass-panel rounded-2xl p-4">
+        </StaggerItem>
+        <StaggerItem whileHover={{ y: -3, scale: 1.004 }} className="glass-panel card-lift rounded-2xl p-4">
           <p className="text-[10px] uppercase tracking-wide text-slate-500">Last note</p>
           <p className="mt-1 truncate text-sm text-white">{meta?.note ?? 'No note'}</p>
-        </div>
-      </div>
+        </StaggerItem>
+      </Stagger>
 
       <div
         onDragOver={(event) => {
@@ -181,8 +183,8 @@ function AdminUploadContent() {
         onDrop={onDrop}
         className={
           dragActive
-            ? 'mt-6 rounded-2xl border-2 border-dashed border-brand-500 bg-brand-500/10 p-8 text-center'
-            : 'mt-6 rounded-2xl border-2 border-dashed border-white/[0.1] bg-white/[0.02] p-8 text-center'
+            ? 'mt-6 scale-[1.005] rounded-2xl border-2 border-dashed border-brand-500 bg-brand-500/10 p-8 text-center shadow-[0_24px_60px_-40px_rgba(56,189,248,0.7)] transition-all duration-300'
+            : 'mt-6 rounded-2xl border-2 border-dashed border-white/[0.1] bg-white/[0.02] p-8 text-center transition-all duration-300 hover:border-brand-400/30 hover:bg-white/[0.03]'
         }
       >
         <UploadCloud className="mx-auto size-8 text-brand-400" aria-hidden="true" />
@@ -220,38 +222,46 @@ function AdminUploadContent() {
       ) : null}
 
       {busy && !parsed ? (
-        <div className="mt-4 flex items-center gap-2 glass-panel rounded-2xl p-4 text-sm text-slate-400">
-          <Loader2 className="size-4 animate-spin text-brand-400" aria-hidden="true" />
-          Parsing workbook...
-        </div>
+        <LoadingPanel
+          className="mt-4"
+          label="Parsing workbook..."
+          detail="Reading sheets, slots, and section data."
+          rows={2}
+        />
       ) : null}
 
       {parsed && diff ? (
         <div className="mt-6 space-y-4">
-          <section className="glass-panel rounded-2xl p-5">
-            <div className="flex items-center gap-2">
-              <CheckCircle2 className="size-4 text-emerald-400" aria-hidden="true" />
-              <h2 className="text-sm font-semibold text-white">Parsed workbook</h2>
-            </div>
-            <div className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-4">
-              {[
-                ['Departments', parsed.stats.departments],
-                ['Sections', parsed.stats.sections],
-                ['Entries', parsed.stats.entries],
-                ['Free cells', parsed.stats.freeCells],
-              ].map(([label, value]) => (
-                <div key={label} className="rounded-xl border border-white/[0.06] bg-white/[0.02] p-3">
-                  <p className="text-[10px] uppercase tracking-wide text-slate-500">{label}</p>
-                  <p className="mt-1 text-lg font-semibold text-white">{value}</p>
-                </div>
-              ))}
-            </div>
-            <p className="mt-3 text-[11px] text-slate-500">
-              Term: {parsed.term} · File: {parsed.sourceFileName}
-            </p>
-          </section>
+          <Reveal>
+            <section className="glass-panel rounded-2xl p-5">
+              <div className="flex items-center gap-2">
+                <CheckCircle2 className="size-4 text-emerald-400" aria-hidden="true" />
+                <h2 className="text-sm font-semibold text-white">Parsed workbook</h2>
+              </div>
+              <Stagger className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-4">
+                {[
+                  ['Departments', parsed.stats.departments],
+                  ['Sections', parsed.stats.sections],
+                  ['Entries', parsed.stats.entries],
+                  ['Free cells', parsed.stats.freeCells],
+                ].map(([label, value]) => (
+                  <StaggerItem
+                    key={label}
+                    className="rounded-xl border border-white/[0.06] bg-white/[0.02] p-3"
+                  >
+                    <p className="text-[10px] uppercase tracking-wide text-slate-500">{label}</p>
+                    <p className="mt-1 text-lg font-semibold text-white">{value}</p>
+                  </StaggerItem>
+                ))}
+              </Stagger>
+              <p className="mt-3 text-[11px] text-slate-500">
+                Term: {parsed.term} · File: {parsed.sourceFileName}
+              </p>
+            </section>
+          </Reveal>
 
-          <section className="glass-panel rounded-2xl p-5">
+          <Reveal delay={0.04}>
+            <section className="glass-panel rounded-2xl p-5">
             <div className="flex flex-wrap items-center justify-between gap-2">
               <h2 className="text-sm font-semibold text-white">Change preview</h2>
               <span className="text-[11px] text-slate-500">
@@ -286,10 +296,12 @@ function AdminUploadContent() {
                 ) : null}
               </div>
             )}
-          </section>
+            </section>
+          </Reveal>
 
-          <section className="glass-panel rounded-2xl p-5">
-            <label htmlFor="publish-note" className="text-xs font-medium text-slate-300">
+          <Reveal delay={0.08}>
+            <section className="glass-panel rounded-2xl p-5">
+              <label htmlFor="publish-note" className="text-xs font-medium text-slate-300">
               Admin note (optional)
             </label>
             <textarea
@@ -311,7 +323,7 @@ function AdminUploadContent() {
                 onClick={() => {
                   void publish()
                 }}
-                className="inline-flex items-center gap-2 rounded-xl bg-emerald-500 px-4 py-2.5 text-sm font-semibold text-slate-950 transition hover:bg-emerald-400 disabled:cursor-not-allowed disabled:bg-white/[0.05] disabled:text-slate-600"
+                className="inline-flex items-center gap-2 rounded-xl bg-emerald-500 px-4 py-2.5 text-sm font-semibold text-slate-950 transition hover:bg-emerald-400 hover:shadow-[0_18px_36px_-22px_rgba(16,185,129,0.8)] disabled:cursor-not-allowed disabled:bg-white/[0.05] disabled:text-slate-600"
               >
                 {busy ? (
                   <Loader2 className="size-4 animate-spin" aria-hidden="true" />
@@ -321,7 +333,8 @@ function AdminUploadContent() {
                 {busy ? 'Publishing...' : 'Publish version'}
               </button>
             </div>
-          </section>
+            </section>
+          </Reveal>
         </div>
       ) : null}
     </PageShell>
