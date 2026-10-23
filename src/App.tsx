@@ -20,6 +20,9 @@ const AdminUpload = lazy(async () => ({
 const AdminTimetable = lazy(async () => ({
   default: (await import('./pages/admin/AdminTimetable')).AdminTimetable,
 }))
+const AdminFeedback = lazy(async () => ({
+  default: (await import('./pages/admin/AdminFeedback')).AdminFeedback,
+}))
 
 const DEMO_KEY = 'uni-timetable:demo-mode'
 const BOOT_KEY = 'trackclass:boot-seen'
@@ -45,6 +48,7 @@ function AppRoutes() {
         <Route path="/admin/login" element={<AdminLogin />} />
         <Route path="/admin/upload" element={<AdminUpload />} />
         <Route path="/admin/timetable" element={<AdminTimetable />} />
+        <Route path="/admin/feedback" element={<AdminFeedback />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </Suspense>

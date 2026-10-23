@@ -11,6 +11,7 @@ import {
 } from 'lucide-react'
 import { TimetableChat } from '../components/chat/TimetableChat'
 import { DashboardTabs, type DashboardTabId } from '../components/dashboard/DashboardTabs'
+import { FeedbackPanel } from '../components/dashboard/FeedbackPanel'
 import { OverviewPanel } from '../components/dashboard/OverviewPanel'
 import { SectionRail } from '../components/dashboard/SectionRail'
 import { PageShell } from '../components/PageShell'
@@ -267,6 +268,12 @@ export function StudentDashboard() {
             <div className="mx-auto w-full max-w-4xl">
               <TimetableChat key={section.key} snapshot={snapshot} sectionKey={section.key} />
             </div>
+          ) : null}
+
+          {activeTab === 'feedback' ? (
+            <Reveal>
+              <FeedbackPanel section={section} />
+            </Reveal>
           ) : null}
         </motion.div>
       </AnimatePresence>

@@ -3,6 +3,7 @@ import {
   CalendarDays,
   DoorOpen,
   LayoutDashboard,
+  MessageSquareText,
   Sparkles,
   Users,
   type LucideIcon,
@@ -14,6 +15,7 @@ export type DashboardTabId =
   | 'rooms'
   | 'teachers'
   | 'assistant'
+  | 'feedback'
 
 interface DashboardTab {
   id: DashboardTabId
@@ -27,6 +29,7 @@ const TABS: DashboardTab[] = [
   { id: 'rooms', label: 'Free rooms', icon: DoorOpen },
   { id: 'teachers', label: 'Teachers', icon: Users },
   { id: 'assistant', label: 'Assistant', icon: Sparkles },
+  { id: 'feedback', label: 'Feedback', icon: MessageSquareText },
 ]
 
 interface DashboardTabsProps {

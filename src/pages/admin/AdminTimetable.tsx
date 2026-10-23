@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { Download, RefreshCw, UploadCloud } from 'lucide-react'
+import { Download, MessageSquareText, RefreshCw, UploadCloud } from 'lucide-react'
 import { AdminGate } from '../../components/admin/AdminGate'
 import { Reveal, Stagger, StaggerItem } from '../../components/motion/Reveal'
 import { PageShell } from '../../components/PageShell'
@@ -75,6 +75,13 @@ function AdminTimetableContent() {
       >
         <UploadCloud className="size-3.5" aria-hidden="true" />
         Upload new
+      </Link>
+      <Link
+        to="/admin/feedback"
+        className="inline-flex items-center gap-1.5 rounded-xl border border-white/[0.1] bg-white/[0.03] px-3 py-2 text-xs font-medium text-slate-300 transition hover:border-slate-500 hover:text-white"
+      >
+        <MessageSquareText className="size-3.5" aria-hidden="true" />
+        Feedback
       </Link>
       <Link
         to="/"

@@ -165,6 +165,7 @@ Copy `.env.example` to `.env` and fill in your Supabase project values.
 2. Open the SQL editor and run:
    - `supabase/migrations/001_init.sql` for a fresh project.
    - `supabase/migrations/002_replace_timetable_safe.sql` only if an existing project hit the `pg-safeupdate` RPC error.
+   - `supabase/migrations/003_feedback.sql` to enable student feedback and the admin inbox.
 3. Copy `.env.example` to `.env` and set `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY`.
 4. In Supabase Auth, create the admin user with email and password. Public signup is not used by the app.
 5. Deploy the chat Edge Function:
