@@ -1,6 +1,7 @@
 import clsx from 'clsx'
 import { Clock3, MapPin, UserRound } from 'lucide-react'
 import { getSectionGrid, type SectionGridSlot } from '../../lib/timetable/engines'
+import { Stagger, StaggerItem } from '../motion/Reveal'
 import {
   DAY_NAMES,
   type DayOfWeek,
@@ -91,12 +92,16 @@ export function WeeklyGrid({ snapshot, sectionKey }: WeeklyGridProps) {
 
   return (
     <div className="overflow-x-auto pb-2">
-      <div className="grid min-w-[900px] grid-cols-5 gap-3">
+      <Stagger
+        className="grid min-w-[900px] grid-cols-5 gap-3"
+        amount={0.04}
+        staggerChildren={0.05}
+      >
         {DAYS.map((day) => {
           const slots = grid.filter((slot) => slot.period.dayOfWeek === day)
           const busy = slots.filter((slot) => !slot.isFree).length
           return (
-            <div
+            <StaggerItem
               key={day}
               className="flex items-center justify-between rounded-xl border border-white/[0.07] bg-white/[0.03] px-3 py-2"
             >
@@ -104,7 +109,7 @@ export function WeeklyGrid({ snapshot, sectionKey }: WeeklyGridProps) {
               <span className="rounded-full bg-white/[0.05] px-1.5 py-0.5 text-[9px] font-medium text-slate-500">
                 {busy}/{slots.length}
               </span>
-            </div>
+            </StaggerItem>
           )
         })}
 
@@ -116,22 +121,25 @@ export function WeeklyGrid({ snapshot, sectionKey }: WeeklyGridProps) {
             )
             if (!slot) {
               return (
-                <div
+                <StaggerItem
                   key={`${day}-${slotIndex}`}
                   className="rounded-2xl border border-dashed border-white/[0.05]"
-                />
+                >
+                  {null}
+                </StaggerItem>
               )
             }
             return (
-              <SlotCard
-                key={`${day}-${slotIndex}`}
-                slot={slot}
-                isFree={slot.isFree}
-              />
+              <StaggerItem key={`${day}-${slotIndex}`} className="h-full">
+                <SlotCard
+                  slot={slot}
+                  isFree={slot.isFree}
+                />
+              </StaggerItem>
             )
           }),
         )}
-      </div>
+      </Stagger>
     </div>
   )
 }

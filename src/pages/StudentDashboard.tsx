@@ -255,14 +255,20 @@ export function StudentDashboard() {
           ) : null}
 
           {activeTab === 'rooms' ? (
-            <FreeRoomsPanel
-              snapshot={snapshot}
-              initialDay={defaults.day}
-              initialSlot={defaults.slot}
-            />
+            <Reveal>
+              <FreeRoomsPanel
+                snapshot={snapshot}
+                initialDay={defaults.day}
+                initialSlot={defaults.slot}
+              />
+            </Reveal>
           ) : null}
 
-          {activeTab === 'teachers' ? <TeacherLocator snapshot={snapshot} now={now} /> : null}
+          {activeTab === 'teachers' ? (
+            <Reveal>
+              <TeacherLocator snapshot={snapshot} now={now} />
+            </Reveal>
+          ) : null}
 
           {activeTab === 'assistant' ? (
             <div className="mx-auto w-full max-w-4xl">

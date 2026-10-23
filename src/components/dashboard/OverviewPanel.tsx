@@ -24,7 +24,9 @@ import {
   type TimetableSnapshot,
 } from '../../lib/timetable/types'
 import type { TimetableMeta } from '../../lib/store'
+import { CountUp } from '../motion/CountUp'
 import { Reveal, Stagger, StaggerItem } from '../motion/Reveal'
+import { SpotlightCard } from '../motion/SpotlightCard'
 import { SectionStatus } from '../timetable/SectionStatus'
 import type { DashboardTabId } from './DashboardTabs'
 
@@ -116,14 +118,14 @@ export function OverviewPanel({ snapshot, section, meta, now, onTab }: OverviewP
   const stats = [
     {
       label: focus.today ? 'Classes today' : `Classes ${DAY_NAMES[focus.day]}`,
-      value: String(classSlots.length),
+      value: classSlots.length,
       hint: `${periods.length} slots scheduled`,
       icon: CalendarCheck2,
       tone: 'text-brand-300',
     },
     {
       label: 'Free rooms now',
-      value: String(rooms.freeRooms.length),
+      value: rooms.freeRooms.length,
       hint: `${DAY_NAMES[focus.day]} - slot ${slot}`,
       icon: DoorOpen,
       tone: 'text-accent-300',
@@ -141,7 +143,7 @@ export function OverviewPanel({ snapshot, section, meta, now, onTab }: OverviewP
     },
     {
       label: 'Teachers',
-      value: String(teachers.size),
+      value: teachers.size,
       hint: 'Across your section',
       icon: Users,
       tone: 'text-violet-300',
@@ -151,13 +153,17 @@ export function OverviewPanel({ snapshot, section, meta, now, onTab }: OverviewP
   return (
     <div className="space-y-5">
       <Reveal>
-        <section className="glass-panel-strong relative overflow-hidden rounded-[2rem] p-5 sm:p-7">
+        <SpotlightCard className="glass-panel-strong relative overflow-hidden rounded-[2rem] p-5 transition-colors duration-300 hover:border-brand-400/25 sm:p-7">
         <div
-          className="pointer-events-none absolute -right-24 -top-32 size-80 rounded-full bg-brand-500/15 blur-[90px]"
+          className="pointer-events-none absolute -right-24 -top-32 size-80 animate-[aurora-drift_22s_ease-in-out_infinite] rounded-full bg-brand-500/15 blur-[90px]"
           aria-hidden="true"
         />
         <div
-          className="pointer-events-none absolute bottom-[-8rem] left-1/3 size-64 rounded-full bg-accent-500/10 blur-[90px]"
+          className="pointer-events-none absolute bottom-[-8rem] left-1/3 size-64 animate-[aurora-drift_26s_ease-in-out_infinite_reverse] rounded-full bg-accent-500/10 blur-[90px]"
+          aria-hidden="true"
+        />
+        <div
+          className="hero-sheen pointer-events-none absolute inset-0 opacity-70"
           aria-hidden="true"
         />
         <div className="relative grid gap-6 lg:grid-cols-[1.35fr_0.9fr] lg:items-stretch">
@@ -190,7 +196,7 @@ export function OverviewPanel({ snapshot, section, meta, now, onTab }: OverviewP
           </div>
           <SectionStatus snapshot={snapshot} sectionKey={section.key} now={now} />
         </div>
-        </section>
+        </SpotlightCard>
       </Reveal>
 
       <Stagger className="grid grid-cols-2 gap-3 lg:grid-cols-4">
@@ -208,7 +214,9 @@ export function OverviewPanel({ snapshot, section, meta, now, onTab }: OverviewP
                 </p>
                 <Icon className={`size-4 ${stat.tone}`} aria-hidden="true" />
               </div>
-              <p className="font-display mt-3 text-2xl font-semibold text-white">{stat.value}</p>
+              <p className="font-display mt-3 text-2xl font-semibold text-white">
+                {typeof stat.value === 'number' ? <CountUp value={stat.value} /> : stat.value}
+              </p>
               <p className="mt-1 text-[10px] text-slate-500">{stat.hint}</p>
             </StaggerItem>
           )

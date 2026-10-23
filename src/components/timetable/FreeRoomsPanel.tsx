@@ -3,6 +3,7 @@ import clsx from 'clsx'
 import { AnimatePresence, motion } from 'framer-motion'
 import { DoorOpen, Users } from 'lucide-react'
 import { findFreeRooms } from '../../lib/timetable/engines'
+import { CountUp } from '../motion/CountUp'
 import {
   DAY_NAMES,
   type DayOfWeek,
@@ -44,14 +45,14 @@ export function FreeRoomsPanel({ snapshot, initialDay, initialSlot }: FreeRoomsP
         <div className="flex items-center gap-3">
           <div className="text-right">
             <p className="font-display text-2xl font-semibold text-accent-300">
-              {result.freeRooms.length}
+              <CountUp value={result.freeRooms.length} />
             </p>
             <p className="text-[9px] uppercase tracking-[0.14em] text-slate-500">available</p>
           </div>
           <div className="h-9 w-px bg-white/[0.07]" aria-hidden="true" />
           <div className="text-right">
             <p className="font-display text-2xl font-semibold text-white">
-              {result.allRooms.length}
+              <CountUp value={result.allRooms.length} />
             </p>
             <p className="text-[9px] uppercase tracking-[0.14em] text-slate-500">total rooms</p>
           </div>
@@ -94,7 +95,9 @@ export function FreeRoomsPanel({ snapshot, initialDay, initialSlot }: FreeRoomsP
             </button>
           ))}
         </div>
-        <span className="ml-auto text-[10px] text-slate-500">{usage}% rooms in use</span>
+        <span className="ml-auto text-[10px] text-slate-500">
+          <CountUp value={usage} suffix="%" /> rooms in use
+        </span>
       </div>
 
       <AnimatePresence mode="wait" initial={false}>
