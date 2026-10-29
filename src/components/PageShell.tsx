@@ -9,7 +9,7 @@ interface PageShellProps {
   eyebrow?: string
   actions?: ReactNode
   center?: ReactNode
-  below?: ReactNode
+  bottomNav?: ReactNode
   children: ReactNode
 }
 
@@ -19,17 +19,17 @@ export function PageShell({
   eyebrow = 'TrackClass',
   actions,
   center,
-  below,
+  bottomNav,
   children,
 }: PageShellProps) {
   return (
     <div className="relative flex min-h-screen flex-col">
       <AmbientBackground />
-      <SiteHeader center={center} actions={actions} below={below} />
+      <SiteHeader center={center} actions={actions} />
       <main
-        className={`mx-auto w-full max-w-7xl flex-1 px-4 pb-20 sm:px-6 ${
-          title ? 'pt-8 sm:pt-10' : 'pt-5 sm:pt-7'
-        }`}
+        className={`mx-auto w-full max-w-7xl flex-1 px-4 sm:px-6 ${
+          bottomNav ? 'pb-24 lg:pb-20' : 'pb-20'
+        } ${title ? 'pt-8 sm:pt-10' : 'pt-5 sm:pt-7'}`}
       >
         {title ? (
           <div className="animate-rise mb-8 max-w-3xl space-y-2">
@@ -46,7 +46,10 @@ export function PageShell({
         ) : null}
         {children}
       </main>
-      <SiteFooter />
+      <div className={bottomNav ? 'pb-16 lg:pb-0' : undefined}>
+        <SiteFooter />
+      </div>
+      {bottomNav}
     </div>
   )
 }

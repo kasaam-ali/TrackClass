@@ -49,8 +49,8 @@ The app is built around three ideas:
 | --- | --- |
 | 📅 **Weekly timetable** | Clean five-day grid with course codes, subjects, teachers, and rooms. |
 | ⚡ **Live class status** | Shows the current class, free period, or next class with a countdown. |
-| 🚪 **Free room finder** | Pick any day and slot to see available rooms and sections without class. |
-| 🧑‍🏫 **Teacher locator** | Search any teacher to see their full weekly route and current room. |
+| 🚪 **Free room finder** | Pick any day and slot to see available rooms and live occupancy. |
+| 🧑‍🏫 **Teacher locator** | Search any teacher, then filter their weekly route by day and slot. |
 | 🤖 **Timetable assistant** | Answers in Roman Urdu using local logic first, then AI fallback. |
 | 🔔 **Change notices** | Section-specific diff notices appear after a new version is published. |
 | 📴 **Offline support** | Installable PWA with cached app shell, timetable data, and local answers. |
@@ -58,7 +58,7 @@ The app is built around three ideas:
 | 🔐 **Secure access** | Student reads use Supabase RLS. Admin actions require email/password auth. |
 | 🌗 **Light and dark themes** | One-click theme toggle with saved preference and system-aware first paint. |
 | 🎬 **Motion system** | Branded first-load sequence, staggered timetable cells, and streaming assistant replies. |
-| 🎨 **Polished UI** | Responsive tabs, section rail, glass surfaces, and reduced-motion support. |
+| 🎨 **Polished UI** | Mobile bottom navigation, responsive timetable, glass surfaces, and reduced-motion support. |
 
 ---
 
@@ -68,7 +68,7 @@ TrackClass ships with two complete surface systems and a motion layer that stays
 
 - **Light and dark modes.** The sun/moon control lives in the header, persists in `localStorage`, and respects the operating system preference on first visit.
 - **Branded first load.** A short boot sequence animates the logo, progress states, and a miniature timetable grid. It runs once per browser session.
-- **Dashboard motion.** Animated stat counters, a pointer-tracking hero spotlight, a slow gradient drift, and staggered timetable cells keep the dashboard alive without adding noise.
+- **Dashboard motion.** A pointer-tracking hero spotlight, a slow gradient drift, and staggered timetable cells keep the dashboard alive without adding noise.
 - **Streaming assistant.** New assistant replies reveal word by word with a blinking caret, while history messages render instantly.
 - **Reduced motion.** The boot sequence is skipped and Framer Motion respects the user preference when reduced motion is enabled.
 - **Theme-aware surfaces.** Glass panels, borders, grids, glows, scrollbars, and semantic text colors all switch cleanly between light and dark.

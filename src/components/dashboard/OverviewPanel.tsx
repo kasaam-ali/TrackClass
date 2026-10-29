@@ -2,13 +2,10 @@ import { motion } from 'framer-motion'
 import { toZonedTime } from 'date-fns-tz'
 import {
   ArrowRight,
-  CalendarCheck2,
-  Clock3,
   DoorOpen,
   MapPin,
   Sparkles,
   UserRound,
-  Users,
 } from 'lucide-react'
 import {
   TIME_ZONE,
@@ -24,8 +21,7 @@ import {
   type TimetableSnapshot,
 } from '../../lib/timetable/types'
 import type { TimetableMeta } from '../../lib/store'
-import { CountUp } from '../motion/CountUp'
-import { Reveal, Stagger, StaggerItem } from '../motion/Reveal'
+import { Reveal } from '../motion/Reveal'
 import { SpotlightCard } from '../motion/SpotlightCard'
 import { SectionStatus } from '../timetable/SectionStatus'
 import type { DashboardTabId } from './DashboardTabs'
@@ -66,14 +62,6 @@ function focusSlot(snapshot: TimetableSnapshot, departmentCode: string, day: Day
   return periods.find((period) => minutes < minutesOf(period.startTime))?.slotIndex ?? 1
 }
 
-function shortMinutes(minutes: number | null): string {
-  if (minutes === null) return 'Now'
-  if (minutes < 60) return `${minutes}m`
-  const hours = Math.floor(minutes / 60)
-  const rest = minutes % 60
-  return rest ? `${hours}h ${rest}m` : `${hours}h`
-}
-
 function updatedLabel(value: string | undefined): string | null {
   if (!value) return null
   const date = new Date(value)
@@ -107,53 +95,14 @@ export function OverviewPanel({ snapshot, section, meta, now, onTab }: OverviewP
       const current = dayEntries.get(entry.slotIndex) ?? []
       dayEntries.set(entry.slotIndex, [...current, entry])
     })
-  const classSlots = periods.filter((period) => (dayEntries.get(period.slotIndex) ?? []).length > 0)
   const rooms = findFreeRooms(snapshot, focus.day, slot)
-  const teachers = new Set(
-    sectionEntries.map((entry) => entry.teacherName).filter((name): name is string => Boolean(name)),
-  )
   const state = getScheduleState(snapshot, section.key, now)
   const updated = updatedLabel(meta?.updatedAt)
 
-  const stats = [
-    {
-      label: focus.today ? 'Classes today' : `Classes ${DAY_NAMES[focus.day]}`,
-      value: classSlots.length,
-      hint: `${periods.length} slots scheduled`,
-      icon: CalendarCheck2,
-      tone: 'text-brand-300',
-    },
-    {
-      label: 'Free rooms now',
-      value: rooms.freeRooms.length,
-      hint: `${DAY_NAMES[focus.day]} - slot ${slot}`,
-      icon: DoorOpen,
-      tone: 'text-accent-300',
-    },
-    {
-      label: state.currentPeriod ? 'Class in progress' : 'Next class',
-      value: state.currentPeriod
-        ? 'Now'
-        : state.nextPeriod
-          ? shortMinutes(state.minutesUntilNext)
-          : 'None',
-      hint: state.currentPeriod?.label ?? state.nextPeriod?.label ?? 'No upcoming slot',
-      icon: Clock3,
-      tone: 'text-amber-300',
-    },
-    {
-      label: 'Teachers',
-      value: teachers.size,
-      hint: 'Across your section',
-      icon: Users,
-      tone: 'text-violet-300',
-    },
-  ]
-
   return (
-    <div className="space-y-5">
+    <div className="space-y-4 sm:space-y-5">
       <Reveal>
-        <SpotlightCard className="glass-panel-strong relative overflow-hidden rounded-[2rem] p-5 transition-colors duration-300 hover:border-brand-400/25 sm:p-7">
+        <SpotlightCard className="glass-panel-strong relative overflow-hidden rounded-3xl p-4 transition-colors duration-300 hover:border-brand-400/25 sm:rounded-[2rem] sm:p-7">
         <div
           className="pointer-events-none absolute -right-24 -top-32 size-80 animate-[aurora-drift_22s_ease-in-out_infinite] rounded-full bg-brand-500/15 blur-[90px]"
           aria-hidden="true"
@@ -173,7 +122,7 @@ export function OverviewPanel({ snapshot, section, meta, now, onTab }: OverviewP
                 <span className="size-1.5 rounded-full bg-brand-400" aria-hidden="true" />
                 Your section
               </p>
-              <h1 className="font-display mt-3 text-3xl font-semibold leading-tight text-white sm:text-4xl">
+              <h1 className="font-display mt-3 text-2xl font-semibold leading-tight text-white sm:text-4xl">
                 {section.displayName.replace(' - ', ' ')}
               </h1>
               <p className="mt-2 max-w-xl text-sm leading-6 text-slate-400">
@@ -199,44 +148,15 @@ export function OverviewPanel({ snapshot, section, meta, now, onTab }: OverviewP
         </SpotlightCard>
       </Reveal>
 
-      <Stagger className="grid grid-cols-2 gap-3 lg:grid-cols-4">
-        {stats.map((stat) => {
-          const Icon = stat.icon
-          return (
-            <StaggerItem
-              key={stat.label}
-              whileHover={{ y: -3, scale: 1.004 }}
-              className="glass-panel card-lift rounded-2xl p-4"
-            >
-              <div className="flex items-start justify-between gap-2">
-                <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-slate-500">
-                  {stat.label}
-                </p>
-                <Icon className={`size-4 ${stat.tone}`} aria-hidden="true" />
-              </div>
-              <p className="font-display mt-3 text-2xl font-semibold text-white">
-                {typeof stat.value === 'number' ? <CountUp value={stat.value} /> : stat.value}
-              </p>
-              <p className="mt-1 text-[10px] text-slate-500">{stat.hint}</p>
-            </StaggerItem>
-          )
-        })}
-      </Stagger>
-
       <div className="grid gap-4 xl:grid-cols-[1.45fr_0.8fr]">
         <Reveal className="min-w-0">
-          <section className="glass-panel h-full rounded-3xl p-5">
-            <div className="flex items-center justify-between gap-3">
+          <section className="glass-panel h-full rounded-3xl p-4 sm:p-5">
             <div>
               <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-slate-500">
                 {focus.today ? 'Today' : DAY_NAMES[focus.day]}
               </p>
               <h2 className="font-display mt-1 text-lg font-semibold text-white">Your flow</h2>
             </div>
-            <span className="rounded-full border border-white/[0.06] bg-white/[0.03] px-2.5 py-1 text-[10px] text-slate-400">
-              {classSlots.length} of {periods.length} slots busy
-            </span>
-          </div>
 
           <div className="mt-5 space-y-2">
             {periods.length > 0 ? (
@@ -316,7 +236,7 @@ export function OverviewPanel({ snapshot, section, meta, now, onTab }: OverviewP
 
         <div className="space-y-4">
           <Reveal delay={0.06}>
-            <section className="glass-panel card-lift relative overflow-hidden rounded-3xl p-5">
+            <section className="glass-panel card-lift relative overflow-hidden rounded-3xl p-4 sm:p-5">
             <div
               className="pointer-events-none absolute -right-16 -top-20 size-44 rounded-full bg-accent-500/10 blur-3xl"
               aria-hidden="true"
@@ -364,7 +284,7 @@ export function OverviewPanel({ snapshot, section, meta, now, onTab }: OverviewP
           </Reveal>
 
           <Reveal delay={0.12}>
-            <section className="glass-panel card-lift relative overflow-hidden rounded-3xl p-5">
+            <section className="glass-panel card-lift relative overflow-hidden rounded-3xl p-4 sm:p-5">
             <div
               className="pointer-events-none absolute -bottom-20 -right-10 size-44 rounded-full bg-violet-500/15 blur-3xl"
               aria-hidden="true"

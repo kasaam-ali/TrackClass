@@ -20,15 +20,16 @@ export type DashboardTabId =
 interface DashboardTab {
   id: DashboardTabId
   label: string
+  shortLabel?: string
   icon: LucideIcon
 }
 
 const TABS: DashboardTab[] = [
-  { id: 'overview', label: 'Overview', icon: LayoutDashboard },
-  { id: 'timetable', label: 'Timetable', icon: CalendarDays },
-  { id: 'rooms', label: 'Free rooms', icon: DoorOpen },
+  { id: 'overview', label: 'Overview', shortLabel: 'Home', icon: LayoutDashboard },
+  { id: 'timetable', label: 'Timetable', shortLabel: 'Week', icon: CalendarDays },
+  { id: 'rooms', label: 'Free rooms', shortLabel: 'Rooms', icon: DoorOpen },
   { id: 'teachers', label: 'Teachers', icon: Users },
-  { id: 'assistant', label: 'Assistant', icon: Sparkles },
+  { id: 'assistant', label: 'Assistant', shortLabel: 'Ask', icon: Sparkles },
   { id: 'feedback', label: 'Feedback', icon: MessageSquareText },
 ]
 
@@ -42,7 +43,7 @@ export function DashboardTabs({ active, onChange }: DashboardTabsProps) {
     <div
       role="tablist"
       aria-label="Dashboard sections"
-      className="flex items-center gap-1 rounded-2xl border border-white/[0.07] bg-white/[0.03] p-1 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)]"
+      className="flex max-w-full items-center gap-1 overflow-x-auto rounded-2xl border border-white/[0.07] bg-white/[0.03] p-1 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] scrollbar-none"
     >
       {TABS.map((tab) => {
         const selected = active === tab.id
@@ -79,5 +80,48 @@ export function DashboardTabs({ active, onChange }: DashboardTabsProps) {
         )
       })}
     </div>
+  )
+}
+
+export function DashboardMobileNav({ active, onChange }: DashboardTabsProps) {
+  return (
+    <nav
+      aria-label="Dashboard sections"
+      className="fixed inset-x-0 bottom-0 z-50 border-t border-white/[0.08] bg-ink-950/95 backdrop-blur-2xl lg:hidden"
+    >
+      <div className="mx-auto grid w-full max-w-lg grid-cols-6 gap-0.5 px-2 pb-[calc(0.45rem+env(safe-area-inset-bottom))] pt-1.5">
+        {TABS.map((tab) => {
+          const selected = active === tab.id
+          const Icon = tab.icon
+          return (
+            <button
+              key={tab.id}
+              type="button"
+              role="tab"
+              aria-selected={selected}
+              aria-controls={`panel-${tab.id}`}
+              onClick={() => onChange(tab.id)}
+              className={`relative flex min-w-0 flex-col items-center gap-1 rounded-xl px-1 py-1.5 text-[8px] font-semibold transition-colors duration-200 min-[360px]:text-[9px] ${
+                selected
+                  ? 'bg-brand-400/10 text-brand-200'
+                  : 'text-slate-500 hover:bg-white/[0.03] hover:text-slate-300'
+              }`}
+            >
+              {selected ? (
+                <span
+                  className="absolute inset-x-3 top-0 h-0.5 rounded-full bg-brand-400"
+                  aria-hidden="true"
+                />
+              ) : null}
+              <Icon
+                className={`size-4 ${selected ? 'text-brand-300' : ''}`}
+                aria-hidden="true"
+              />
+              <span className="w-full truncate text-center">{tab.shortLabel ?? tab.label}</span>
+            </button>
+          )
+        })}
+      </div>
+    </nav>
   )
 }

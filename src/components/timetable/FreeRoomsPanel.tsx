@@ -1,9 +1,8 @@
 import { useMemo, useState } from 'react'
 import clsx from 'clsx'
 import { AnimatePresence, motion } from 'framer-motion'
-import { DoorOpen, Users } from 'lucide-react'
+import { DoorOpen } from 'lucide-react'
 import { findFreeRooms } from '../../lib/timetable/engines'
-import { CountUp } from '../motion/CountUp'
 import {
   DAY_NAMES,
   type DayOfWeek,
@@ -26,10 +25,9 @@ export function FreeRoomsPanel({ snapshot, initialDay, initialSlot }: FreeRoomsP
   const [slot, setSlot] = useState<SlotIndex>(initialSlot)
 
   const result = useMemo(() => findFreeRooms(snapshot, day, slot), [snapshot, day, slot])
-  const usage = Math.round((result.occupiedRooms.length / Math.max(1, result.allRooms.length)) * 100)
 
   return (
-    <section className="glass-panel rounded-3xl p-5 sm:p-6">
+    <section className="glass-panel rounded-3xl p-4 sm:p-6">
       <div className="flex flex-wrap items-start justify-between gap-4">
         <div className="flex items-center gap-3">
           <span className="grid size-11 place-items-center rounded-2xl border border-accent-400/20 bg-accent-500/10">
@@ -42,21 +40,9 @@ export function FreeRoomsPanel({ snapshot, initialDay, initialSlot }: FreeRoomsP
             <h2 className="font-display mt-0.5 text-xl font-semibold text-white">Free rooms</h2>
           </div>
         </div>
-        <div className="flex items-center gap-3">
-          <div className="text-right">
-            <p className="font-display text-2xl font-semibold text-accent-300">
-              <CountUp value={result.freeRooms.length} />
-            </p>
-            <p className="text-[9px] uppercase tracking-[0.14em] text-slate-500">available</p>
-          </div>
-          <div className="h-9 w-px bg-white/[0.07]" aria-hidden="true" />
-          <div className="text-right">
-            <p className="font-display text-2xl font-semibold text-white">
-              <CountUp value={result.allRooms.length} />
-            </p>
-            <p className="text-[9px] uppercase tracking-[0.14em] text-slate-500">total rooms</p>
-          </div>
-        </div>
+        <span className="rounded-full border border-accent-400/20 bg-accent-500/10 px-3 py-1.5 text-[11px] font-semibold text-accent-200">
+          {result.freeRooms.length} of {result.allRooms.length} rooms free
+        </span>
       </div>
 
       <div className="mt-5 flex flex-wrap items-center gap-2">
@@ -95,9 +81,6 @@ export function FreeRoomsPanel({ snapshot, initialDay, initialSlot }: FreeRoomsP
             </button>
           ))}
         </div>
-        <span className="ml-auto text-[10px] text-slate-500">
-          <CountUp value={usage} suffix="%" /> rooms in use
-        </span>
       </div>
 
       <AnimatePresence mode="wait" initial={false}>
@@ -141,39 +124,6 @@ export function FreeRoomsPanel({ snapshot, initialDay, initialSlot }: FreeRoomsP
         </motion.div>
       </AnimatePresence>
 
-      <div className="mt-5 grid gap-3 border-t border-white/[0.06] pt-4 sm:grid-cols-2">
-        <div className="rounded-2xl border border-white/[0.05] bg-white/[0.02] p-3 transition-colors duration-200 hover:border-white/[0.1] hover:bg-white/[0.03]">
-          <p className="flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-[0.14em] text-slate-500">
-            <DoorOpen className="size-3 text-accent-400" aria-hidden="true" />
-            {result.freeSections.length} sections without class
-          </p>
-          <div className="mt-2 flex flex-wrap gap-1.5">
-            {result.freeSections.slice(0, 8).map((section) => (
-              <span
-                key={section.key}
-                className="rounded-md bg-white/[0.04] px-1.5 py-0.5 text-[9px] text-slate-400"
-              >
-                {section.displayName.replace(' - ', ' ')}
-              </span>
-            ))}
-            {result.freeSections.length > 8 ? (
-              <span className="px-1.5 py-0.5 text-[9px] text-slate-600">
-                +{result.freeSections.length - 8} more
-              </span>
-            ) : null}
-          </div>
-        </div>
-        <div className="rounded-2xl border border-white/[0.05] bg-white/[0.02] p-3 transition-colors duration-200 hover:border-white/[0.1] hover:bg-white/[0.03]">
-          <p className="flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-[0.14em] text-slate-500">
-            <Users className="size-3 text-brand-400" aria-hidden="true" />
-            {result.occupiedSections.length} sections in class
-          </p>
-          <p className="mt-2 text-[10px] leading-5 text-slate-500">
-            {result.occupiedSections.slice(0, 6).map((section) => section.displayName).join(', ')}
-            {result.occupiedSections.length > 6 ? ' and more' : ''}
-          </p>
-        </div>
-      </div>
     </section>
   )
 }

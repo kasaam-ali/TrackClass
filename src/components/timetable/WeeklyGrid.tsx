@@ -1,6 +1,12 @@
+import { useState } from 'react'
 import clsx from 'clsx'
+import { toZonedTime } from 'date-fns-tz'
 import { Clock3, MapPin, UserRound } from 'lucide-react'
-import { getSectionGrid, type SectionGridSlot } from '../../lib/timetable/engines'
+import {
+  TIME_ZONE,
+  getSectionGrid,
+  type SectionGridSlot,
+} from '../../lib/timetable/engines'
 import { Stagger, StaggerItem } from '../motion/Reveal'
 import {
   DAY_NAMES,
@@ -11,6 +17,7 @@ import {
 interface WeeklyGridProps {
   snapshot: TimetableSnapshot
   sectionKey: string
+  now?: Date
 }
 
 const DAYS: DayOfWeek[] = [1, 2, 3, 4, 5]
@@ -35,7 +42,7 @@ function SlotCard({ slot, isFree }: { slot: SectionGridSlot; isFree: boolean }) 
 
       <p className="flex items-center gap-1 text-[9px] font-semibold uppercase tracking-[0.12em] text-slate-500">
         <Clock3 className="size-3" aria-hidden="true" />
-        {period.startTime} - {period.endTime}
+        Slot {period.slotIndex} · {period.startTime} - {period.endTime}
       </p>
 
       {isFree ? (
@@ -84,62 +91,112 @@ function SlotCard({ slot, isFree }: { slot: SectionGridSlot; isFree: boolean }) 
   )
 }
 
-export function WeeklyGrid({ snapshot, sectionKey }: WeeklyGridProps) {
+export function WeeklyGrid({ snapshot, sectionKey, now }: WeeklyGridProps) {
   const grid = getSectionGrid(snapshot, sectionKey)
   const slotIndices = [...new Set(grid.map((slot) => slot.period.slotIndex))].sort(
     (a, b) => a - b,
   )
+  const [mobileDay, setMobileDay] = useState<DayOfWeek>(() => {
+    const zoned = toZonedTime(now ?? new Date(), TIME_ZONE)
+    const jsDay = zoned.getDay()
+    return jsDay >= 1 && jsDay <= 5 ? (jsDay as DayOfWeek) : 1
+  })
+  const mobileSlots = grid
+    .filter((slot) => slot.period.dayOfWeek === mobileDay)
+    .sort((a, b) => a.period.slotIndex - b.period.slotIndex)
 
   return (
-    <div className="overflow-x-auto pb-2">
-      <Stagger
-        className="grid min-w-[900px] grid-cols-5 gap-3"
-        amount={0.04}
-        staggerChildren={0.05}
-      >
-        {DAYS.map((day) => {
-          const slots = grid.filter((slot) => slot.period.dayOfWeek === day)
-          const busy = slots.filter((slot) => !slot.isFree).length
-          return (
-            <StaggerItem
-              key={day}
-              className="flex items-center justify-between rounded-xl border border-white/[0.07] bg-white/[0.03] px-3 py-2"
-            >
-              <p className="text-xs font-semibold text-white">{DAY_NAMES[day]}</p>
-              <span className="rounded-full bg-white/[0.05] px-1.5 py-0.5 text-[9px] font-medium text-slate-500">
-                {busy}/{slots.length}
-              </span>
-            </StaggerItem>
-          )
-        })}
-
-        {slotIndices.flatMap((slotIndex) =>
-          DAYS.map((day) => {
-            const slot = grid.find(
-              (item) =>
-                item.period.dayOfWeek === day && item.period.slotIndex === slotIndex,
-            )
-            if (!slot) {
-              return (
-                <StaggerItem
-                  key={`${day}-${slotIndex}`}
-                  className="rounded-2xl border border-dashed border-white/[0.05]"
-                >
-                  {null}
-                </StaggerItem>
-              )
-            }
+    <>
+      <div className="lg:hidden">
+        <div className="grid grid-cols-5 gap-1.5" aria-label="Timetable days">
+          {DAYS.map((day) => {
+            const slots = grid.filter((slot) => slot.period.dayOfWeek === day)
+            const busy = slots.filter((slot) => !slot.isFree).length
+            const selected = mobileDay === day
             return (
-              <StaggerItem key={`${day}-${slotIndex}`} className="h-full">
-                <SlotCard
-                  slot={slot}
-                  isFree={slot.isFree}
-                />
+              <button
+                key={day}
+                type="button"
+                onClick={() => setMobileDay(day)}
+                aria-pressed={selected}
+                className={clsx(
+                  'flex min-w-0 flex-col items-center rounded-xl border px-1 py-2 transition-colors',
+                  selected
+                    ? 'border-brand-400/35 bg-brand-400/10 text-brand-200'
+                    : 'border-white/[0.06] bg-white/[0.02] text-slate-500 hover:border-white/[0.12] hover:text-slate-300',
+                )}
+              >
+                <span className="text-[10px] font-semibold uppercase tracking-[0.08em]">
+                  {DAY_NAMES[day].slice(0, 3)}
+                </span>
+                <span className="mt-0.5 text-[9px] opacity-70">
+                  {busy}/{slots.length}
+                </span>
+              </button>
+            )
+          })}
+        </div>
+
+        <div className="mt-3 space-y-2">
+          {mobileSlots.length > 0 ? (
+            mobileSlots.map((slot) => (
+              <SlotCard key={`${slot.period.dayOfWeek}-${slot.period.slotIndex}`} slot={slot} isFree={slot.isFree} />
+            ))
+          ) : (
+            <p className="rounded-2xl border border-dashed border-white/[0.08] px-4 py-6 text-center text-xs text-slate-500">
+              No periods are scheduled for this day.
+            </p>
+          )}
+        </div>
+      </div>
+
+      <div className="hidden overflow-x-auto pb-2 lg:block">
+        <Stagger
+          className="grid min-w-[900px] grid-cols-5 gap-3"
+          amount={0.04}
+          staggerChildren={0.05}
+        >
+          {DAYS.map((day) => {
+            const slots = grid.filter((slot) => slot.period.dayOfWeek === day)
+            const busy = slots.filter((slot) => !slot.isFree).length
+            return (
+              <StaggerItem
+                key={day}
+                className="flex items-center justify-between rounded-xl border border-white/[0.07] bg-white/[0.03] px-3 py-2"
+              >
+                <p className="text-xs font-semibold text-white">{DAY_NAMES[day]}</p>
+                <span className="rounded-full bg-white/[0.05] px-1.5 py-0.5 text-[9px] font-medium text-slate-500">
+                  {busy}/{slots.length}
+                </span>
               </StaggerItem>
             )
-          }),
-        )}
-      </Stagger>
-    </div>
+          })}
+
+          {slotIndices.flatMap((slotIndex) =>
+            DAYS.map((day) => {
+              const slot = grid.find(
+                (item) =>
+                  item.period.dayOfWeek === day && item.period.slotIndex === slotIndex,
+              )
+              if (!slot) {
+                return (
+                  <StaggerItem
+                    key={`${day}-${slotIndex}`}
+                    className="rounded-2xl border border-dashed border-white/[0.05]"
+                  >
+                    {null}
+                  </StaggerItem>
+                )
+              }
+              return (
+                <StaggerItem key={`${day}-${slotIndex}`} className="h-full">
+                  <SlotCard slot={slot} isFree={slot.isFree} />
+                </StaggerItem>
+              )
+            }),
+          )}
+        </Stagger>
+      </div>
+    </>
   )
 }

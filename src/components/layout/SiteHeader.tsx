@@ -6,10 +6,9 @@ import { ThemeToggle } from './ThemeToggle'
 interface SiteHeaderProps {
   center?: ReactNode
   actions?: ReactNode
-  below?: ReactNode
 }
 
-export function SiteHeader({ center, actions, below }: SiteHeaderProps) {
+export function SiteHeader({ center, actions }: SiteHeaderProps) {
   return (
     <header className="sticky top-0 z-40 border-b border-white/[0.06] bg-ink-950/70 backdrop-blur-2xl">
       <div className="mx-auto flex w-full max-w-7xl flex-wrap items-center gap-x-4 gap-y-2 px-4 py-3 sm:px-6">
@@ -33,8 +32,8 @@ export function SiteHeader({ center, actions, below }: SiteHeaderProps) {
         </Link>
 
         {center ? (
-          <div className="scrollbar-none order-3 w-full overflow-x-auto pb-1 lg:order-none lg:w-auto lg:flex-1 lg:justify-center lg:overflow-visible lg:pb-0">
-            <div className="flex min-w-max justify-center lg:min-w-0">{center}</div>
+          <div className="hidden min-w-0 flex-1 justify-center lg:flex">
+            <div className="flex min-w-max">{center}</div>
           </div>
         ) : (
           <div className="hidden flex-1 lg:block" />
@@ -45,7 +44,6 @@ export function SiteHeader({ center, actions, below }: SiteHeaderProps) {
           {actions}
         </div>
       </div>
-      {below}
     </header>
   )
 }

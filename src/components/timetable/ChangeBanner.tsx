@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Bell, X } from 'lucide-react'
+import { Bell, ChevronDown, X } from 'lucide-react'
 import type { SnapshotDiff } from '../../lib/timetable/engines'
 import { DAY_NAMES } from '../../lib/timetable/types'
 import type { TimetableMeta } from '../../lib/store'
@@ -20,6 +20,7 @@ export function ChangeBanner({ meta, sectionKey }: ChangeBannerProps) {
   const [dismissedKey, setDismissedKey] = useState(
     () => (localStorage.getItem(dismissKey) === '1' ? dismissKey : ''),
   )
+  const [open, setOpen] = useState(false)
   const dismissed = dismissedKey === dismissKey
 
   if (dismissed || !isDiff(meta.changes)) return null
@@ -48,7 +49,7 @@ export function ChangeBanner({ meta, sectionKey }: ChangeBannerProps) {
             <p className="text-sm font-semibold text-white">
               {cells.length} timetable change{cells.length === 1 ? '' : 's'} in your section
             </p>
-            <ul className="mt-2 space-y-1.5">
+            <ul className={`mt-2 space-y-1.5 ${open ? 'block' : 'hidden'} sm:block`}>
               {cells.slice(0, 4).map((cell, index) => (
                 <li
                   key={`${cell.kind}-${index}`}
@@ -69,6 +70,18 @@ export function ChangeBanner({ meta, sectionKey }: ChangeBannerProps) {
                 <li className="text-[10px] text-slate-500">+{cells.length - 4} more changes</li>
               ) : null}
             </ul>
+            <button
+              type="button"
+              onClick={() => setOpen((value) => !value)}
+              aria-expanded={open}
+              className="mt-2 inline-flex items-center gap-1 text-[11px] font-semibold text-brand-300 sm:hidden"
+            >
+              {open ? 'Hide changes' : 'View changes'}
+              <ChevronDown
+                className={`size-3.5 transition-transform duration-200 ${open ? 'rotate-180' : ''}`}
+                aria-hidden="true"
+              />
+            </button>
           </div>
         </div>
         <button

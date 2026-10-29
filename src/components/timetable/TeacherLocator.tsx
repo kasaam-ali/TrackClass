@@ -1,7 +1,15 @@
 import { useMemo, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { toZonedTime } from 'date-fns-tz'
-import { CalendarDays, GraduationCap, MapPin, Search, UserRound, X } from 'lucide-react'
+import {
+  CalendarDays,
+  GraduationCap,
+  MapPin,
+  Search,
+  SlidersHorizontal,
+  UserRound,
+  X,
+} from 'lucide-react'
 import {
   TIME_ZONE,
   buildTeacherIndex,
@@ -9,12 +17,16 @@ import {
 } from '../../lib/timetable/engines'
 import {
   DAY_NAMES,
+  type DayOfWeek,
+  type SlotIndex,
   type TimetableEntry,
   type TimetableSnapshot,
 } from '../../lib/timetable/types'
 import { Stagger, StaggerItem } from '../motion/Reveal'
 
 const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1]
+const DAYS: DayOfWeek[] = [1, 2, 3, 4, 5]
+const SLOTS: SlotIndex[] = [1, 2]
 
 interface TeacherLocatorProps {
   snapshot: TimetableSnapshot
@@ -52,8 +64,17 @@ function entryIsActive(
 export function TeacherLocator({ snapshot, now }: TeacherLocatorProps) {
   const [query, setQuery] = useState('')
   const [selectedKey, setSelectedKey] = useState('')
+  const [dayFilter, setDayFilter] = useState<DayOfWeek | 'all'>('all')
+  const [slotFilter, setSlotFilter] = useState<SlotIndex | 'all'>('all')
   const index = useMemo(() => buildTeacherIndex(snapshot), [snapshot])
   const selected = index.find((teacher) => teacher.key === selectedKey) ?? null
+  const visibleEntries = selected
+    ? selected.entries.filter(
+        (entry) =>
+          (dayFilter === 'all' || entry.dayOfWeek === dayFilter) &&
+          (slotFilter === 'all' || entry.slotIndex === slotFilter),
+      )
+    : []
   const matches = useMemo(
     () => (query.trim() ? findTeachers(snapshot, query).slice(0, 8) : []),
     [snapshot, query],
@@ -67,15 +88,19 @@ export function TeacherLocator({ snapshot, now }: TeacherLocatorProps) {
   const choose = (key: string, displayName: string) => {
     setSelectedKey(key)
     setQuery(displayName)
+    setDayFilter('all')
+    setSlotFilter('all')
   }
 
   const clear = () => {
     setSelectedKey('')
     setQuery('')
+    setDayFilter('all')
+    setSlotFilter('all')
   }
 
   return (
-    <section className="glass-panel rounded-3xl p-5 sm:p-6">
+    <section className="glass-panel rounded-3xl p-4 sm:p-6">
       <div className="flex flex-wrap items-start justify-between gap-4">
         <div className="flex items-center gap-3">
           <span className="grid size-11 place-items-center rounded-2xl border border-violet-400/20 bg-violet-500/10">
@@ -118,6 +143,7 @@ export function TeacherLocator({ snapshot, now }: TeacherLocatorProps) {
             setSelectedKey('')
           }}
           placeholder="Search a teacher by name"
+          aria-label="Search a teacher by name"
           className="w-full rounded-xl border border-white/[0.08] bg-ink-900/70 py-2.5 pl-10 pr-3 text-sm text-white placeholder:text-slate-600 transition focus:border-violet-400/50 focus:outline-none"
         />
         <AnimatePresence initial={false}>
@@ -175,46 +201,98 @@ export function TeacherLocator({ snapshot, now }: TeacherLocatorProps) {
             ) : null}
           </div>
 
-          <Stagger className="mt-3 grid gap-2 sm:grid-cols-2 xl:grid-cols-3">
-            {selected.entries.map((entry) => {
-              const active = entryIsActive(snapshot, entry, now)
-              const sectionName = sectionNames.get(entry.sectionKey) ?? entry.sectionKey
-              return (
-                <StaggerItem
-                  key={`${entry.sectionKey}-${entry.dayOfWeek}-${entry.slotIndex}-${entry.cellIndex}`}
-                  whileHover={active ? undefined : { y: -2 }}
-                  className={
-                    active
-                      ? 'relative overflow-hidden rounded-2xl border border-accent-400/30 bg-accent-500/[0.08] p-3.5'
-                      : 'rounded-2xl border border-white/[0.06] bg-white/[0.02] p-3.5 transition-colors hover:border-white/[0.12] hover:bg-white/[0.035] hover:shadow-[0_16px_38px_-30px_rgba(15,23,42,0.7)]'
-                  }
-                >
-                  <div className="flex items-start justify-between gap-2">
-                    <p className="inline-flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-[0.1em] text-slate-500">
-                      <CalendarDays className="size-3" aria-hidden="true" />
-                      {DAY_NAMES[entry.dayOfWeek]} - Slot {entry.slotIndex}
+          <div className="mt-3 flex flex-wrap items-center gap-2 rounded-2xl border border-white/[0.06] bg-white/[0.02] p-2.5">
+            <span className="inline-flex items-center gap-1.5 px-1 text-[10px] font-semibold uppercase tracking-[0.14em] text-slate-500">
+              <SlidersHorizontal className="size-3.5" aria-hidden="true" />
+              Filter
+            </span>
+            <select
+              value={dayFilter}
+              onChange={(event) =>
+                setDayFilter(
+                  event.target.value === 'all' ? 'all' : (Number(event.target.value) as DayOfWeek),
+                )
+              }
+              aria-label="Filter by day"
+              className="rounded-xl border border-white/[0.08] bg-ink-900/80 px-3 py-2 text-xs font-medium text-slate-300 outline-none transition focus:border-violet-400/50"
+            >
+              <option value="all">All days</option>
+              {DAYS.map((value) => (
+                <option key={value} value={value}>
+                  {DAY_NAMES[value]}
+                </option>
+              ))}
+            </select>
+            <select
+              value={slotFilter}
+              onChange={(event) =>
+                setSlotFilter(
+                  event.target.value === 'all'
+                    ? 'all'
+                    : (Number(event.target.value) as SlotIndex),
+                )
+              }
+              aria-label="Filter by slot"
+              className="rounded-xl border border-white/[0.08] bg-ink-900/80 px-3 py-2 text-xs font-medium text-slate-300 outline-none transition focus:border-violet-400/50"
+            >
+              <option value="all">All slots</option>
+              {SLOTS.map((value) => (
+                <option key={value} value={value}>
+                  Slot {value}
+                </option>
+              ))}
+            </select>
+            <span className="ml-auto text-[10px] text-slate-500">
+              {visibleEntries.length} of {selected.entries.length} classes
+            </span>
+          </div>
+
+          {visibleEntries.length > 0 ? (
+            <Stagger className="mt-3 grid gap-2 sm:grid-cols-2 xl:grid-cols-3">
+              {visibleEntries.map((entry) => {
+                const active = entryIsActive(snapshot, entry, now)
+                const sectionName = sectionNames.get(entry.sectionKey) ?? entry.sectionKey
+                return (
+                  <StaggerItem
+                    key={`${entry.sectionKey}-${entry.dayOfWeek}-${entry.slotIndex}-${entry.cellIndex}`}
+                    whileHover={active ? undefined : { y: -2 }}
+                    className={
+                      active
+                        ? 'relative overflow-hidden rounded-2xl border border-accent-400/30 bg-accent-500/[0.08] p-3.5'
+                        : 'rounded-2xl border border-white/[0.06] bg-white/[0.02] p-3.5 transition-colors hover:border-white/[0.12] hover:bg-white/[0.035] hover:shadow-[0_16px_38px_-30px_rgba(15,23,42,0.7)]'
+                    }
+                  >
+                    <div className="flex items-start justify-between gap-2">
+                      <p className="inline-flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-[0.1em] text-slate-500">
+                        <CalendarDays className="size-3" aria-hidden="true" />
+                        {DAY_NAMES[entry.dayOfWeek]} - Slot {entry.slotIndex}
+                      </p>
+                      {active ? (
+                        <span className="rounded-full bg-accent-500/20 px-2 py-0.5 text-[9px] font-semibold text-accent-300">
+                          NOW
+                        </span>
+                      ) : null}
+                    </div>
+                    <p className="mt-2 text-xs font-semibold leading-5 text-slate-100">
+                      {entry.subjectCode ? `${entry.subjectCode} ` : ''}
+                      {entry.subjectName ?? entry.rawText}
                     </p>
-                    {active ? (
-                      <span className="rounded-full bg-accent-500/20 px-2 py-0.5 text-[9px] font-semibold text-accent-300">
-                        NOW
-                      </span>
+                    <p className="mt-1 text-[10px] text-slate-500">{sectionName}</p>
+                    {entry.roomNames.length > 0 ? (
+                      <p className="mt-2 inline-flex items-center gap-1.5 rounded-lg border border-white/[0.05] bg-white/[0.03] px-2 py-1 text-[10px] text-slate-300">
+                        <MapPin className="size-3 text-brand-400" aria-hidden="true" />
+                        {entry.roomNames.join(', ')}
+                      </p>
                     ) : null}
-                  </div>
-                  <p className="mt-2 text-xs font-semibold leading-5 text-slate-100">
-                    {entry.subjectCode ? `${entry.subjectCode} ` : ''}
-                    {entry.subjectName ?? entry.rawText}
-                  </p>
-                  <p className="mt-1 text-[10px] text-slate-500">{sectionName}</p>
-                  {entry.roomNames.length > 0 ? (
-                    <p className="mt-2 inline-flex items-center gap-1.5 rounded-lg border border-white/[0.05] bg-white/[0.03] px-2 py-1 text-[10px] text-slate-300">
-                      <MapPin className="size-3 text-brand-400" aria-hidden="true" />
-                      {entry.roomNames.join(', ')}
-                    </p>
-                  ) : null}
-                </StaggerItem>
-              )
-            })}
-          </Stagger>
+                  </StaggerItem>
+                )
+              })}
+            </Stagger>
+          ) : (
+            <div className="mt-3 rounded-2xl border border-dashed border-white/[0.08] px-4 py-8 text-center">
+              <p className="text-xs text-slate-500">No classes match this day and slot.</p>
+            </div>
+          )}
         </motion.div>
       ) : (
         <div className="mt-5 rounded-2xl border border-dashed border-white/[0.08] px-4 py-10 text-center">

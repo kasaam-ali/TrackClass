@@ -10,10 +10,13 @@ import {
   ShieldCheck,
 } from 'lucide-react'
 import { TimetableChat } from '../components/chat/TimetableChat'
-import { DashboardTabs, type DashboardTabId } from '../components/dashboard/DashboardTabs'
+import {
+  DashboardMobileNav,
+  DashboardTabs,
+  type DashboardTabId,
+} from '../components/dashboard/DashboardTabs'
 import { FeedbackPanel } from '../components/dashboard/FeedbackPanel'
 import { OverviewPanel } from '../components/dashboard/OverviewPanel'
-import { SectionRail } from '../components/dashboard/SectionRail'
 import { PageShell } from '../components/PageShell'
 import { ChangeBanner } from '../components/timetable/ChangeBanner'
 import { FreeRoomsPanel } from '../components/timetable/FreeRoomsPanel'
@@ -60,10 +63,10 @@ function defaultDaySlot(
 }
 
 const iconButton =
-  'inline-flex size-9 items-center justify-center rounded-xl border border-white/[0.08] bg-white/[0.03] text-slate-400 transition duration-200 hover:-translate-y-0.5 hover:border-brand-400/30 hover:bg-brand-400/10 hover:text-white hover:shadow-[0_12px_30px_-18px_rgba(56,189,248,0.8)]'
+  'size-9 items-center justify-center rounded-xl border border-white/[0.08] bg-white/[0.03] text-slate-400 transition duration-200 hover:-translate-y-0.5 hover:border-brand-400/30 hover:bg-brand-400/10 hover:text-white hover:shadow-[0_12px_30px_-18px_rgba(56,189,248,0.8)]'
 
 export function StudentDashboard() {
-  const { profile, setProfile } = useProfile()
+  const { profile } = useProfile()
   const { snapshot, meta, loading, error, updateAvailable, reload } = useTimetable()
   const [activeTab, setActiveTab] = useState<DashboardTabId>('overview')
   const now = useNow()
@@ -133,7 +136,7 @@ export function StudentDashboard() {
           rel="noreferrer"
           title="Download original Excel"
           aria-label="Download original Excel"
-          className={iconButton}
+          className={`${iconButton} hidden sm:inline-flex`}
         >
           <Download className="size-4" aria-hidden="true" />
         </a>
@@ -142,7 +145,7 @@ export function StudentDashboard() {
         to="/onboarding"
         title="Change section"
         aria-label="Change section"
-        className={iconButton}
+        className={`${iconButton} inline-flex`}
       >
         <ArrowLeftRight className="size-4" aria-hidden="true" />
       </Link>
@@ -150,7 +153,7 @@ export function StudentDashboard() {
         to="/admin/login"
         title="Admin login"
         aria-label="Admin login"
-        className={iconButton}
+        className={`${iconButton} hidden sm:inline-flex`}
       >
         <ShieldCheck className="size-4" aria-hidden="true" />
       </Link>
@@ -160,15 +163,7 @@ export function StudentDashboard() {
   return (
     <PageShell
       center={<DashboardTabs active={activeTab} onChange={setActiveTab} />}
-      below={
-        <SectionRail
-          sections={snapshot.sections}
-          activeKey={section.key}
-          onSelect={(next) => {
-            setProfile({ departmentCode: next.departmentCode, sectionKey: next.key })
-          }}
-        />
-      }
+      bottomNav={<DashboardMobileNav active={activeTab} onChange={setActiveTab} />}
       actions={actions}
     >
       {updateAvailable ? (
@@ -221,8 +216,7 @@ export function StudentDashboard() {
           {activeTab === 'timetable' ? (
             <Reveal>
               <section className="glass-panel rounded-3xl p-4 sm:p-6">
-                <div className="mb-5 flex flex-wrap items-center justify-between gap-3">
-                <div className="flex items-center gap-3">
+                <div className="mb-5 flex items-center gap-3">
                   <span className="grid size-10 place-items-center rounded-2xl border border-brand-400/20 bg-brand-400/10">
                     <CalendarDays className="size-5 text-brand-300" aria-hidden="true" />
                   </span>
@@ -235,11 +229,7 @@ export function StudentDashboard() {
                     </h2>
                   </div>
                 </div>
-                <span className="rounded-full border border-white/[0.06] bg-white/[0.03] px-3 py-1 text-[10px] text-slate-400">
-                  {snapshot.stats.freeCells} free cells across all sections
-                </span>
-              </div>
-              <WeeklyGrid snapshot={snapshot} sectionKey={section.key} />
+                <WeeklyGrid snapshot={snapshot} sectionKey={section.key} now={now} />
                 <div className="mt-4 flex flex-wrap items-center gap-4 border-t border-white/[0.06] pt-3 text-[10px] text-slate-500">
                   <span className="inline-flex items-center gap-1.5">
                     <span className="size-2 rounded-sm border border-dashed border-accent-400/50 bg-accent-500/10" />
