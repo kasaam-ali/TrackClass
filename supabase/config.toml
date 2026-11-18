@@ -1,0 +1,7 @@
+project_id = "bjipdpknhfugmncazeoa"
+
+[functions.timetable-chat]
+# The assistant is called by students who are not signed in, so the gateway must
+# accept the public publishable key. Abuse is handled inside the function with a
+# per-IP rate limit stored in chat_rate_limits.
+verify_jwt = false

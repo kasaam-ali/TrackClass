@@ -175,11 +175,18 @@ Copy `.env.example` to `.env` and fill in your Supabase project values.
 5. Deploy the chat Edge Function:
 
 ```bash
-supabase functions deploy timetable-chat
+supabase link --project-ref <project-ref>
+supabase functions deploy timetable-chat --no-verify-jwt
 supabase secrets set GROQ_API_KEY=... GEMINI_API_KEY=... RATE_LIMIT_SALT=...
 ```
 
-`RATE_LIMIT_SALT` is optional but recommended.
+`--no-verify-jwt` is required because students call the function with the public
+publishable key, which is not a JWT. `RATE_LIMIT_SALT` is optional but recommended.
+
+You can also deploy from the Supabase dashboard: open Edge Functions, create a
+function named `timetable-chat`, paste `supabase/functions/timetable-chat/index.ts`,
+deploy it, then add the same secrets under Project Settings, Edge Functions,
+Secrets. Turn off JWT verification for that function.
 
 6. Restart the app:
 

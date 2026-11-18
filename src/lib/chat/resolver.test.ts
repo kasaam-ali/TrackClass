@@ -107,6 +107,17 @@ describe('resolveChatQuery', () => {
     expect(reply?.cards?.[0].lines.length).toBe(2)
   })
 
+  it('answers schedule questions for another section', () => {
+    const reply = resolveChatQuery(
+      'BSCS Semester 4 Section A ki Monday classes konsi hain?',
+      context('BSCS-S2-A-B17', mondayMorning),
+    )
+
+    expect(reply?.text).toContain('Semester 4')
+    expect(reply?.cards?.length).toBeGreaterThan(0)
+    expect(reply?.cards?.[0].lines.join(' ')).toContain('Semester 4')
+  })
+
   it('summarizes section changes from metadata', () => {
     const meta: TimetableMeta = {
       versionNumber: 2,

@@ -281,7 +281,7 @@ serve(async (request) => {
       ),
     client
       .from('sections')
-      .select('section_key, display_name, department_code')
+      .select('section_key, display_name, department_id')
       .eq('is_active', true)
       .order('display_name'),
     client
@@ -291,12 +291,23 @@ serve(async (request) => {
   ])
 
   if (entriesResult.error || sectionsResult.error || periodsResult.error || departmentsResult.error) {
+    console.error('timetable-chat data load failed', {
+      entries: entriesResult.error?.message,
+      sections: sectionsResult.error?.message,
+      periods: periodsResult.error?.message,
+      departments: departmentsResult.error?.message,
+    })
     return json({ answer: 'Timetable data load nahin ho saka.', source: 'fallback' })
   }
 
   const departmentById = new Map(
     (departmentsResult.data ?? []).map((row) => [row.id, row.code]),
   )
+  const sections = (sectionsResult.data ?? []).map((row) => ({
+    section_key: row.section_key,
+    display_name: row.display_name,
+    department_code: departmentById.get(row.department_id) ?? '',
+  }))
   const periods: PeriodRow[] = (periodsResult.data ?? []).map((row) => ({
     department_code: departmentById.get(row.department_id) ?? '',
     day_of_week: row.day_of_week,
@@ -307,11 +318,7 @@ serve(async (request) => {
 
   const context = buildContext(
     sectionKey,
-    (sectionsResult.data ?? []) as Array<{
-      section_key: string
-      display_name: string
-      department_code: string
-    }>,
+    sections,
     periods,
     (entriesResult.data ?? []) as EntryRow[],
     meta.term,

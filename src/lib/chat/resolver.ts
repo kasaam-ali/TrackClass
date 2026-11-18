@@ -98,6 +98,28 @@ function sectionOf(ctx: ChatContext): Section | undefined {
   return ctx.snapshot.sections.find((section) => section.key === ctx.sectionKey)
 }
 
+function findRequestedSection(text: string, ctx: ChatContext): Section | null {
+  const own = sectionOf(ctx)
+  const scored = ctx.snapshot.sections
+    .filter((section) => hasWord(text, section.departmentCode.toLowerCase()))
+    .map((section) => {
+      let score = 1
+      if (new RegExp(`\\bsemester\\s*${section.semester}\\b`).test(text)) score += 3
+      if (new RegExp(`\\bsection\\s*${section.sectionName.toLowerCase()}\\b`).test(text)) score += 3
+      if (new RegExp(`\\bbatch\\s*${section.batchNumber}\\b`).test(text)) score += 2
+      return { section, score }
+    })
+    .sort((a, b) => b.score - a.score)
+
+  if (scored.length === 0) return null
+
+  const top = scored[0].score
+  const leaders = scored.filter((item) => item.score === top)
+  if (leaders.length === 1) return leaders[0].section
+
+  return leaders.find((item) => item.section.key === own?.key)?.section ?? null
+}
+
 function periodAt(
   snapshot: TimetableSnapshot,
   departmentCode: string,
@@ -606,9 +628,11 @@ function answerSubject(text: string, ctx: ChatContext): ChatReply | null {
   }
 }
 
-function answerSchedule(text: string, ctx: ChatContext): ChatReply {
-  const { snapshot, sectionKey } = ctx
-  const section = sectionOf(ctx)
+function answerSchedule(text: string, ctx: ChatContext, target?: Section): ChatReply {
+  const { snapshot } = ctx
+  const section = target ?? sectionOf(ctx)
+  const sectionKey = section?.key ?? ctx.sectionKey
+  const isOwn = !target || target.key === ctx.sectionKey
   const day = detectDay(text)
   const entries = snapshot.entries
     .filter((entry) => entry.sectionKey === sectionKey)
@@ -621,8 +645,8 @@ function answerSchedule(text: string, ctx: ChatContext): ChatReply {
   if (entries.length === 0) {
     return {
       text: day
-        ? `${DAY_NAMES[day]} ko aap ke section ki koi class nahin.`
-        : 'Aap ke section ki is week koi class nahin.',
+        ? `${section?.displayName ?? sectionKey} ki ${DAY_NAMES[day]} ko koi class nahin.`
+        : `${section?.displayName ?? sectionKey} ki is week koi class nahin.`,
     }
   }
 
@@ -637,8 +661,15 @@ function answerSchedule(text: string, ctx: ChatContext): ChatReply {
     else grouped.set(entry.dayOfWeek, [line])
   }
 
+  const label = section?.displayName ?? sectionKey
   return {
-    text: day ? `${DAY_NAMES[day]} ka timetable:` : 'Aap ke section ka weekly timetable:',
+    text: day
+      ? isOwn
+        ? `${DAY_NAMES[day]} ka timetable:`
+        : `${label} · ${DAY_NAMES[day]}:`
+      : isOwn
+        ? 'Aap ke section ka weekly timetable:'
+        : `${label} ka weekly timetable:`,
     cards: [...grouped.entries()].map(([value, lines]) => ({
       title: DAY_NAMES[value],
       lines,
@@ -712,7 +743,13 @@ export function resolveChatQuery(input: string, ctx: ChatContext): ChatReply | n
   const subjectAnswer = answerSubject(text, ctx)
   if (subjectAnswer) return subjectAnswer
 
-  if (isScheduleQuery(text)) return answerSchedule(text, ctx)
+  if (isScheduleQuery(text)) {
+    const requested = findRequestedSection(text, ctx)
+    if (requested && requested.key !== ctx.sectionKey) {
+      return answerSchedule(text, ctx, requested)
+    }
+    return answerSchedule(text, ctx)
+  }
 
   return null
 }
