@@ -179,6 +179,46 @@ describe('resolveChatQuery', () => {
     expect(reply?.text).toMatch(/\d+ class entries/)
   })
 
+  it('answers the busiest day', () => {
+    const reply = resolveChatQuery(
+      'What is the busiest day of the week?',
+      context('BSCS-S2-A-B17', mondayMorning),
+    )
+
+    expect(reply?.text).toContain('busy din')
+    expect(reply?.cards?.[0].title).toBe('Classes by day')
+  })
+
+  it('answers the most used room', () => {
+    const reply = resolveChatQuery(
+      'Which room is used the most?',
+      context('BSCS-S2-A-B17', mondayMorning),
+    )
+
+    expect(reply?.text).toContain('room')
+    expect(reply?.cards?.[0].title).toBe('Room usage')
+  })
+
+  it('answers which section has the most classes', () => {
+    const reply = resolveChatQuery(
+      'Which section has the most classes?',
+      context('BSCS-S2-A-B17', mondayMorning),
+    )
+
+    expect(reply?.text).toContain('Sab se zyada classes')
+    expect(reply?.cards?.[0].title).toBe('Classes by section')
+  })
+
+  it('answers which teacher has the most classes', () => {
+    const reply = resolveChatQuery(
+      'Which teacher has the most classes?',
+      context('BSCS-S2-A-B17', mondayMorning),
+    )
+
+    expect(reply?.text).toContain('Sab se zyada classes')
+    expect(reply?.cards?.[0].title).toBe('Classes by teacher')
+  })
+
   it('summarizes section changes from metadata', () => {
     const meta: TimetableMeta = {
       versionNumber: 2,

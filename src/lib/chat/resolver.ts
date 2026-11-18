@@ -814,6 +814,123 @@ function answerCount(text: string, ctx: ChatContext): ChatReply | null {
   return null
 }
 
+function isBusiestDayQuery(text: string): boolean {
+  return /\b(day|din)\b/.test(text) && /\b(busiest|busy|most|zyada|heaviest)\b/.test(text)
+}
+
+function answerBusiestDay(ctx: ChatContext): ChatReply {
+  const counts = new Map<DayOfWeek, number>()
+  for (const entry of ctx.snapshot.entries) {
+    counts.set(entry.dayOfWeek, (counts.get(entry.dayOfWeek) ?? 0) + 1)
+  }
+  const sorted = [...counts.entries()].sort((a, b) => b[1] - a[1])
+  if (sorted.length === 0) {
+    return { text: 'Day data available nahin hai.' }
+  }
+  const [day, count] = sorted[0]
+  return {
+    text: `Sab se busy din ${DAY_NAMES[day]} hai, ${count} class entries ke saath.`,
+    cards: [
+      {
+        title: 'Classes by day',
+        lines: sorted.map(
+          ([value, total]) => `${DAY_NAMES[value]}: ${total} class entries`,
+        ),
+      },
+    ],
+  }
+}
+
+function isMostUsedRoomQuery(text: string): boolean {
+  return /\b(rooms?|labs?)\b/.test(text) && /\b(most|busiest|used|use|zyada)\b/.test(text)
+}
+
+function answerMostUsedRoom(ctx: ChatContext): ChatReply {
+  const counts = new Map<string, number>()
+  for (const entry of ctx.snapshot.entries) {
+    for (const room of entry.roomNames) {
+      counts.set(room, (counts.get(room) ?? 0) + 1)
+    }
+  }
+  const sorted = [...counts.entries()].sort((a, b) => b[1] - a[1])
+  if (sorted.length === 0) {
+    return { text: 'Room data available nahin hai.' }
+  }
+  const [room, count] = sorted[0]
+  return {
+    text: `Sab se zyada use hone wala room ${room} hai, ${count} class entries mein.`,
+    cards: [
+      {
+        title: 'Room usage',
+        lines: sorted.slice(0, 8).map(([value, total]) => `${value}: ${total} classes`),
+      },
+    ],
+  }
+}
+
+function isMostClassesSectionQuery(text: string): boolean {
+  return (
+    /\b(sections?)\b/.test(text) &&
+    /\b(most|busiest|zyada|maximum)\b/.test(text) &&
+    /\b(classes|class|entries)\b/.test(text)
+  )
+}
+
+function answerMostClassesSection(ctx: ChatContext): ChatReply {
+  const counts = new Map<string, number>()
+  for (const entry of ctx.snapshot.entries) {
+    counts.set(entry.sectionKey, (counts.get(entry.sectionKey) ?? 0) + 1)
+  }
+  const sorted = [...counts.entries()].sort((a, b) => b[1] - a[1])
+  if (sorted.length === 0) {
+    return { text: 'Section data available nahin hai.' }
+  }
+  const [key, count] = sorted[0]
+  const section = ctx.snapshot.sections.find((item) => item.key === key)
+  return {
+    text: `Sab se zyada classes ${section?.displayName ?? key} ki hain, ${count} entries ke saath.`,
+    cards: [
+      {
+        title: 'Classes by section',
+        lines: sorted.slice(0, 8).map(([value, total]) => {
+          const item = ctx.snapshot.sections.find((entry) => entry.key === value)
+          return `${item?.displayName ?? value}: ${total}`
+        }),
+      },
+    ],
+  }
+}
+
+function isMostClassesTeacherQuery(text: string): boolean {
+  return (
+    /\b(teachers?|faculty|sir|madam)\b/.test(text) &&
+    /\b(most|busiest|zyada|maximum)\b/.test(text) &&
+    /\b(classes|class|entries)\b/.test(text)
+  )
+}
+
+function answerMostClassesTeacher(ctx: ChatContext): ChatReply {
+  const counts = new Map<string, number>()
+  for (const entry of ctx.snapshot.entries) {
+    if (!entry.teacherName) continue
+    counts.set(entry.teacherName, (counts.get(entry.teacherName) ?? 0) + 1)
+  }
+  const sorted = [...counts.entries()].sort((a, b) => b[1] - a[1])
+  if (sorted.length === 0) {
+    return { text: 'Teacher data available nahin hai.' }
+  }
+  const [name, count] = sorted[0]
+  return {
+    text: `Sab se zyada classes ${name} ki hain, ${count} entries ke saath.`,
+    cards: [
+      {
+        title: 'Classes by teacher',
+        lines: sorted.slice(0, 8).map(([value, total]) => `${value}: ${total}`),
+      },
+    ],
+  }
+}
+
 export function resolveChatQuery(input: string, ctx: ChatContext): ChatReply | null {
   const text = normalizeText(input)
   if (!text) return null
@@ -826,6 +943,7 @@ export function resolveChatQuery(input: string, ctx: ChatContext): ChatReply | n
 
   if (isChangeQuery(text)) return answerChanges(ctx)
   if (isFreeRoomQuery(text)) return answerFreeRooms(text, ctx)
+  if (isMostClassesTeacherQuery(text)) return answerMostClassesTeacher(ctx)
 
   const teacherAnswer = answerTeacher(text, ctx)
   if (teacherAnswer) return teacherAnswer
@@ -841,6 +959,10 @@ export function resolveChatQuery(input: string, ctx: ChatContext): ChatReply | n
     const countAnswer = answerCount(text, ctx)
     if (countAnswer) return countAnswer
   }
+
+  if (isBusiestDayQuery(text)) return answerBusiestDay(ctx)
+  if (isMostUsedRoomQuery(text)) return answerMostUsedRoom(ctx)
+  if (isMostClassesSectionQuery(text)) return answerMostClassesSection(ctx)
 
   if (detectDay(text) !== null) {
     const requested = findRequestedSection(text, ctx)
