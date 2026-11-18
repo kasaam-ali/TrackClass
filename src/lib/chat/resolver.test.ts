@@ -118,6 +118,26 @@ describe('resolveChatQuery', () => {
     expect(reply?.cards?.[0].lines.join(' ')).toContain('Semester 4')
   })
 
+  it('answers who teaches a subject', () => {
+    const reply = resolveChatQuery(
+      'Who teaches CSC-211?',
+      context('BSCS-S2-A-B17', mondayMorning),
+    )
+
+    expect(reply?.text).toContain('CSC-211')
+    expect(reply?.text).toContain('padhate hain')
+  })
+
+  it('answers where a subject is taught', () => {
+    const reply = resolveChatQuery(
+      'Where is CSC-211 taught?',
+      context('BSCS-S2-A-B17', mondayMorning),
+    )
+
+    expect(reply?.text).toContain('CSC-211')
+    expect(reply?.text).toContain('mein hoti hai')
+  })
+
   it('answers how many sections there are', () => {
     const reply = resolveChatQuery(
       'How many sections are there?',

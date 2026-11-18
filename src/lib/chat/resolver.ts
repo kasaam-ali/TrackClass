@@ -604,11 +604,13 @@ function answerSubject(text: string, ctx: ChatContext): ChatReply | null {
   const entries = matchingSubjectEntries(text, ctx)
   if (entries.length === 0) return null
 
-  const hasTimingIntent =
+  const asksTeacher = /\b(who|kaun|teacher|sir|madam|miss|prof|faculty)\b/.test(text)
+  const asksLocation = /\b(where|kahan|room|location|lab)\b/.test(text)
+  const asksTiming =
     /\b(time|timing|kis\s*waqt|kab|baje|slot|day|din)\b/.test(text) ||
     /\b[a-z]{2,4}-\d{3}\b/i.test(text)
 
-  if (!hasTimingIntent) return null
+  if (!asksTeacher && !asksLocation && !asksTiming) return null
 
   const cards: ChatCard[] = entries.slice(0, 8).map((entry) => {
     const section = ctx.snapshot.sections.find((item) => item.key === entry.sectionKey)
@@ -626,8 +628,32 @@ function answerSubject(text: string, ctx: ChatContext): ChatReply | null {
     }
   })
 
+  const subject = subjectLine(entries[0])
+
+  if (asksTeacher) {
+    const teachers = [
+      ...new Set(entries.map((entry) => entry.teacherName).filter(Boolean) as string[]),
+    ]
+    return {
+      text: teachers.length
+        ? `${subject} ${teachers.join(', ')} padhate hain.`
+        : `${subject} ka teacher record nahin mila.`,
+      cards,
+    }
+  }
+
+  if (asksLocation) {
+    const rooms = [...new Set(entries.flatMap((entry) => entry.roomNames))]
+    return {
+      text: rooms.length
+        ? `${subject} ${rooms.join(', ')} mein hoti hai.`
+        : `${subject} ka room record nahin mila.`,
+      cards,
+    }
+  }
+
   return {
-    text: `${subjectLine(entries[0])} ke ${entries.length} session mile.`,
+    text: `${subject} ke ${entries.length} session mile.`,
     cards,
   }
 }
