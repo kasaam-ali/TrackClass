@@ -126,6 +126,90 @@ function buildContext(
     else sectionsByDepartment[section.department_code] = [section.display_name]
   }
 
+  const dayCounts: Record<string, number> = {}
+  for (let day = 1; day <= 5; day += 1) {
+    dayCounts[DAY_NAMES[day]] = entries.filter(
+      (entry) => entry.day_of_week === day,
+    ).length
+  }
+  const rankedDays = Object.entries(dayCounts).sort((a, b) => b[1] - a[1])
+
+  const roomCounts: Record<string, number> = {}
+  for (const entry of entries) {
+    for (const room of entry.room_names ?? []) {
+      roomCounts[room] = (roomCounts[room] ?? 0) + 1
+    }
+  }
+  const rankedRooms = Object.entries(roomCounts).sort((a, b) => b[1] - a[1])
+
+  const sectionCounts: Record<string, number> = {}
+  for (const entry of entries) {
+    sectionCounts[entry.section_name] = (sectionCounts[entry.section_name] ?? 0) + 1
+  }
+  const rankedSections = Object.entries(sectionCounts).sort((a, b) => b[1] - a[1])
+
+  const teacherCounts: Record<string, number> = {}
+  for (const entry of entries) {
+    if (!entry.teacher_name) continue
+    teacherCounts[entry.teacher_name] = (teacherCounts[entry.teacher_name] ?? 0) + 1
+  }
+  const rankedTeachers = Object.entries(teacherCounts).sort((a, b) => b[1] - a[1])
+
+  const globalDerived = {
+    classesPerDay: dayCounts,
+    busiestDay: rankedDays[0] ?? null,
+    leastBusyDay: rankedDays[rankedDays.length - 1] ?? null,
+    mostUsedRoom: rankedRooms[0] ?? null,
+    sectionWithMostClasses: rankedSections[0] ?? null,
+    teacherWithMostClasses: rankedTeachers[0] ?? null,
+    roomsWithCounts: roomCounts,
+    sectionsWithCounts: sectionCounts,
+    teachersWithCounts: teacherCounts,
+    freeRoomsPerSlot: Object.fromEntries(
+      Object.entries(occupancy).map(([slot, value]) => [slot, value.freeRooms]),
+    ),
+  }
+
+  const sectionSlots = new Map<string, EntryRow[]>()
+  for (const entry of selectedEntries) {
+    const key = `${entry.day_of_week}:${entry.slot_index}`
+    const list = sectionSlots.get(key)
+    if (list) list.push(entry)
+    else sectionSlots.set(key, [entry])
+  }
+
+  const sectionTeachers = [...new Set(selectedEntries.map((entry) => entry.teacher_name))]
+    .filter((name): name is string => Boolean(name))
+
+  const teacherAbsenceImpact = sectionTeachers.map((teacher) => {
+    const affected = selectedEntries.filter((entry) => entry.teacher_name === teacher)
+    const freedSlots: string[] = []
+    const partialSlots: string[] = []
+    for (const [key, slotEntries] of sectionSlots) {
+      if (!slotEntries.some((entry) => entry.teacher_name === teacher)) continue
+      const [day, slot] = key.split(':')
+      const label = `${DAY_NAMES[Number(day)]} Slot ${slot}`
+      const fullyFreed = slotEntries.every((entry) => entry.teacher_name === teacher)
+      if (fullyFreed) freedSlots.push(label)
+      else partialSlots.push(label)
+    }
+    return {
+      teacher,
+      classesCancelled: affected.length,
+      slotsFullyFreed: freedSlots,
+      slotsStillHaveOtherClass: partialSlots,
+      totalFreeSlotsAfterAbsence: freeSlots.length + freedSlots.length,
+    }
+  })
+
+  const selectedSectionDerived = {
+    totalClasses: selectedEntries.length,
+    totalFreeSlotsNow: freeSlots.length,
+    freeSlotsNow: freeSlots,
+    teachersInSection: sectionTeachers,
+    teacherAbsenceImpact,
+  }
+
   return {
     term,
     version,
@@ -150,6 +234,8 @@ function buildContext(
       rooms: entry.room_names ?? [],
     })),
     selectedSectionFreeSlots: freeSlots,
+    selectedSectionDerived,
+    globalDerived,
     rooms: allRooms,
     occupancy,
     teachers: teacherSchedule,
@@ -163,8 +249,12 @@ function systemPrompt(): string {
     'Use only the provided context. If the context does not contain the answer, say that you do not have that information.',
     'Never invent rooms, teachers, sections, or timings.',
     'The context contains totals, sectionsByDepartment, sectionTimetable for every active section, occupancy for every day and slot, and teachers with their weekly schedule.',
+    'It also contains globalDerived with classesPerDay, busiestDay, leastBusyDay, mostUsedRoom, sectionWithMostClasses, teacherWithMostClasses, and per-day free rooms.',
+    'For the selected section it contains selectedSectionDerived with totalClasses, totalFreeSlotsNow, teachersInSection, and teacherAbsenceImpact (per teacher: classesCancelled, slotsFullyFreed, slotsStillHaveOtherClass, totalFreeSlotsAfterAbsence).',
+    'Use these derived summaries directly for analysis and hypothetical questions. For example, if the user asks what happens when a teacher is absent, read that teacher from teacherAbsenceImpact instead of recalculating.',
     'If the question asks for a count, answer with the number from totals or by counting the relevant list. Do not dump the timetable instead.',
     'If the question is about a section other than the selected one, use sectionTimetable for that section.',
+    'If the question is hypothetical or asks for a comparison, give the specific result from the context, not a general explanation.',
     'Do not list the full timetable unless the user explicitly asks for a timetable or schedule.',
     'Reply in the same language style as the user: Roman Urdu for Roman Urdu questions and English for English questions.',
     'Write plain text only. No markdown, no asterisks, no bold. Start list lines with a dash.',
