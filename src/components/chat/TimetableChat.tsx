@@ -159,7 +159,7 @@ export function TimetableChat({ snapshot, sectionKey }: TimetableChatProps) {
               <MessageSquare className="size-6 text-violet-300" aria-hidden="true" />
             </span>
             <h3 className="font-display mt-4 text-lg font-semibold text-white">
-              Poochh lein, kuch bhi timetable ka
+              Ask anything related to timetable
             </h3>
             <p className="mt-1.5 max-w-sm text-xs leading-5 text-slate-500">
               Free rooms, free slots, next class, ya kisi teacher ki location. Jawab offline

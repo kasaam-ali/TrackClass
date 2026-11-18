@@ -84,12 +84,40 @@ export function TeacherLocator({ snapshot, now }: TeacherLocatorProps) {
     () => new Map(snapshot.sections.map((section) => [section.key, section.displayName])),
     [snapshot.sections],
   )
+  const filterActive = dayFilter !== 'all' || slotFilter !== 'all'
+  const filteredEntries = useMemo(() => {
+    if (!filterActive) return []
+    return index
+      .flatMap((teacher) =>
+        teacher.entries
+          .filter(
+            (entry) =>
+              (dayFilter === 'all' || entry.dayOfWeek === dayFilter) &&
+              (slotFilter === 'all' || entry.slotIndex === slotFilter),
+          )
+          .map((entry) => ({ teacher, entry })),
+      )
+      .sort((a, b) => {
+        if (a.entry.dayOfWeek !== b.entry.dayOfWeek) {
+          return a.entry.dayOfWeek - b.entry.dayOfWeek
+        }
+        if (a.entry.slotIndex !== b.entry.slotIndex) {
+          return a.entry.slotIndex - b.entry.slotIndex
+        }
+        return a.teacher.displayName.localeCompare(b.teacher.displayName)
+      })
+  }, [index, dayFilter, slotFilter, filterActive])
 
   const choose = (key: string, displayName: string) => {
     setSelectedKey(key)
     setQuery(displayName)
     setDayFilter('all')
     setSlotFilter('all')
+  }
+
+  const selectFromFilter = (key: string, displayName: string) => {
+    setSelectedKey(key)
+    setQuery(displayName)
   }
 
   const clear = () => {
@@ -124,11 +152,7 @@ export function TeacherLocator({ snapshot, now }: TeacherLocatorProps) {
             <X className="size-3.5" aria-hidden="true" />
             Clear
           </button>
-        ) : (
-          <span className="rounded-full border border-white/[0.06] bg-white/[0.03] px-3 py-1 text-[10px] text-slate-500">
-            {index.length} teachers indexed
-          </span>
-        )}
+        ) : null}
       </div>
 
       <div className="relative mt-5 max-w-xl">
@@ -177,6 +201,124 @@ export function TeacherLocator({ snapshot, now }: TeacherLocatorProps) {
         </AnimatePresence>
       </div>
 
+      <div className="mt-3 flex flex-wrap items-center gap-2 rounded-2xl border border-white/[0.06] bg-white/[0.02] p-2.5">
+        <span className="inline-flex items-center gap-1.5 px-1 text-[10px] font-semibold uppercase tracking-[0.14em] text-slate-500">
+          <SlidersHorizontal className="size-3.5" aria-hidden="true" />
+          Filter
+        </span>
+        <select
+          value={dayFilter}
+          onChange={(event) =>
+            setDayFilter(
+              event.target.value === 'all' ? 'all' : (Number(event.target.value) as DayOfWeek),
+            )
+          }
+          aria-label="Filter by day"
+          className="rounded-xl border border-white/[0.08] bg-ink-900/80 px-3 py-2 text-xs font-medium text-slate-300 outline-none transition focus:border-violet-400/50"
+        >
+          <option value="all">All days</option>
+          {DAYS.map((value) => (
+            <option key={value} value={value}>
+              {DAY_NAMES[value]}
+            </option>
+          ))}
+        </select>
+        <select
+          value={slotFilter}
+          onChange={(event) =>
+            setSlotFilter(
+              event.target.value === 'all' ? 'all' : (Number(event.target.value) as SlotIndex),
+            )
+          }
+          aria-label="Filter by slot"
+          className="rounded-xl border border-white/[0.08] bg-ink-900/80 px-3 py-2 text-xs font-medium text-slate-300 outline-none transition focus:border-violet-400/50"
+        >
+          <option value="all">All slots</option>
+          {SLOTS.map((value) => (
+            <option key={value} value={value}>
+              Slot {value}
+            </option>
+          ))}
+        </select>
+        {filterActive ? (
+          <button
+            type="button"
+            onClick={() => {
+              setDayFilter('all')
+              setSlotFilter('all')
+            }}
+            className="text-[10px] font-medium text-slate-500 transition hover:text-white"
+          >
+            Reset
+          </button>
+        ) : null}
+        <span className="ml-auto text-[10px] text-slate-500">
+          {selected
+            ? `${visibleEntries.length} of ${selected.entries.length} classes`
+            : filterActive
+              ? `${filteredEntries.length} classes`
+              : `${index.length} teachers indexed`}
+        </span>
+      </div>
+
+      {!selected && filterActive ? (
+        <div className="mt-4">
+          {filteredEntries.length > 0 ? (
+            <Stagger className="grid gap-2 sm:grid-cols-2 xl:grid-cols-3">
+              {filteredEntries.map(({ teacher, entry }) => {
+                const active = entryIsActive(snapshot, entry, now)
+                const sectionName = sectionNames.get(entry.sectionKey) ?? entry.sectionKey
+                return (
+                  <StaggerItem
+                    key={`${teacher.key}-${entry.sectionKey}-${entry.dayOfWeek}-${entry.slotIndex}-${entry.cellIndex}`}
+                  >
+                    <button
+                      type="button"
+                      onClick={() => selectFromFilter(teacher.key, teacher.displayName)}
+                      className={`h-full w-full rounded-2xl border p-3.5 text-left transition-colors ${
+                        active
+                          ? 'border-accent-400/30 bg-accent-500/[0.08]'
+                          : 'border-white/[0.06] bg-white/[0.02] hover:border-white/[0.12] hover:bg-white/[0.035]'
+                      }`}
+                    >
+                      <div className="flex items-start justify-between gap-2">
+                        <p className="inline-flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-[0.1em] text-slate-500">
+                          <CalendarDays className="size-3" aria-hidden="true" />
+                          {DAY_NAMES[entry.dayOfWeek]} - Slot {entry.slotIndex}
+                        </p>
+                        {active ? (
+                          <span className="rounded-full bg-accent-500/20 px-2 py-0.5 text-[9px] font-semibold text-accent-300">
+                            NOW
+                          </span>
+                        ) : null}
+                      </div>
+                      <p className="mt-2 text-xs font-semibold leading-5 text-slate-100">
+                        {teacher.displayName}
+                      </p>
+                      <p className="mt-1 text-[11px] leading-5 text-slate-400">
+                        {entry.subjectCode ? `${entry.subjectCode} ` : ''}
+                        {entry.subjectName ?? entry.rawText}
+                      </p>
+                      <p className="mt-1 text-[10px] text-slate-500">{sectionName}</p>
+                      {entry.roomNames.length > 0 ? (
+                        <p className="mt-2 inline-flex items-center gap-1.5 rounded-lg border border-white/[0.05] bg-white/[0.03] px-2 py-1 text-[10px] text-slate-300">
+                          <MapPin className="size-3 text-brand-400" aria-hidden="true" />
+                          {entry.roomNames.join(', ')}
+                        </p>
+                      ) : null}
+                    </button>
+                  </StaggerItem>
+                )
+              })}
+            </Stagger>
+          ) : (
+            <div className="rounded-2xl border border-dashed border-white/[0.08] px-4 py-8 text-center">
+              <p className="text-xs text-slate-500">No class in this day and slot.</p>
+            </div>
+          )}
+        </div>
+      ) : null}
+
       {selected ? (
         <motion.div
           initial={{ opacity: 0, y: 6 }}
@@ -199,52 +341,6 @@ export function TeacherLocator({ snapshot, now }: TeacherLocatorProps) {
                 In class now
               </span>
             ) : null}
-          </div>
-
-          <div className="mt-3 flex flex-wrap items-center gap-2 rounded-2xl border border-white/[0.06] bg-white/[0.02] p-2.5">
-            <span className="inline-flex items-center gap-1.5 px-1 text-[10px] font-semibold uppercase tracking-[0.14em] text-slate-500">
-              <SlidersHorizontal className="size-3.5" aria-hidden="true" />
-              Filter
-            </span>
-            <select
-              value={dayFilter}
-              onChange={(event) =>
-                setDayFilter(
-                  event.target.value === 'all' ? 'all' : (Number(event.target.value) as DayOfWeek),
-                )
-              }
-              aria-label="Filter by day"
-              className="rounded-xl border border-white/[0.08] bg-ink-900/80 px-3 py-2 text-xs font-medium text-slate-300 outline-none transition focus:border-violet-400/50"
-            >
-              <option value="all">All days</option>
-              {DAYS.map((value) => (
-                <option key={value} value={value}>
-                  {DAY_NAMES[value]}
-                </option>
-              ))}
-            </select>
-            <select
-              value={slotFilter}
-              onChange={(event) =>
-                setSlotFilter(
-                  event.target.value === 'all'
-                    ? 'all'
-                    : (Number(event.target.value) as SlotIndex),
-                )
-              }
-              aria-label="Filter by slot"
-              className="rounded-xl border border-white/[0.08] bg-ink-900/80 px-3 py-2 text-xs font-medium text-slate-300 outline-none transition focus:border-violet-400/50"
-            >
-              <option value="all">All slots</option>
-              {SLOTS.map((value) => (
-                <option key={value} value={value}>
-                  Slot {value}
-                </option>
-              ))}
-            </select>
-            <span className="ml-auto text-[10px] text-slate-500">
-              {visibleEntries.length} of {selected.entries.length} classes
-            </span>
           </div>
 
           {visibleEntries.length > 0 ? (
@@ -294,14 +390,14 @@ export function TeacherLocator({ snapshot, now }: TeacherLocatorProps) {
             </div>
           )}
         </motion.div>
-      ) : (
+      ) : !filterActive ? (
         <div className="mt-5 rounded-2xl border border-dashed border-white/[0.08] px-4 py-10 text-center">
           <p className="text-sm font-medium text-slate-300">Find any teacher's weekly route</p>
           <p className="mt-1 text-xs text-slate-500">
             Search a name to see sections, slots, rooms, and who is in class right now.
           </p>
         </div>
-      )}
+      ) : null}
     </section>
   )
 }
