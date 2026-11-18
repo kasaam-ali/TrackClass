@@ -378,6 +378,7 @@ serve(async (request) => {
   }).format(new Date())
 
   const prompt = [
+    `User question: ${message}`,
     `Current PKT time: ${nowPkt}`,
     `Selected section: ${sectionKey || 'not selected'}`,
     'Timetable context JSON:',
