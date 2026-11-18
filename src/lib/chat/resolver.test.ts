@@ -229,6 +229,37 @@ describe('resolveChatQuery', () => {
     expect(reply?.cards?.[0].title).toBe('Classes by teacher')
   })
 
+  it('answers how many slots free if a named teacher is absent', () => {
+    const reply = resolveChatQuery(
+      'Agar Sir Abid Ali nahi aaye to kitne slots free honge?',
+      context('BSCS-S2-A-B17', mondayMorning),
+    )
+
+    expect(reply?.text).toContain('Abid Ali')
+    expect(reply?.text).toContain('total')
+    expect(reply?.cards?.[0].title).toBe('Affected classes')
+  })
+
+  it('infers this teacher for an absence question', () => {
+    const reply = resolveChatQuery(
+      'Agar ye teacher nahi aya to kitne slots free honge?',
+      context('BSCS-S2-A-B17', mondayMorning),
+    )
+
+    expect(reply?.text).toContain('Agar')
+    expect(reply?.text).toContain('total')
+  })
+
+  it('understands nhi aia spelling in an absence question', () => {
+    const reply = resolveChatQuery(
+      'agar ya wala teacher nhi aia to ab total kitna slots free ho gai hai',
+      context('BSCS-S2-A-B17', mondayMorning),
+    )
+
+    expect(reply?.text).toContain('total')
+    expect(reply?.cards?.[0].title).toBe('Affected classes')
+  })
+
   it('summarizes section changes from metadata', () => {
     const meta: TimetableMeta = {
       versionNumber: 2,

@@ -930,6 +930,119 @@ function answerMostClassesTeacher(ctx: ChatContext): ChatReply {
   }
 }
 
+function isAbsenceQuery(text: string): boolean {
+  const mentionsTeacher = /\b(teachers?|sir|madam|miss|prof|professor|faculty)\b/.test(text)
+  const mentionsAbsence =
+    /\b(absent|absence|(nahi|nhi|nai|na)\s+(aaya|aya|aaye|aye|aia|aiya|ai|a)|chutti|chhutti|leave|off|not\s+coming|won'?t\s+come)\b/.test(
+      text,
+    )
+  const hypothetical = /\b(agar|if|suppose|what\s+if)\b/.test(text)
+  return mentionsAbsence && (mentionsTeacher || hypothetical)
+}
+
+function inferTeacherForAbsence(ctx: ChatContext): TeacherIndexEntry | null {
+  const state = getScheduleState(ctx.snapshot, ctx.sectionKey, ctx.now)
+  const entry =
+    state.currentEntries[0] ??
+    nextSectionClass(ctx.snapshot, ctx.sectionKey, ctx.now)?.entries[0] ??
+    state.nextEntries[0]
+
+  if (!entry?.teacherName) return null
+
+  return (
+    buildTeacherIndex(ctx.snapshot).find(
+      (teacher) => teacher.displayName === entry.teacherName,
+    ) ?? null
+  )
+}
+
+function answerTeacherAbsence(text: string, ctx: ChatContext): ChatReply {
+  const { snapshot, sectionKey } = ctx
+  const section = sectionOf(ctx)
+  const teacher = findTeacherInMessage(text, snapshot) ?? inferTeacherForAbsence(ctx)
+
+  if (!teacher) {
+    return {
+      text: 'Teacher ka naam likhein, jaise "Agar Sir Abid Ali nahi aaye to kitne slots free honge?".',
+    }
+  }
+
+  const affected = snapshot.entries.filter(
+    (entry) => entry.sectionKey === sectionKey && entry.teacherName === teacher.displayName,
+  )
+
+  if (affected.length === 0) {
+    return {
+      text: `${teacher.displayName} ki aap ke section mein koi class nahi, is liye koi slot free nahi hoga.`,
+    }
+  }
+
+  const slots = new Map<
+    string,
+    { day: DayOfWeek; slot: SlotIndex; entries: TimetableEntry[] }
+  >()
+  for (const entry of affected) {
+    const key = `${entry.dayOfWeek}:${entry.slotIndex}`
+    const existing = slots.get(key)
+    if (existing) existing.entries.push(entry)
+    else slots.set(key, { day: entry.dayOfWeek, slot: entry.slotIndex, entries: [entry] })
+  }
+
+  const sortedSlots = [...slots.values()].sort(
+    (a, b) => a.day - b.day || a.slot - b.slot,
+  )
+
+  const fullyFree = sortedSlots.filter(({ day, slot }) => {
+    const slotEntries = snapshot.entries.filter(
+      (entry) =>
+        entry.sectionKey === sectionKey &&
+        entry.dayOfWeek === day &&
+        entry.slotIndex === slot,
+    )
+    return slotEntries.every((entry) => entry.teacherName === teacher.displayName)
+  })
+
+  const existingFree = snapshot.freeSlots.filter(
+    (slot) => slot.sectionKey === sectionKey,
+  )
+  const newFreeSlots = fullyFree.filter(
+    ({ day, slot }) =>
+      !existingFree.some(
+        (free) => free.dayOfWeek === day && free.slotIndex === slot,
+      ),
+  )
+  const totalFree = existingFree.length + newFreeSlots.length
+
+  const lines = sortedSlots.map(({ day, slot, entries }) => {
+    const period = section
+      ? periodAt(snapshot, section.departmentCode, day, slot)
+      : undefined
+    return `${DAY_NAMES[day]} Slot ${slot}${periodLabel(period)}: ${entries
+      .map((entry) => subjectLine(entry))
+      .join(', ')}`
+  })
+
+  const freedText =
+    newFreeSlots.length > 0
+      ? `In mein se ${newFreeSlots.length} slots poore free ho jayenge.`
+      : 'In slots mein doosri class bhi hai, is liye slot poora free nahi hoga.'
+
+  const freeLines = [
+    ...existingFree
+      .sort((a, b) => a.dayOfWeek - b.dayOfWeek || a.slotIndex - b.slotIndex)
+      .map((slot) => `${DAY_NAMES[slot.dayOfWeek]} Slot ${slot.slotIndex}`),
+    ...newFreeSlots.map(({ day, slot }) => `${DAY_NAMES[day]} Slot ${slot} (new)`),
+  ]
+
+  return {
+    text: `Agar ${teacher.displayName} nahi aaye, to aap ke section ki ${affected.length} classes cancel hongi.\n${freedText}\nIs ke baad aap ke section ke total ${totalFree} slots free honge.`,
+    cards: [
+      { title: 'Affected classes', lines },
+      { title: 'Free slots after absence', lines: freeLines },
+    ],
+  }
+}
+
 export function resolveChatQuery(input: string, ctx: ChatContext): ChatReply | null {
   const text = normalizeText(input)
   if (!text) return null
@@ -940,6 +1053,7 @@ export function resolveChatQuery(input: string, ctx: ChatContext): ChatReply | n
     }
   }
 
+  if (isAbsenceQuery(text)) return answerTeacherAbsence(text, ctx)
   if (isChangeQuery(text)) return answerChanges(ctx)
   if (isFreeRoomQuery(text)) return answerFreeRooms(text, ctx)
   if (isMostClassesTeacherQuery(text)) return answerMostClassesTeacher(ctx)
