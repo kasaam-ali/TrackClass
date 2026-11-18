@@ -28,6 +28,17 @@ function createId(): string {
   return `${Date.now()}-${Math.random().toString(16).slice(2)}`
 }
 
+function cleanAssistantText(text: string): string {
+  return text
+    .replace(/\*\*(.+?)\*\*/g, '$1')
+    .replace(/__(.+?)__/g, '$1')
+    .replace(/`([^`]+)`/g, '$1')
+    .replace(/^\s*[*•]\s+/gm, '- ')
+    .replace(/\*\s+/g, '')
+    .replace(/[ \t]+\n/g, '\n')
+    .trim()
+}
+
 function toMessage(reply: ChatReply, source: ChatMessage['source']): ChatMessage {
   return {
     id: createId(),
@@ -187,7 +198,11 @@ export function TimetableChat({ snapshot, sectionKey }: TimetableChatProps) {
               >
                 <p className="whitespace-pre-line leading-6">
                   <StreamingText
-                    text={message.text}
+                    text={
+                      message.role === 'assistant'
+                        ? cleanAssistantText(message.text)
+                        : message.text
+                    }
                     animate={message.role === 'assistant' && message.id === streamingId}
                     onDone={() => {
                       setStreamingId((current) =>
