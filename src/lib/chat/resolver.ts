@@ -904,8 +904,7 @@ function answerMostClassesSection(ctx: ChatContext): ChatReply {
 function isMostClassesTeacherQuery(text: string): boolean {
   return (
     /\b(teachers?|faculty|sir|madam)\b/.test(text) &&
-    /\b(most|busiest|zyada|maximum)\b/.test(text) &&
-    /\b(classes|class|entries)\b/.test(text)
+    /\b(most|busiest|zyada|maximum)\b/.test(text)
   )
 }
 

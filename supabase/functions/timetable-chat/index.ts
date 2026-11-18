@@ -192,7 +192,7 @@ async function callGroq(system: string, prompt: string): Promise<string | null> 
           { role: 'user', content: prompt },
         ],
       }),
-      signal: AbortSignal.timeout(6000),
+      signal: AbortSignal.timeout(8000),
     })
 
     if (!response.ok) return null
@@ -219,7 +219,7 @@ async function callGemini(system: string, prompt: string): Promise<string | null
           contents: [{ role: 'user', parts: [{ text: prompt }] }],
           generationConfig: { temperature: 0.2, maxOutputTokens: 350 },
         }),
-        signal: AbortSignal.timeout(8000),
+        signal: AbortSignal.timeout(15000),
       },
     )
 

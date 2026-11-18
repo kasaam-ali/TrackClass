@@ -219,6 +219,16 @@ describe('resolveChatQuery', () => {
     expect(reply?.cards?.[0].title).toBe('Classes by teacher')
   })
 
+  it('answers who the busiest teacher is', () => {
+    const reply = resolveChatQuery(
+      'Who is the busiest teacher?',
+      context('BSCS-S2-A-B17', mondayMorning),
+    )
+
+    expect(reply?.text).toContain('Sab se zyada classes')
+    expect(reply?.cards?.[0].title).toBe('Classes by teacher')
+  })
+
   it('summarizes section changes from metadata', () => {
     const meta: TimetableMeta = {
       versionNumber: 2,
