@@ -118,6 +118,16 @@ describe('resolveChatQuery', () => {
     expect(reply?.cards?.[0].lines.join(' ')).toContain('Semester 4')
   })
 
+  it('answers a day only schedule question', () => {
+    const reply = resolveChatQuery(
+      'What is on Wednesday?',
+      context('BSCS-S2-A-B17', mondayMorning),
+    )
+
+    expect(reply?.text).toContain('Wednesday')
+    expect(reply?.cards?.length).toBeGreaterThan(0)
+  })
+
   it('answers who teaches a subject', () => {
     const reply = resolveChatQuery(
       'Who teaches CSC-211?',

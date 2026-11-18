@@ -842,6 +842,11 @@ export function resolveChatQuery(input: string, ctx: ChatContext): ChatReply | n
     if (countAnswer) return countAnswer
   }
 
+  if (detectDay(text) !== null) {
+    const requested = findRequestedSection(text, ctx)
+    return answerSchedule(text, ctx, requested ?? undefined)
+  }
+
   if (isScheduleQuery(text)) {
     const requested = findRequestedSection(text, ctx)
     if (requested && requested.key !== ctx.sectionKey) {
