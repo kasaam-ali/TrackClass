@@ -118,6 +118,37 @@ describe('resolveChatQuery', () => {
     expect(reply?.cards?.[0].lines.join(' ')).toContain('Semester 4')
   })
 
+  it('answers how many sections there are', () => {
+    const reply = resolveChatQuery(
+      'How many sections are there?',
+      context('BSCS-S2-A-B17', mondayMorning),
+    )
+
+    expect(reply?.text).toContain(String(snapshot.stats.sections))
+    expect(reply?.text).toContain('sections')
+    expect(reply?.cards?.[0].title).toBe('Sections by department')
+  })
+
+  it('answers how many teachers there are', () => {
+    const reply = resolveChatQuery(
+      'how many teachers are there',
+      context('BSCS-S2-A-B17', mondayMorning),
+    )
+
+    expect(reply?.text).toMatch(/\d+ teachers/)
+    expect(reply?.cards?.[0].title).toBe('Teachers')
+  })
+
+  it('answers how many classes there are on a day', () => {
+    const reply = resolveChatQuery(
+      'How many classes are there on Monday?',
+      context('BSCS-S2-A-B17', mondayMorning),
+    )
+
+    expect(reply?.text).toContain('Monday')
+    expect(reply?.text).toMatch(/\d+ class entries/)
+  })
+
   it('summarizes section changes from metadata', () => {
     const meta: TimetableMeta = {
       versionNumber: 2,

@@ -231,6 +231,10 @@ function isScheduleQuery(text: string): boolean {
   return /\b(timetable|schedule|routine|classes|class|lectures|periods)\b/.test(text)
 }
 
+function isCountQuery(text: string): boolean {
+  return /\b(how\s+many|kitne|kitni|kitna|total|count|number\s+of)\b/.test(text)
+}
+
 function findTeacherInMessage(text: string, snapshot: TimetableSnapshot): TeacherIndexEntry | null {
   const index = buildTeacherIndex(snapshot)
   let best: TeacherIndexEntry | null = null
@@ -720,6 +724,70 @@ function answerChanges(ctx: ChatContext): ChatReply {
   return { text: `Is section mein ${total} change hue hain.`, cards }
 }
 
+function answerCount(text: string, ctx: ChatContext): ChatReply | null {
+  const { snapshot } = ctx
+  const teachers = new Set(
+    snapshot.entries
+      .map((entry) => entry.teacherName)
+      .filter((name): name is string => Boolean(name)),
+  )
+  const rooms = new Set(snapshot.entries.flatMap((entry) => entry.roomNames))
+
+  if (/\b(sections?)\b/.test(text)) {
+    const byDepartment = new Map<string, number>()
+    for (const section of snapshot.sections) {
+      byDepartment.set(
+        section.departmentCode,
+        (byDepartment.get(section.departmentCode) ?? 0) + 1,
+      )
+    }
+    const lines = [...byDepartment.entries()]
+      .sort((a, b) => a[0].localeCompare(b[0]))
+      .map(([code, count]) => `${code}: ${count} sections`)
+
+    return {
+      text: `Is timetable mein total ${snapshot.sections.length} active sections hain.\n${lines.join('\n')}`,
+      cards: [{ title: 'Sections by department', lines }],
+    }
+  }
+
+  if (/\b(departments?)\b/.test(text)) {
+    return {
+      text: `Is timetable mein ${snapshot.departments.length} departments hain: ${snapshot.departments.map((department) => department.code).join(', ')}.`,
+    }
+  }
+
+  if (/\b(teachers?|faculty)\b/.test(text)) {
+    const list = [...teachers].sort()
+    return {
+      text: `Is timetable mein ${list.length} teachers hain.`,
+      cards: [{ title: 'Teachers', lines: list }],
+    }
+  }
+
+  if (/\b(rooms?|labs?)\b/.test(text)) {
+    const list = [...rooms].sort()
+    return {
+      text: `Is timetable mein ${list.length} rooms use ho rahe hain.`,
+      cards: [{ title: 'Rooms', lines: list }],
+    }
+  }
+
+  if (/\b(classes|class|lectures?|periods?|entries)\b/.test(text)) {
+    const day = detectDay(text)
+    const count = day
+      ? snapshot.entries.filter((entry) => entry.dayOfWeek === day).length
+      : snapshot.entries.length
+    return {
+      text: day
+        ? `${DAY_NAMES[day]} ko total ${count} class entries hain.`
+        : `Is timetable mein ${snapshot.entries.length} class entries hain, ${snapshot.stats.occupiedCells} occupied slots mein.`,
+    }
+  }
+
+  return null
+}
+
 export function resolveChatQuery(input: string, ctx: ChatContext): ChatReply | null {
   const text = normalizeText(input)
   if (!text) return null
@@ -742,6 +810,11 @@ export function resolveChatQuery(input: string, ctx: ChatContext): ChatReply | n
 
   const subjectAnswer = answerSubject(text, ctx)
   if (subjectAnswer) return subjectAnswer
+
+  if (isCountQuery(text)) {
+    const countAnswer = answerCount(text, ctx)
+    if (countAnswer) return countAnswer
+  }
 
   if (isScheduleQuery(text)) {
     const requested = findRequestedSection(text, ctx)
