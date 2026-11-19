@@ -440,13 +440,17 @@ function answerFreeRooms(text: string, ctx: ChatContext): ChatReply {
           lines: [rooms.length > 0 ? `Free rooms: ${rooms.join(', ')}` : 'No free rooms'],
         })
         const pick = preferredRoom(rooms)
-        if (pick) picks.push(`${label} ke liye ${pick}`)
+        if (pick) picks.push(`${label}: ${pick}`)
       }
 
       const names = priorTeachers.map((teacher) => teacher.displayName).join(' aur ')
       return {
         text: `${names} ki absence ke baad ye slots free hain:\n${lines.join('\n')}${
-          picks.length > 0 ? `\nAap ${picks.join(' ya ')} ja sakte hain.` : ''
+          picks.length > 0
+            ? `\nAap in rooms mein ja sakte hain:\n${picks
+                .map((pick) => `- ${pick}`)
+                .join('\n')}`
+            : ''
         }`,
         cards,
       }
@@ -1159,7 +1163,7 @@ function answerTeacherAbsence(text: string, ctx: ChatContext): ChatReply {
         : `${label}: koi room free nahin`,
     )
     const pick = preferredRoom(rooms)
-    if (pick) picks.push(`${label} ke liye ${pick}`)
+    if (pick) picks.push(`${label}: ${pick}`)
   }
 
   const freedText =
@@ -1176,7 +1180,7 @@ function answerTeacherAbsence(text: string, ctx: ChatContext): ChatReply {
 
   const roomText =
     picks.length > 0
-      ? `\nAap ${picks.join(' ya ')} ja sakte hain.`
+      ? `\nAap in rooms mein ja sakte hain:\n${picks.map((pick) => `- ${pick}`).join('\n')}`
       : freed.length > 0
         ? '\nUs slot mein koi room free nahin hai.'
         : ''
