@@ -3,10 +3,12 @@ import {
   TIME_ZONE,
   buildTeacherIndex,
   findFreeRooms,
+  getAllRooms,
   getScheduleState,
   type SnapshotDiff,
   type TeacherIndexEntry,
 } from '../timetable/engines'
+import { normalizeRoomName } from '../timetable/normalize'
 import {
   DAY_NAMES,
   type DayOfWeek,
@@ -258,6 +260,68 @@ function findTeacherInMessage(text: string, snapshot: TimetableSnapshot): Teache
   return best
 }
 
+function findTeachersInMessage(
+  text: string,
+  snapshot: TimetableSnapshot,
+  allowMultiple: boolean,
+): TeacherIndexEntry[] {
+  const index = buildTeacherIndex(snapshot)
+  const scored: Array<{ teacher: TeacherIndexEntry; score: number; full: boolean }> = []
+
+  for (const teacher of index) {
+    const tokens = teacher.key
+      .toLowerCase()
+      .split(/\s+/)
+      .filter((token) => token.length >= 3 && !TEACHER_STOP_WORDS.has(token))
+    if (tokens.length === 0) continue
+
+    const matches = tokens.filter((token) => hasWord(text, token)).length
+    const score = matches / tokens.length
+    if (matches === 0 || score < 0.5) continue
+
+    const full = text.includes(teacher.key.toLowerCase())
+    scored.push({ teacher, score, full })
+  }
+
+  if (scored.length === 0) return []
+  scored.sort((a, b) => Number(b.full) - Number(a.full) || b.score - a.score)
+
+  if (!allowMultiple) return [scored[0].teacher]
+
+  const fullMatches = scored.filter((item) => item.full)
+  if (fullMatches.length > 0) return fullMatches.map((item) => item.teacher)
+  return scored.map((item) => item.teacher)
+}
+
+function mentionsMultipleTeachers(text: string): boolean {
+  return (
+    /,|\band\b|\baur\b|\bdono\b|\bboth\b|\b2\s+teachers?\b|\bdo\s+teachers?\b/.test(text) ||
+    /\bdo\s+(?:sir|madam|miss|prof)/.test(text)
+  )
+}
+
+function freeRoomsAfterRemoval(
+  snapshot: TimetableSnapshot,
+  day: DayOfWeek,
+  slot: SlotIndex,
+  removed: TimetableEntry[],
+): string[] {
+  const remaining = snapshot.entries.filter(
+    (entry) =>
+      entry.dayOfWeek === day && entry.slotIndex === slot && !removed.includes(entry),
+  )
+  const occupied = new Set(
+    remaining.flatMap((entry) => entry.roomNames.map((room) => normalizeRoomName(room))),
+  )
+  return getAllRooms(snapshot).filter((room) => !occupied.has(normalizeRoomName(room)))
+}
+
+function preferredRoom(rooms: string[]): string | null {
+  if (rooms.length === 0) return null
+  const classroom = rooms.find((room) => /^a\d+/i.test(room.trim()))
+  return classroom ?? rooms[0]
+}
+
 function entryIsActive(snapshot: TimetableSnapshot, entry: TimetableEntry, now: Date): boolean {
   const clock = pktClock(now)
   if (clock.day !== entry.dayOfWeek) return false
@@ -353,6 +417,42 @@ function answerFreeRooms(text: string, ctx: ChatContext): ChatReply {
   const departmentCode = section?.departmentCode ?? snapshot.departments[0]?.code ?? ''
   const explicitDay = detectDay(text)
   const explicitSlot = detectSlot(text)
+
+  if (explicitDay === null && explicitSlot === null) {
+    const priorTeachers = absenceTeachersFromHistory(ctx)
+    const freed = slotsForTeachers(ctx, priorTeachers).filter((item) => item.fullyFree)
+
+    if (freed.length > 0) {
+      const lines: string[] = []
+      const cards: ChatCard[] = []
+      const picks: string[] = []
+
+      for (const { day, slot, removed } of freed) {
+        const rooms = freeRoomsAfterRemoval(snapshot, day, slot, removed)
+        const label = `${DAY_NAMES[day]} Slot ${slot}`
+        lines.push(
+          rooms.length > 0
+            ? `${label}: ${rooms.join(', ')} free hain.`
+            : `${label}: koi room free nahin.`,
+        )
+        cards.push({
+          title: label,
+          lines: [rooms.length > 0 ? `Free rooms: ${rooms.join(', ')}` : 'No free rooms'],
+        })
+        const pick = preferredRoom(rooms)
+        if (pick) picks.push(`${label} ke liye ${pick}`)
+      }
+
+      const names = priorTeachers.map((teacher) => teacher.displayName).join(' aur ')
+      return {
+        text: `${names} ki absence ke baad ye slots free hain:\n${lines.join('\n')}${
+          picks.length > 0 ? `\nAap ${picks.join(' ya ')} ja sakte hain.` : ''
+        }`,
+        cards,
+      }
+    }
+  }
+
   const clock = pktClock(now)
   const day = explicitDay ?? clock.day ?? 1
   const slots: SlotIndex[] = explicitSlot
@@ -956,88 +1056,138 @@ function inferTeacherForAbsence(ctx: ChatContext): TeacherIndexEntry | null {
   )
 }
 
+interface FreedSlot {
+  day: DayOfWeek
+  slot: SlotIndex
+  removed: TimetableEntry[]
+  fullyFree: boolean
+}
+
+function slotsForTeachers(ctx: ChatContext, teachers: TeacherIndexEntry[]): FreedSlot[] {
+  const { snapshot, sectionKey } = ctx
+  const names = new Set(teachers.map((teacher) => teacher.displayName))
+  const sectionSlots = new Map<string, TimetableEntry[]>()
+  for (const entry of snapshot.entries) {
+    if (entry.sectionKey !== sectionKey) continue
+    const key = `${entry.dayOfWeek}:${entry.slotIndex}`
+    const list = sectionSlots.get(key)
+    if (list) list.push(entry)
+    else sectionSlots.set(key, [entry])
+  }
+
+  const result: FreedSlot[] = []
+  for (const [key, slotEntries] of sectionSlots) {
+    const removed = slotEntries.filter(
+      (entry) => entry.teacherName !== null && names.has(entry.teacherName),
+    )
+    if (removed.length === 0) continue
+    const [day, slot] = key.split(':').map(Number)
+    result.push({
+      day: day as DayOfWeek,
+      slot: slot as SlotIndex,
+      removed,
+      fullyFree: removed.length === slotEntries.length,
+    })
+  }
+
+  return result.sort((a, b) => a.day - b.day || a.slot - b.slot)
+}
+
+function absenceTeachersFromHistory(ctx: ChatContext): TeacherIndexEntry[] {
+  const history = ctx.history ?? []
+  for (let index = history.length - 1; index >= 0; index -= 1) {
+    const message = history[index]
+    if (message.role !== 'user') continue
+    const text = normalizeText(message.text)
+    if (!isAbsenceQuery(text)) continue
+    const teachers = findTeachersInMessage(text, ctx.snapshot, true)
+    if (teachers.length > 0) return teachers
+  }
+  return []
+}
+
 function answerTeacherAbsence(text: string, ctx: ChatContext): ChatReply {
   const { snapshot, sectionKey } = ctx
   const section = sectionOf(ctx)
-  const teacher = findTeacherInMessage(text, snapshot) ?? inferTeacherForAbsence(ctx)
+  const found = findTeachersInMessage(text, snapshot, mentionsMultipleTeachers(text))
+  const teachers =
+    found.length > 0
+      ? found
+      : [inferTeacherForAbsence(ctx)].filter(
+          (teacher): teacher is TeacherIndexEntry => teacher !== null,
+        )
 
-  if (!teacher) {
+  if (teachers.length === 0) {
     return {
       text: 'Teacher ka naam likhein, jaise "Agar Sir Abid Ali nahi aaye to kitne slots free honge?".',
     }
   }
 
-  const affected = snapshot.entries.filter(
-    (entry) => entry.sectionKey === sectionKey && entry.teacherName === teacher.displayName,
-  )
+  const names = teachers.map((teacher) => teacher.displayName)
+  const slots = slotsForTeachers(ctx, teachers)
 
-  if (affected.length === 0) {
+  if (slots.length === 0) {
     return {
-      text: `${teacher.displayName} ki aap ke section mein koi class nahi, is liye koi slot free nahi hoga.`,
+      text: `${names.join(' aur ')} ki aap ke section mein koi class nahi, is liye koi slot free nahi hoga.`,
     }
   }
 
-  const slots = new Map<
-    string,
-    { day: DayOfWeek; slot: SlotIndex; entries: TimetableEntry[] }
-  >()
-  for (const entry of affected) {
-    const key = `${entry.dayOfWeek}:${entry.slotIndex}`
-    const existing = slots.get(key)
-    if (existing) existing.entries.push(entry)
-    else slots.set(key, { day: entry.dayOfWeek, slot: entry.slotIndex, entries: [entry] })
-  }
-
-  const sortedSlots = [...slots.values()].sort(
-    (a, b) => a.day - b.day || a.slot - b.slot,
-  )
-
-  const fullyFree = sortedSlots.filter(({ day, slot }) => {
-    const slotEntries = snapshot.entries.filter(
-      (entry) =>
-        entry.sectionKey === sectionKey &&
-        entry.dayOfWeek === day &&
-        entry.slotIndex === slot,
-    )
-    return slotEntries.every((entry) => entry.teacherName === teacher.displayName)
-  })
-
+  const cancelled = slots.reduce((total, item) => total + item.removed.length, 0)
+  const freed = slots.filter((item) => item.fullyFree)
   const existingFree = snapshot.freeSlots.filter(
     (slot) => slot.sectionKey === sectionKey,
   )
-  const newFreeSlots = fullyFree.filter(
-    ({ day, slot }) =>
-      !existingFree.some(
-        (free) => free.dayOfWeek === day && free.slotIndex === slot,
-      ),
-  )
-  const totalFree = existingFree.length + newFreeSlots.length
+  const totalFree = existingFree.length + freed.length
 
-  const lines = sortedSlots.map(({ day, slot, entries }) => {
+  const lines = slots.map(({ day, slot, removed }) => {
     const period = section
       ? periodAt(snapshot, section.departmentCode, day, slot)
       : undefined
-    return `${DAY_NAMES[day]} Slot ${slot}${periodLabel(period)}: ${entries
+    return `${DAY_NAMES[day]} Slot ${slot}${periodLabel(period)}: ${removed
       .map((entry) => subjectLine(entry))
       .join(', ')}`
   })
 
+  const roomLines: string[] = []
+  const picks: string[] = []
+  for (const { day, slot, removed } of freed) {
+    const rooms = freeRoomsAfterRemoval(snapshot, day, slot, removed)
+    const label = `${DAY_NAMES[day]} Slot ${slot}`
+    roomLines.push(
+      rooms.length > 0
+        ? `${label}: ${rooms.join(', ')}`
+        : `${label}: koi room free nahin`,
+    )
+    const pick = preferredRoom(rooms)
+    if (pick) picks.push(`${label} ke liye ${pick}`)
+  }
+
   const freedText =
-    newFreeSlots.length > 0
-      ? `In mein se ${newFreeSlots.length} slots poore free ho jayenge.`
+    freed.length > 0
+      ? `In mein se ${freed.length} slots poore free ho jayenge.`
       : 'In slots mein doosri class bhi hai, is liye slot poora free nahi hoga.'
 
   const freeLines = [
     ...existingFree
       .sort((a, b) => a.dayOfWeek - b.dayOfWeek || a.slotIndex - b.slotIndex)
       .map((slot) => `${DAY_NAMES[slot.dayOfWeek]} Slot ${slot.slotIndex}`),
-    ...newFreeSlots.map(({ day, slot }) => `${DAY_NAMES[day]} Slot ${slot} (new)`),
+    ...freed.map(({ day, slot }) => `${DAY_NAMES[day]} Slot ${slot} (new)`),
   ]
 
+  const roomText =
+    picks.length > 0
+      ? `\nAap ${picks.join(' ya ')} ja sakte hain.`
+      : freed.length > 0
+        ? '\nUs slot mein koi room free nahin hai.'
+        : ''
+
   return {
-    text: `Agar ${teacher.displayName} nahi aaye, to aap ke section ki ${affected.length} classes cancel hongi.\n${freedText}\nIs ke baad aap ke section ke total ${totalFree} slots free honge.`,
+    text: `Agar ${names.join(' aur ')} nahi aaye, to aap ke section ki ${cancelled} classes cancel hongi.\n${freedText}\nIs ke baad aap ke section ke total ${totalFree} slots free honge.${roomText}`,
     cards: [
       { title: 'Affected classes', lines },
+      ...(roomLines.length > 0
+        ? [{ title: 'Free rooms after absence', lines: roomLines }]
+        : []),
       { title: 'Free slots after absence', lines: freeLines },
     ],
   }

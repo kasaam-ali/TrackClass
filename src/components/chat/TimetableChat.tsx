@@ -101,14 +101,20 @@ export function TimetableChat({ snapshot, sectionKey }: TimetableChatProps) {
       setStreamingId(message.id)
     }
 
-    const localReply = resolveChatQuery(text, { snapshot, sectionKey, meta, now })
+    const localReply = resolveChatQuery(text, {
+      snapshot,
+      sectionKey,
+      meta,
+      now,
+      history: messages,
+    })
     if (localReply) {
       pushReply(localReply, 'local')
       setBusy(false)
       return
     }
 
-    const aiReply = await askTimetableAi(text, sectionKey, now)
+    const aiReply = await askTimetableAi(text, sectionKey, now, messages)
     if (aiReply) {
       pushReply(aiReply, 'ai')
     } else {

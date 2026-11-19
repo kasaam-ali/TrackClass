@@ -255,6 +255,7 @@ function systemPrompt(): string {
     'If the question asks for a count, answer with the number from totals or by counting the relevant list. Do not dump the timetable instead.',
     'If the question is about a section other than the selected one, use sectionTimetable for that section.',
     'If the question is hypothetical or asks for a comparison, give the specific result from the context, not a general explanation.',
+    'Use the recent conversation to resolve follow-up questions, for example when the user asks which room to go to after asking about absent teachers.',
     'Do not list the full timetable unless the user explicitly asks for a timetable or schedule.',
     'Reply in the same language style as the user: Roman Urdu for Roman Urdu questions and English for English questions.',
     'Write plain text only. No markdown, no asterisks, no bold. Start list lines with a dash.',
@@ -341,7 +342,12 @@ serve(async (request) => {
     return json({ answer: 'Assistant is not configured.', source: 'fallback' })
   }
 
-  let body: { message?: string; sectionKey?: string; localTime?: string }
+  let body: {
+    message?: string
+    sectionKey?: string
+    localTime?: string
+    history?: Array<{ role?: string; text?: string }>
+  }
   try {
     body = await request.json()
   } catch {
@@ -350,6 +356,15 @@ serve(async (request) => {
 
   const message = typeof body.message === 'string' ? body.message.trim() : ''
   const sectionKey = typeof body.sectionKey === 'string' ? body.sectionKey.trim() : ''
+  const history = Array.isArray(body.history)
+    ? body.history
+        .filter((item) => item && typeof item.text === 'string' && item.text.trim())
+        .slice(-6)
+        .map((item) => ({
+          role: item.role === 'assistant' ? 'Assistant' : 'User',
+          text: String(item.text).slice(0, 400),
+        }))
+    : []
 
   if (!message || message.length > 500) {
     return json({ answer: 'Question must be between 1 and 500 characters.', source: 'fallback' }, 400)
@@ -469,6 +484,9 @@ serve(async (request) => {
 
   const prompt = [
     `User question: ${message}`,
+    ...(history.length > 0
+      ? ['Recent conversation:', ...history.map((item) => `${item.role}: ${item.text}`)]
+      : []),
     `Current PKT time: ${nowPkt}`,
     `Selected section: ${sectionKey || 'not selected'}`,
     'Timetable context JSON:',

@@ -260,6 +260,45 @@ describe('resolveChatQuery', () => {
     expect(reply?.cards?.[0].title).toBe('Affected classes')
   })
 
+  it('handles two absent teachers together', () => {
+    const reply = resolveChatQuery(
+      'Agar Mr. Abid Ali aur Mr. Ali Salman nahi aaye to kitne slots free honge?',
+      context('BSCS-S2-A-B17', mondayMorning),
+    )
+
+    expect(reply?.text).toContain('Abid Ali')
+    expect(reply?.text).toContain('Ali Salman')
+    expect(reply?.text).toContain('3 classes cancel')
+    expect(reply?.text).toContain('total 3 slots free')
+    expect(reply?.cards?.[1].title).toBe('Free rooms after absence')
+  })
+
+  it('suggests a free room after an absence follow-up', () => {
+    const history = [
+      {
+        id: '1',
+        role: 'user' as const,
+        text: 'Agar Mr. Abid Ali aur Mr. Ali Salman nahi aaye to kitne slots free honge?',
+        createdAt: '2026-10-19T03:00:00.000Z',
+      },
+      {
+        id: '2',
+        role: 'assistant' as const,
+        text: 'Do classes cancel hongi.',
+        createdAt: '2026-10-19T03:00:01.000Z',
+      },
+    ]
+
+    const reply = resolveChatQuery('ab batao kon sa room khali hai ya main kon sa room jaon', {
+      ...context('BSCS-S2-A-B17', mondayMorning),
+      history,
+    })
+
+    expect(reply?.text).toContain('Abid Ali')
+    expect(reply?.text).toContain('free hain')
+    expect(reply?.text).toContain('ja sakte hain')
+  })
+
   it('summarizes section changes from metadata', () => {
     const meta: TimetableMeta = {
       versionNumber: 2,

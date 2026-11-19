@@ -25,4 +25,5 @@ export interface ChatContext {
   sectionKey: string
   meta: TimetableMeta | null
   now: Date
+  history?: ChatMessage[]
 }
