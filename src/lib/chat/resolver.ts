@@ -198,6 +198,11 @@ function isFreeRoomQuery(text: string): boolean {
   return mentionsRoom && asksFree
 }
 
+function isRoomFollowUp(text: string, ctx: ChatContext): boolean {
+  const mentionsRoom = /\b(room|rooms|kamra|kamray|lab|labs)\b/.test(text)
+  return mentionsRoom && absenceTeachersFromHistory(ctx).length > 0
+}
+
 function isFreeSlotQuery(text: string): boolean {
   const asksFree = /\b(free|khali|chutti|chhutti|off)\b/.test(text)
   const mentionsSlot =
@@ -1209,7 +1214,7 @@ export function resolveChatQuery(input: string, ctx: ChatContext): ChatReply | n
 
   if (isAbsenceQuery(text)) return answerTeacherAbsence(text, ctx)
   if (isChangeQuery(text)) return answerChanges(ctx)
-  if (isFreeRoomQuery(text)) return answerFreeRooms(text, ctx)
+  if (isFreeRoomQuery(text) || isRoomFollowUp(text, ctx)) return answerFreeRooms(text, ctx)
   if (isMostClassesTeacherQuery(text)) return answerMostClassesTeacher(ctx)
 
   const teacherAnswer = answerTeacher(text, ctx)

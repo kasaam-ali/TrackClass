@@ -256,6 +256,7 @@ function systemPrompt(): string {
     'If the question is about a section other than the selected one, use sectionTimetable for that section.',
     'If the question is hypothetical or asks for a comparison, give the specific result from the context, not a general explanation.',
     'Use the recent conversation to resolve follow-up questions, for example when the user asks which room to go to after asking about absent teachers.',
+    'If today is a weekend and the user refers to an earlier absence question, use the teachers and days from the recent conversation instead of assuming today.',
     'Do not list the full timetable unless the user explicitly asks for a timetable or schedule.',
     'Reply in the same language style as the user: Roman Urdu for Roman Urdu questions and English for English questions.',
     'Write plain text only. No markdown, no asterisks, no bold. Start list lines with a dash.',

@@ -299,6 +299,25 @@ describe('resolveChatQuery', () => {
     expect(reply?.text).toContain('ja sakte hain')
   })
 
+  it('answers a short room follow-up after an absence question', () => {
+    const history = [
+      {
+        id: '1',
+        role: 'user' as const,
+        text: 'Agar Ms. Maria aur Mr. Saad Ahmed nahi aaye to kitne slots free honge?',
+        createdAt: '2026-10-19T03:00:00.000Z',
+      },
+    ]
+
+    const reply = resolveChatQuery('room batao', {
+      ...context('BSAI-S2-A-B3', mondayMorning),
+      history,
+    })
+
+    expect(reply?.text).toContain('Maria')
+    expect(reply?.text).toContain('ja sakte hain')
+  })
+
   it('summarizes section changes from metadata', () => {
     const meta: TimetableMeta = {
       versionNumber: 2,
