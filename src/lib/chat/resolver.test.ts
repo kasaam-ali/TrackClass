@@ -318,6 +318,16 @@ describe('resolveChatQuery', () => {
     expect(reply?.text).toContain('ja sakte hain')
   })
 
+  it('uses singular wording for one cancelled class', () => {
+    const reply = resolveChatQuery(
+      'Agar Mr. Zulqarnain nahi aaye to kitne slots free honge?',
+      context('BSAI-S2-A-B3', mondayMorning),
+    )
+
+    expect(reply?.text).toContain('1 class cancel hogi')
+    expect(reply?.text).toContain('total 1 slot free hoga')
+  })
+
   it('summarizes section changes from metadata', () => {
     const meta: TimetableMeta = {
       versionNumber: 2,

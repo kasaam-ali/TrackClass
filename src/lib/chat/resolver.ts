@@ -449,14 +449,17 @@ function answerFreeRooms(text: string, ctx: ChatContext): ChatReply {
       }
 
       const names = priorTeachers.map((teacher) => teacher.displayName).join(' aur ')
-      return {
-        text: `${names} ki absence ke baad ye slots free hain:\n${lines.join('\n')}${
-          picks.length > 0
+      const slotText = freed.length === 1 ? 'ye slot free hai' : 'ye slots free hain'
+      const pickText =
+        picks.length === 1
+          ? `\nAap is room mein ja sakte hain:\n- ${picks[0]}`
+          : picks.length > 1
             ? `\nAap in rooms mein ja sakte hain:\n${picks
                 .map((pick) => `- ${pick}`)
                 .join('\n')}`
             : ''
-        }`,
+      return {
+        text: `${names} ki absence ke baad ${slotText}:\n${lines.join('\n')}${pickText}`,
         cards,
       }
     }
@@ -1172,9 +1175,11 @@ function answerTeacherAbsence(text: string, ctx: ChatContext): ChatReply {
   }
 
   const freedText =
-    freed.length > 0
-      ? `In mein se ${freed.length} slots poore free ho jayenge.`
-      : 'In slots mein doosri class bhi hai, is liye slot poora free nahi hoga.'
+    freed.length === 1
+      ? 'In mein se 1 slot poora free ho jayega.'
+      : freed.length > 1
+        ? `In mein se ${freed.length} slots poore free ho jayenge.`
+        : 'In slots mein doosri class bhi hai, is liye slot poora free nahi hoga.'
 
   const freeLines = [
     ...existingFree
@@ -1183,15 +1188,21 @@ function answerTeacherAbsence(text: string, ctx: ChatContext): ChatReply {
     ...freed.map(({ day, slot }) => `${DAY_NAMES[day]} Slot ${slot} (new)`),
   ]
 
+  const cancelText =
+    cancelled === 1 ? '1 class cancel hogi' : `${cancelled} classes cancel hongi`
+  const totalText =
+    totalFree === 1 ? 'total 1 slot free hoga' : `total ${totalFree} slots free honge`
   const roomText =
-    picks.length > 0
-      ? `\nAap in rooms mein ja sakte hain:\n${picks.map((pick) => `- ${pick}`).join('\n')}`
-      : freed.length > 0
-        ? '\nUs slot mein koi room free nahin hai.'
-        : ''
+    picks.length === 1
+      ? `\nAap is room mein ja sakte hain:\n- ${picks[0]}`
+      : picks.length > 1
+        ? `\nAap in rooms mein ja sakte hain:\n${picks.map((pick) => `- ${pick}`).join('\n')}`
+        : freed.length > 0
+          ? '\nUs slot mein koi room free nahin hai.'
+          : ''
 
   return {
-    text: `Agar ${names.join(' aur ')} nahi aaye, to aap ke section ki ${cancelled} classes cancel hongi.\n${freedText}\nIs ke baad aap ke section ke total ${totalFree} slots free honge.${roomText}`,
+    text: `Agar ${names.join(' aur ')} nahi aaye, to aap ke section ki ${cancelText}.\n${freedText}\nIs ke baad aap ke section ke ${totalText}.${roomText}`,
     cards: [
       { title: 'Affected classes', lines },
       ...(roomLines.length > 0
